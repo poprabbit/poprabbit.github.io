@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="poprabbit">
 <meta property="og:description" content="AbstractQueuedSynchronizer是 Java 并发包的基础工具类，是实现 ReentrantLock、CountDownLatch、CyclicBarrier、Semaphore、FutureTask 等类的基础属性如下：    // 头结点，你直接把它当做 当前持有锁的线程private transient volatile Node head;// 阻塞的尾节点，每个新的节">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-26T11:50:32.479Z">
+<meta property="og:updated_time" content="2020-04-19T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AbstractQueuedSynchronizer">
 <meta name="twitter:description" content="AbstractQueuedSynchronizer是 Java 并发包的基础工具类，是实现 ReentrantLock、CountDownLatch、CyclicBarrier、Semaphore、FutureTask 等类的基础属性如下：    // 头结点，你直接把它当做 当前持有锁的线程private transient volatile Node head;// 阻塞的尾节点，每个新的节">
@@ -100,7 +100,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -278,7 +278,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-04-20T00:00:00+08:00">
+                2020-04-20
+              </time>
             
           </span>
 
@@ -538,6 +550,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -623,6 +637,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -669,11 +690,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
