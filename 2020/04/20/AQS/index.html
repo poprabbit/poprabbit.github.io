@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="multi-thread,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="AbstractQueuedSynchronizer是 Java 并发包的基础工具类，是实现 ReentrantLock、CountDownLatch、CyclicBarrier、Semaphore、FutureTask 等类的基础属性如下：    // 头结点，你直接把它当做 当前持有锁的线程private transient volatile Node head;// 阻塞的尾节点，每个新的节">
+<meta name="keywords" content="multi-thread">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AbstractQueuedSynchronizer">
+<meta property="og:url" content="http://poprabbit.github.io/2020/04/20/AQS/index.html">
+<meta property="og:site_name" content="poprabbit">
+<meta property="og:description" content="AbstractQueuedSynchronizer是 Java 并发包的基础工具类，是实现 ReentrantLock、CountDownLatch、CyclicBarrier、Semaphore、FutureTask 等类的基础属性如下：    // 头结点，你直接把它当做 当前持有锁的线程private transient volatile Node head;// 阻塞的尾节点，每个新的节">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-26T11:50:32.479Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AbstractQueuedSynchronizer">
+<meta name="twitter:description" content="AbstractQueuedSynchronizer是 Java 并发包的基础工具类，是实现 ReentrantLock、CountDownLatch、CyclicBarrier、Semaphore、FutureTask 等类的基础属性如下：    // 头结点，你直接把它当做 当前持有锁的线程private transient volatile Node head;// 阻塞的尾节点，每个新的节">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://poprabbit.github.io/2020/04/20/AQS/">
+
+
+
+
+
+  <title>AbstractQueuedSynchronizer | poprabbit</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">poprabbit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">learn something,apply to actual,or reverse</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/04/20/AQS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AbstractQueuedSynchronizer</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-20T23:33:02+08:00">
+                2020-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="AbstractQueuedSynchronizer"><a href="#AbstractQueuedSynchronizer" class="headerlink" title="AbstractQueuedSynchronizer"></a>AbstractQueuedSynchronizer</h2><p><strong>是 Java 并发包的基础工具类，是实现 ReentrantLock、CountDownLatch、CyclicBarrier、Semaphore、FutureTask 等类的基础</strong><br>属性如下：  </p>
+<blockquote>
+<p>// 头结点，你直接把它当做 当前持有锁的线程<br>private transient volatile Node head;<br>// 阻塞的尾节点，每个新的节点进来，都插入到最后，也就形成了一个链表<br>private transient volatile Node tail;<br>// 这个是最重要的，代表当前锁的状态，0代表没有被占用，大于 0 代表有线程持有当前锁<br>// 这个值可以大于 1，是因为锁可以重入，每次重入都加上 1<br>private volatile int state;<br>// 代表当前持有独占锁的线程，举个最重要的使用例子，因为锁可以重入<br>private transient Thread exclusiveOwnerThread; //继承自AbstractOwnableSynchronizer  </p>
+</blockquote>
+<p><strong>其内部维护了一个等待队列  –包含头节点及阻塞队列 –由Node 组成的双向链表</strong>  </p>
+<h3 id="Node-的结构简介"><a href="#Node-的结构简介" class="headerlink" title="Node 的结构简介"></a>Node 的结构简介</h3><blockquote>
+<p>// 取值为上面的1、-1、-2、-3，或者0(以后会讲到)<br>// 这么理解，暂时只需要知道如果这个值 大于0 代表此线程取消了等待，<br>//    ps: 半天抢不到锁，不抢了，ReentrantLock 是可以指定timeouot的。。。<br>volatile int waitStatus;<br>// 前驱节点的引用<br>volatile Node prev;<br>// 后继节点的引用<br>volatile Node next;<br>// 这个就是线程本尊<br>volatile Thread thread;  </p>
+</blockquote>
+<p>关键方法：  </p>
+<ul>
+<li>lock();(-子类) —&gt; acquire()(-AQS); —&gt; tryAcquire()(-子类);acquireQueued();addWaiter();enq();(-AQS); —&gt; 结束  </li>
+<li>unlock();(-子类) —&gt; release()(-AQS); —&gt; tryRelease()(-子类);unparkSuccessor();(-AQS); —&gt; 结束  </li>
+<li>tryAcquire(arg) 尝试获取下锁，如果返回true（整个条件队列为空或者是重入锁）, 也就结束了；-子类实现<br>下面方法 AQS 自己实现</li>
+<li>addWaiter(Node mode)  线程包装成node，同时进入到队列中  </li>
+<li>enq(final Node node)  初始化头节点 或 自旋的方式入队  </li>
+<li>acquireQueued(final Node node, int arg)  真正的线程挂起，被唤醒然后去获取锁，都在这个方法里了；（返回true的话将进入 selfInterrupt()，所以正常情况下，应该返回false）  </li>
+<li>shouldParkAfterFailedAcquire(Node pred, Node node)  “当前线程没有抢到锁，是否需要挂起当前线程？” 或者说 保证当前节点的prev.waitStatus== Node.SIGNAL  </li>
+<li>parkAndCheckInterrupt()  负责挂起线程的  </li>
+<li>tryRelease(int releases)  减少state的值，返回boolean， 是否完全释放锁  </li>
+<li>unparkSuccessor(Node node)  唤醒后继节点  </li>
+</ul>
+<p><strong>tail==head的时候，其实阻塞队列是空的。(==null或者==new Node())</strong><br><strong>前驱节点的 waitStatus == -1 ，说明前驱节点状态正常，当前线程需要挂起</strong><br><strong>在并发环境下，加锁和解锁需要以下三个部件的协调：锁状态、线程的阻塞和解除阻塞、阻塞队列。</strong></p>
+<hr>
+<h2 id="ReentrantLock-Condition"><a href="#ReentrantLock-Condition" class="headerlink" title="ReentrantLock,Condition"></a>ReentrantLock,Condition</h2><p><strong>公平锁和非公平锁只有两处不同：</strong><br>    1. 非公平锁在调用 lock 后，首先就会调用 CAS 进行一次抢锁，如果这个时候恰巧锁没有被占用，那么直接就获取到锁返回了。<br>    2. 在 tryAcquire 方法中，如果发现锁这个时候被释放了（state == 0），非公平锁会直接 CAS 抢锁，但是公平锁会判断等待队列是否有线程处于等待状态，如果有则不去抢锁，乖乖排到后面。  </p>
+<h3 id="AbstractQueuedSynchronizer-类中的-ConditionObject"><a href="#AbstractQueuedSynchronizer-类中的-ConditionObject" class="headerlink" title="AbstractQueuedSynchronizer 类中的 ConditionObject"></a>AbstractQueuedSynchronizer 类中的 ConditionObject</h3><p><strong>ReentrantLock 维持了一个阻塞队列；Condition 维持了一个条件队列</strong><br><strong>ReentrantLock与Condition都是Node组成的链表，prev 和 next 用于实现阻塞队列的双向链表，nextWaiter 用于实现条件队列的单向链表</strong><br>关键属性  </p>
+<blockquote>
+<p>// 条件队列的第一个节点<br>private transient Node firstWaiter;<br>// 条件队列的最后一个节点<br>private transient Node lastWaiter;  </p>
+</blockquote>
+<p><strong>Condition 是依赖于 ReentrantLock 的，不管是调用 await 进入等待还是 signal 唤醒，都必须获取到锁才能进行操作。</strong>  </p>
+<ol>
+<li>一个 ReentrantLock 实例可以通过多次调用 newCondition() 来产生多个 Condition 实例；  </li>
+<li>每个 condition 有一个关联的条件队列，await() 方法即可将当前线程包装成 Node 后加入到条件队列中，然后阻塞在这里；  </li>
+<li>signal() 触发一次唤醒，唤醒的是队头，会将对应condition的条件队列的 firstWaiter（队头） 移到阻塞队列的队尾，等待获取锁。  </li>
+</ol>
+<p>关键方法：    </p>
+<ul>
+<li>addConditionWaiter()  将当前线程对应的节点入队，插入队尾  </li>
+<li>fullyRelease(node)  完全释放独占锁  </li>
+<li>while (!isOnSyncQueue(node))  自旋，等待进入阻塞队列；isOnSyncQueue(node) 判断是否在阻塞队列。  </li>
+<li>checkInterruptWhileWaiting(node)  用于判断是否在线程挂起期间发生了中断  </li>
+<li>transferAfterCancelledWait(Node node)  判断在 signal 之前还是之后发生的中断，并将signal之前中断的节点转移到阻塞队列  </li>
+<li>acquireQueued(node, savedState)  上一节的方法，返回boolean代表线程是否被中断  </li>
+<li>reportInterruptAfterWait(int interruptMode)  处理中断状态  </li>
+<li>transferForSignal(Node node)  将节点从条件队列转移到阻塞队列，如果前驱节点取消或者前驱节点 CAS 失败，会唤醒线程。  </li>
+</ul>
+<blockquote>
+<p>有以下三种情况会让 LockSupport.park(this); 这句返回继续往下执行：（首先执行checkInterruptWhileWaiting()）  </p>
+<ol>
+<li>常规路径。signal -&gt; 转移节点到阻塞队列 -&gt; 获取了锁（unpark）  interruptMode==0  </li>
+<li>线程中断。在 park 的时候，另外一个线程对这个线程进行了中断  signal 之前中断，interruptMode==THROW_IE（-1）  </li>
+<li>signal 的时候我们说过，转移以后的前驱节点取消了，或者对前驱节点的CAS操作失败了  signal 之后中断，interruptMode==REINTERRUPT（1）  </li>
+<li>假唤醒。这个也是存在的，和 Object.wait() 类似，都有这个问题  </li>
+</ol>
+</blockquote>
+<p>注意：  </p>
+<ul>
+<li>前驱节点取消了，或者对前驱节点的CAS操作失败  –（wait()方法 没有对前驱节点做后续处理）  </li>
+<li>while (!isOnSyncQueue(node));  Thread.yield();<br>signal 方法会将节点转移到阻塞队列，但是可能还没完成，这边自旋等待其完成。当然，这种事情还是比较少的吧：signal 调用之后，没完成转移之前，发生了中断  </li>
+</ul>
+<ul>
+<li>带超时机制的 await<br>await(long time, TimeUnit unit)  调用 parkNanos 方法来休眠指定的时间，醒来后判断是否 signal 调用了，调用了就是没有超时-true，否则就是超时了-false。（不带超时参数的 await 是 park，然后等待别人唤醒）  </li>
+<li>AQS 独占锁的取消排队<br>lock()  仅设置线程的中断状态而已，不做任何处理<br>lockInterruptibly() 发生中断异常时会跳到 cancelAcquire(node)，把节点的 waitStatus 设置为 Node.CANCELLED，从而取消排队。  <h3 id="再说-java-线程中断和-InterruptedException-异常-–即怎么用-线程中断？？"><a href="#再说-java-线程中断和-InterruptedException-异常-–即怎么用-线程中断？？" class="headerlink" title="再说 java 线程中断和 InterruptedException 异常  –即怎么用 线程中断？？"></a>再说 java 线程中断和 InterruptedException 异常  –即怎么用 线程中断？？</h3></li>
+</ul>
+<ol>
+<li>不是说我们中断某个线程，这个线程就停止运行了。中断代表线程状态，每个线程都关联了一个中断状态，是一个 true 或 false 的 boolean 值，初始值为 false。  </li>
+<li>如果线程处于以下三种情况，那么当线程被中断的时候，能自动感知到（跳出该方法）：  <ul>
+<li>wait() join() sleep(long)<br>中断线程会从这些方法中立即返回，抛出 InterruptedException 异常，同时重置中断状态为 false。  </li>
+<li>实现了 InterruptibleChannel 接口的类中的一些 I/O 阻塞操作<br>中断线程会导致这些方法抛出 ClosedByInterruptException 并重置中断状态。  </li>
+<li>Selector 中的 select 方法<br>一旦中断，方法立即返回<br>对于以上 3 种情况是最特殊的，因为他们能自动感知到中断（这里说自动，当然也是基于底层实现），并且在做出相应的操作后都会重置中断状态为 false。<br>那是不是只有以上 3 种方法能自动感知到中断呢？不是的，如果线程阻塞在 LockSupport.park(Object obj) 方法，也叫挂起，这个时候的中断也会导致线程唤醒，但是唤醒后不会重置中断状态，所以唤醒后去检测中断状态将是 true。<br>LockSupport.unpark(s.thread);不会改变s.thread的中断状态，即s.thread.isInterrupted()==false。</li>
+</ul>
+</li>
+<li>除了几个特殊类（如 Object，Thread等）外，感知中断并提前返回是通过轮询中断状态来实现的。我们自己需要写可中断的方法的时候，就是通过在合适的时机（通常在循环的开始处）去判断线程的中断状态，然后做相应的操作（通常是方法直接返回或者抛出异常）。  </li>
+<li>在并发包中，有很多方法，分别为响应中断和不响应中断 的操作  </li>
+</ol>
+<hr>
+<h2 id="CountDownLatch-CyclicBarrier"><a href="#CountDownLatch-CyclicBarrier" class="headerlink" title="CountDownLatch,CyclicBarrier"></a>CountDownLatch,CyclicBarrier</h2><p><strong>CountDownLatch 这个类是比较典型的 AQS 的共享模式的使用</strong>  </p>
+<ul>
+<li>CountDownLatch 的使用场景：有 m 个线程是做任务的，有 n 个线程在某个栅栏上等待这 m 个线程做完任务，直到所有 m 个任务完成后，n 个线程同时通过栅栏。  </li>
+<li>套路分析：AQS 里面的 state 是一个整数值，这边用一个 int count 参数其实初始化就是设置了这个值，所有调用了 await 方法的等待线程会挂起，然后有其他一些线程会做 state = state - 1 操作，当 state 减到 0 的同时，那个将 state 减为 0 的线程会负责唤醒 所有调用了 await 方法的线程。  </li>
+</ul>
+<p>关键方法：<br>1.await()  是一个阻塞方法，当 state 减为 0 的时候，await 方法才会返回。<br> —&gt; tryAcquireShared(int acquires)  只有当 state == 0 的时候，这个方法才会返回 1<br> —&gt; doAcquireSharedInterruptibly(arg)  获取共享锁<br>    —&gt; setHeadAndPropagate(node, r)  –（setHead(node);doReleaseShared();//先把 head 给占了，然后唤醒队列中其他的线程）<br>2.countDown()  每次调用都会将 state 减 1，直到 state 的值为 0 唤醒所有等待的线程。<br> —&gt; tryReleaseShared(int releases)  只有当 state 减为 0 的时候，才返回 true<br> —&gt; doReleaseShared()    —&gt; unparkSuccessor(h)  唤醒 head 的后继节点  </p>
+<p>重点分析：  </p>
+<pre><code class="java"><span class="comment">// 调用这个方法的时候，state == 0  </span>
+<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">doReleaseShared</span><span class="params">()</span> </span>{  
+    <span class="keyword">for</span> (;;) {  
+        Node h = head;  
+        <span class="comment">// 1. h == null: 说明阻塞队列为空  </span>
+        <span class="comment">// 2. h == tail: 说明头结点可能是刚刚初始化的头节点，  </span>
+        <span class="comment">//   或者是普通线程节点，但是此节点既然是头节点了，那么代表已经被唤醒了，阻塞队列没有其他节点了  </span>
+        <span class="comment">// 所以这两种情况不需要进行唤醒后继节点  </span>
+        <span class="keyword">if</span> (h != <span class="keyword">null</span> &amp;&amp; h != tail) {  
+            <span class="keyword">int</span> ws = h.waitStatus;  
+            <span class="comment">// t4 将头节点(此时是 t3)的 waitStatus 设置为 Node.SIGNAL（-1） 了  </span>
+            <span class="keyword">if</span> (ws == Node.SIGNAL) {  
+                <span class="comment">// 这里 CAS 失败的场景请看下面的解读  </span>
+                <span class="keyword">if</span> (!compareAndSetWaitStatus(h, Node.SIGNAL, <span class="number">0</span>))  
+                    <span class="keyword">continue</span>;            <span class="comment">// loop to recheck cases  </span>
+                <span class="comment">// 就是这里，唤醒 head 的后继节点，也就是阻塞队列中的第一个节点  </span>
+                <span class="comment">// 在这里，也就是唤醒 t4  </span>
+                unparkSuccessor(h);  
+            }  
+            <span class="keyword">else</span> <span class="keyword">if</span> (ws == <span class="number">0</span> &amp;&amp;  
+                     <span class="comment">// 这个 CAS 失败的场景是：执行到这里的时候，刚好有一个节点入队，入队会将这个 ws 设置为 -1  </span>
+                     !compareAndSetWaitStatus(h, <span class="number">0</span>, Node.PROPAGATE))  
+                <span class="keyword">continue</span>;                <span class="comment">// loop on failed CAS  </span>
+        }  
+        <span class="comment">// 如果到这里的时候，前面唤醒的线程已经占领了 head，那么再循环  </span>
+        <span class="comment">// 否则，就是 head 没变，那么退出循环，  </span>
+        <span class="comment">// 退出循环是不是意味着阻塞队列中的其他节点就不唤醒了？当然不是，唤醒的线程之后还是会调用这个方法的  </span>
+        <span class="keyword">if</span> (h == head)                   <span class="comment">// loop if head changed  </span>
+            <span class="keyword">break</span>;  
+    }  
+}    
+</code></pre>
+<p><strong>我们分析下最后一个 if 语句，然后才能解释第一个 CAS 为什么可能会失败：</strong>  </p>
+<ol>
+<li>h == head：说明头节点还没有被刚刚用 unparkSuccessor 唤醒的线程（这里可以理解为 t4）占有，此时 break 退出循环。  </li>
+<li>h != head：头节点被刚刚唤醒的线程（这里可以理解为 t4）占有，那么这里重新进入下一轮循环，唤醒下一个节点（这里是 t5 ）。我们知道，等到 t4 被唤醒后，其实是会主动唤醒 t5、t6、t7…，那为什么这里要进行下一个循环来唤醒 t5 呢？我觉得是出于吞吐量的考虑。<br>满足上面的 2 的场景，那么我们就能知道为什么上面的 CAS 操作 compareAndSetWaitStatus(h, Node.SIGNAL, 0) 会失败了？<br><strong><em>因为当前进行 for 循环的线程到这里的时候，可能刚刚唤醒的线程 t4 也刚刚好到这里了，那么就有可能 CAS 失败了。</em></strong><br>CountDownLatch 完全没看出来共享模式。。。s.isShared() ??  </li>
+</ol>
+<h3 id="CyclicBarrier"><a href="#CyclicBarrier" class="headerlink" title="CyclicBarrier"></a>CyclicBarrier</h3><p><strong>“可重复使用的栅栏”，与 CountDownLatch 不同，它是 ReentrantLock 和 Condition 的组合使用。</strong><br>操作方法只有一个：await()；每个线程 await 一次，count 减1，当最后一个线程 await 的时候，那么就来齐了，大家一起通过栅栏。<br>其他方法：<br>nextGeneration()    –开启新的一代   相当重新初始化 CyclicBarrier<br>breakBarrier()        –打破一个栅栏  </p>
+<h3 id="Semaphore"><a href="#Semaphore" class="headerlink" title="Semaphore"></a>Semaphore</h3><p><strong>类似一个资源池，每个线程需要调用 acquire() 方法获取资源，然后才能执行，执行完后，需要 release 资源，让给其他的线程用。</strong><br>套路解读：  </p>
+<ul>
+<li>创建 Semaphore 实例的时候，需要一个参数 permits，这个基本上可以确定是设置给 AQS 的 state 的，然后每个线程调用 acquire 的时候，执行 state = state - 1，release 的时候执行 state = state + 1，当然，acquire 的时候，如果 state = 0，说明没有资源了，需要等待其他线程 release。  </li>
+<li>availablePermits()  获取 state 值。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    popular rabbit
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://poprabbit.github.io/2020/04/20/AQS/" title="AbstractQueuedSynchronizer">http://poprabbit.github.io/2020/04/20/AQS/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/multi-thread/" rel="tag"># multi-thread</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/20/multi-thread/" rel="next" title="multi-thread">
+                <i class="fa fa-chevron-left"></i> multi-thread
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">popular rabbit</p>
+              <p class="site-description motion-element" itemprop="description">java</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AbstractQueuedSynchronizer"><span class="nav-number">1.</span> <span class="nav-text">AbstractQueuedSynchronizer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-的结构简介"><span class="nav-number">1.1.</span> <span class="nav-text">Node 的结构简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReentrantLock-Condition"><span class="nav-number">2.</span> <span class="nav-text">ReentrantLock,Condition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AbstractQueuedSynchronizer-类中的-ConditionObject"><span class="nav-number">2.1.</span> <span class="nav-text">AbstractQueuedSynchronizer 类中的 ConditionObject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再说-java-线程中断和-InterruptedException-异常-–即怎么用-线程中断？？"><span class="nav-number">2.2.</span> <span class="nav-text">再说 java 线程中断和 InterruptedException 异常  –即怎么用 线程中断？？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CountDownLatch-CyclicBarrier"><span class="nav-number">3.</span> <span class="nav-text">CountDownLatch,CyclicBarrier</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CyclicBarrier"><span class="nav-number">3.1.</span> <span class="nav-text">CyclicBarrier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semaphore"><span class="nav-number">3.2.</span> <span class="nav-text">Semaphore</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popular rabbit</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
