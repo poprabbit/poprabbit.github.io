@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="java">
+<meta name="description" content="Threads and Locks用户创建线程的唯一方式是创建 Thread 类的一个实例，每一个线程都和这样的一个实例关联。这个章节将描述多线程编程的语义问题，包括一系列的规则，这些规则定义了在多线程环境中线程对共享内存中值的修改是否对其他线程立即可见。   同步（synchronization）最基本的多种线程之间通信的机制。java中的每个对象都关联了一个监视器，线程可以对其进行加锁和解锁操">
 <meta name="keywords" content="multi-thread">
 <meta property="og:type" content="article">
 <meta property="og:title" content="multi-thread">
 <meta property="og:url" content="http://poprabbit.github.io/2020/04/20/multi-thread/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="java">
+<meta property="og:description" content="Threads and Locks用户创建线程的唯一方式是创建 Thread 类的一个实例，每一个线程都和这样的一个实例关联。这个章节将描述多线程编程的语义问题，包括一系列的规则，这些规则定义了在多线程环境中线程对共享内存中值的修改是否对其他线程立即可见。   同步（synchronization）最基本的多种线程之间通信的机制。java中的每个对象都关联了一个监视器，线程可以对其进行加锁和解锁操">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-19T16:00:00.000Z">
+<meta property="og:updated_time" content="2020-05-02T05:33:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="multi-thread">
-<meta name="twitter:description" content="java">
+<meta name="twitter:description" content="Threads and Locks用户创建线程的唯一方式是创建 Thread 类的一个实例，每一个线程都和这样的一个实例关联。这个章节将描述多线程编程的语义问题，包括一系列的规则，这些规则定义了在多线程环境中线程对共享内存中值的修改是否对其他线程立即可见。   同步（synchronization）最基本的多种线程之间通信的机制。java中的每个对象都关联了一个监视器，线程可以对其进行加锁和解锁操">
 
 
 
@@ -100,7 +100,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -145,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,7 +248,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="popular rabbit">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/poprabbit.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-04-20T00:00:00+08:00">
-                2020-04-20
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-02T13:33:02+08:00">
+                2020-05-02
               </time>
             
           </span>
@@ -322,7 +322,85 @@
       
 
       
-        
+        <h2 id="Threads-and-Locks"><a href="#Threads-and-Locks" class="headerlink" title="Threads and Locks"></a>Threads and Locks</h2><p>用户创建线程的唯一方式是创建 Thread 类的一个实例，每一个线程都和这样的一个实例关联。<br>这个章节将描述多线程编程的语义问题，包括一系列的规则，这些规则定义了在多线程环境中线程对共享内存中值的修改是否对其他线程立即可见。  </p>
+<h3 id="同步（synchronization）"><a href="#同步（synchronization）" class="headerlink" title="同步（synchronization）"></a>同步（synchronization）</h3><p>最基本的多种线程之间通信的机制。<br>java中的每个对象都关联了一个监视器，线程可以对其进行加锁和解锁操作。在同一时间，只有一个线程可以拿到对象上的监视器锁。如果其他线程在锁被占用期间试图去获取锁，那么将会被阻塞直到成功获取到锁。<br>同步机制：synchronized 关键字、对 volatile 变量的读写、使用 java.util.concurrent 包中的同步工具类等  </p>
+<h3 id="等待集合-和-唤醒（Wait-Sets-and-Notification）"><a href="#等待集合-和-唤醒（Wait-Sets-and-Notification）" class="headerlink" title="等待集合 和 唤醒（Wait Sets and Notification）"></a>等待集合 和 唤醒（Wait Sets and Notification）</h3><p>每个 java 对象，都关联了一个监视器，也关联了一个等待集合。等待集合是一个线程集合。  </p>
+<h4 id="等待-（Wait）"><a href="#等待-（Wait）" class="headerlink" title="等待 （Wait）"></a>等待 （Wait）</h4><p>我们在线程 t 中对对象 m 调用 m.wait() 方法，n 代表加锁编号，同时还没有相匹配的解锁操作，则下面的其中之一会发生：  </p>
+<ul>
+<li>如果 n 等于 0（如线程 t 没有持有对象 m 的锁），那么会抛出 IllegalMonitorStateException 异常。  </li>
+<li>如果线程 t 调用的是 m.wait(millisecs) 或m.wait(millisecs, nanosecs)，形参要正确，否则会抛出 IllegalArgumentException 异常。  </li>
+<li>如果线程 t 被中断，此时中断状态为 true，则 wait 方法将抛出 InterruptedException 异常，并将中断状态设置为 false。  </li>
+<li>否则，下面的操作会顺序发生：<ol>
+<li>线程 t 会加入到对象 m 的等待集合中，执行 加锁编号 n 对应的解锁操作</li>
+<li>线程 t 不会执行任何进一步的指令。在发生以下操作的时候，线程 t 会从 m 的等待集合中移出，<strong>获取锁后</strong>，并继续执行之后的指令<ul>
+<li>在 m上执行了 notify 操作，而且线程 t 被选中从等待集合中移除。</li>
+<li>在 m 上执行了 notifyAll 操作，那么线程 t 会从等待集合中移除。</li>
+<li>线程 t 发生了 interrupt 操作。</li>
+<li>如果线程 t 是调用 wait 的重载方法，那么过了millisecs 毫秒后线程 t 也会从等待集合中移出。</li>
+<li>JVM 的“假唤醒”，虽然这是不鼓励的，但是这种操作是被允许的，这样 JVM 能实现将线程从等待集合中移出，而不必等待具体的移出指令。</li>
+</ul>
+</li>
+<li>线程 t 执行编号为 n 的加锁操作（同上面说的）  </li>
+</ol>
+</li>
+</ul>
+<h4 id="通知（Notification）"><a href="#通知（Notification）" class="headerlink" title="通知（Notification）"></a>通知（Notification）</h4><p>我们在线程 t 中对对象 m 调用 m.notify() 或 m.notifyAll() 方法，n 代表加锁编号，同时对应的解锁操作没有执行，则下面的其中之一会发生：  </p>
+<ul>
+<li>如果 n 等于 0，抛出 IllegalMonitorStateException 异常，因为线程 t 还没有获取到对象 m 上的锁。</li>
+<li>notify 操作，如果 m 的等待集合不为空，那么等待集合中的线程 u 被选中从等待集合中移出。</li>
+<li>notifyAll 操作，那么等待集合中的所有线程都将从等待集合中移出，然后恢复。  </li>
+</ul>
+<h4 id="中断（Interruptions）"><a href="#中断（Interruptions）" class="headerlink" title="中断（Interruptions）"></a>中断（Interruptions）</h4><p>令线程 t 调用线程 u 上的方法 u.interrupt()，其中 t 和 u 可以是同一个线程，这个操作会将 u 的中断状态设置为 true。<br>wait、如果线程阻塞在 InterruptibleChannel 类的 IO 操作中、如果线程阻塞在一个 Selector 中，<br>如果线程阻塞在以上3种情况中，那么当线程感知到中断状态后（此线程的 interrupt() 方法被调用），会将中断状态重新设置为 false，然后执行相应的操作（通常就是跳到 catch 异常处）。  </p>
+<h3 id="等待、通知和中断-的交互（Interactions-of-Waits-Notification-and-Interruption）"><a href="#等待、通知和中断-的交互（Interactions-of-Waits-Notification-and-Interruption）" class="headerlink" title="等待、通知和中断 的交互（Interactions of Waits, Notification, and Interruption）"></a>等待、通知和中断 的交互（Interactions of Waits, Notification, and Interruption）</h3><p>如果一个线程在等待期间，同时发生了通知和中断，它将发生：<br>从 wait 方法中正常返回，同时不重置中断状态（也就是说，调用 Thread.interrupted 方法将会返回 true）<br>由于抛出了 InterruptedException 异常而从 wait 方法中返回，中断状态设置为 false  </p>
+<h3 id="休眠和礼让（Sleep-and-Yield）"><a href="#休眠和礼让（Sleep-and-Yield）" class="headerlink" title="休眠和礼让（Sleep and Yield）"></a>休眠和礼让（Sleep and Yield）</h3><p>休眠期间，线程不会释放任何的监视器锁。<br>Thread.sleep 和 Thread.yield 都不具有同步的语义。  </p>
+<hr>
+<h2 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h2><h3 id="并发三问题"><a href="#并发三问题" class="headerlink" title="并发三问题"></a>并发三问题</h3><p>重排序、内存可见性以及原子性，这些也是并发程序为什么难写的原因。  </p>
+<ol>
+<li>重排序由以下几种机制引起：  <ul>
+<li>编译器优化：对于没有数据依赖关系的操作，编译器在编译的过程中会进行一定程度的重排。  </li>
+<li>指令重排序：CPU 优化行为，也是会对不存在数据依赖关系的指令进行一定程度的重排。</li>
+<li>内存系统重排序：内存系统没有重排序，但是由于有缓存的存在，使得程序整体上会表现出乱序的行为。  </li>
+</ul>
+</li>
+<li>内存可见性<br>Java 作为高级语言，屏蔽了CPU中每个核心的一级缓存和二级缓存的问题，但是，JMM 抽象了主内存和本地内存的概念。所有的共享变量存在于主内存中，每个线程有自己的本地内存，线程读写共享数据也是通过本地内存交换的，所以可见性问题依然是存在的。  </li>
+<li>原子性<br>Java 编程语言规范中提到，对于 64 位的值的写入，可以分为两个 32 位的操作进行写入。<br>这个时候我们要使用 volatile 关键字进行控制了，JMM 规定了对于 volatile long 和 volatile double，JVM 需要保证写入操作的原子性。  </li>
+</ol>
+<h3 id="Java-对于并发的规范约束"><a href="#Java-对于并发的规范约束" class="headerlink" title="Java 对于并发的规范约束"></a>Java 对于并发的规范约束</h3><p>Java 编程语言规范，使我们写出来的并发代码能准确预测执行结果。  </p>
+<h4 id="Synchronization-Order"><a href="#Synchronization-Order" class="headerlink" title="Synchronization Order"></a>Synchronization Order</h4><ul>
+<li>对于监视器 m 的解锁与所有后续操作对于 m 的加锁同步</li>
+<li>对 volatile 变量 v 的写入，与所有其他线程后续对 v 的读同步</li>
+<li>启动线程的操作与线程中的第一个操作同步。</li>
+<li>对于每个属性写入默认值（0， false，null）与每个线程对其进行的操作同步。</li>
+<li>线程 T1 的最后操作与线程 T2 发现线程 T1 已经结束同步。即线程 T2 可以通过 T1.isAlive() 或 T1.join() 方法来判断 T1 是否已经终结。</li>
+<li>如果线程 T1 中断了 T2，那么线程 T1 的中断操作与其他所有线程发现 T2 被中断了同步  </li>
+</ul>
+<h4 id="Happens-before-Order"><a href="#Happens-before-Order" class="headerlink" title="Happens-before Order"></a>Happens-before Order</h4><p>如果一个操作 happens-before 于另一个操作，那么我们说第一个操作对于第二个操作是可见的。  </p>
+<ul>
+<li>如果操作 x 和操作 y 是同一个线程的两个操作，并且在代码上操作 x 先于操作 y 出现，那么有 hb(x, y)</li>
+<li>对象构造方法的最后一行指令 happens-before 于 finalize() 方法的第一行指令。</li>
+<li>如果操作 x 与随后的操作 y 构成同步，那么 hb(x, y)。这条说的是前面一小节的内容。</li>
+<li>hb(x, y) 和 hb(y, z)，那么可以推断出 hb(x, z)  </li>
+</ul>
+<blockquote>
+<p>这里再提一点，x happens-before y，并不是说 x 操作一定要在 y 操作之前被执行，而是说 x 的执行结果对于 y 是可见的，只要满足可见性，发生了重排序也是可以的。  </p>
+</blockquote>
+<h3 id="synchronized-关键字"><a href="#synchronized-关键字" class="headerlink" title="synchronized 关键字"></a>synchronized 关键字</h3><p>一旦进入 synchronized 代码块，首先，该线程对于共享变量的缓存就会失效，因此 synchronized 代码块中对于共享变量的读取需要从主内存中重新获取，也就能获取到最新的值。<br>退出代码块的时候的，会将该线程写缓冲区中的数据刷到主内存中，所以在 synchronized 代码块之前或 synchronized 代码块中对于共享变量的操作随着该线程退出 synchronized 块，会立即对其他线程可见。  </p>
+<h3 id="单例模式中的双重检查"><a href="#单例模式中的双重检查" class="headerlink" title="单例模式中的双重检查"></a>单例模式中的双重检查</h3><p>instance = new Singleton() 这句代码首先会申请一段空间，然后将各个属性初始化为零值(0/null)，执行构造方法中的属性赋值[1]，将这个对象的引用赋值给 instance[2]。在这个过程中，[1] 和 [2] 可能会发生重排序。<br>所以线程 b 拿到的 instance 是不完整的，解决方案是使用 volatile 关键字。  </p>
+<h3 id="volatile-关键字"><a href="#volatile-关键字" class="headerlink" title="volatile 关键字"></a>volatile 关键字</h3><p><strong>作用：内存可见性和禁止指令重排序。</strong>  </p>
+<ul>
+<li>volatile 的内存可见性<br>读一个 volatile 变量之前，需要先使相应的本地缓存失效，这样就必须到主内存读取最新值，写一个 volatile 属性会立即刷入到主内存。所以，volatile 读和 monitorenter 有相同的语义，volatile 写和 monitorexit 有相同的语义。  </li>
+<li>volatile 的禁止重排序<br>volatile 的禁止重排序并不局限于两个 volatile 的属性操作不能重排序，而且是 volatile 属性操作和它周围的普通属性的操作也不能重排序。<br>根据 volatile 的内存可见性和禁止重排序，那么我们不难得出一个推论：线程 a 如果写入一个 volatile 变量，此时线程 b 再读取这个变量，那么此时对于线程 a 可见的所有属性对于线程 b 都是可见的。hb(x, z) 推导</li>
+<li>volatile 小结  <ul>
+<li>volatile 修饰符适用于以下场景：某个属性被多个线程共享，其中有一个线程修改了此属性，其他线程可以立即得到修改后的值。在并发包的源码中，它使用得非常多。  </li>
+<li>volatile 属性的读写操作都是无锁的，它不能替代 synchronized，因为<strong>它没有提供原子性和互斥性</strong>。因为无锁，不需要花费时间在获取锁和释放锁上，所以说它是低成本的。  </li>
+<li>volatile 只能作用于属性，我们用 volatile 修饰属性，这样 compilers 就不会对这个属性做指令重排序。  </li>
+<li>volatile 提供了 happens-before 保证，对 volatile 变量 v 的写入 happens-before 所有其他线程后续对 v 的读操作。  </li>
+<li>volatile 可以使得 long 和 double 的赋值是原子的，前面在说原子性的时候提到过。  </li>
+</ul>
+</li>
+</ul>
+<h3 id="final-关键字"><a href="#final-关键字" class="headerlink" title="final 关键字"></a>final 关键字</h3><p>在对象的构造方法中设置 final 属性，<strong>同时在对象初始化完成前，不要将此对象的引用写入到其他线程可以访问到的地方</strong>（不要让引用在构造函数中逸出）。如果这个条件满足，当其他线程看到这个对象的时候，那个线程始终可以看到正确初始化后的对象的 final 属性。</p>
+
       
     </div>
     
@@ -436,10 +514,21 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/poprabbit.jpg" alt="popular rabbit">
             
               <p class="site-author-name" itemprop="name">popular rabbit</p>
               <p class="site-description motion-element" itemprop="description">java</p>
@@ -452,7 +541,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -465,7 +554,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -488,6 +577,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Threads-and-Locks"><span class="nav-number">1.</span> <span class="nav-text">Threads and Locks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步（synchronization）"><span class="nav-number">1.1.</span> <span class="nav-text">同步（synchronization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待集合-和-唤醒（Wait-Sets-and-Notification）"><span class="nav-number">1.2.</span> <span class="nav-text">等待集合 和 唤醒（Wait Sets and Notification）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#等待-（Wait）"><span class="nav-number">1.2.1.</span> <span class="nav-text">等待 （Wait）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通知（Notification）"><span class="nav-number">1.2.2.</span> <span class="nav-text">通知（Notification）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断（Interruptions）"><span class="nav-number">1.2.3.</span> <span class="nav-text">中断（Interruptions）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待、通知和中断-的交互（Interactions-of-Waits-Notification-and-Interruption）"><span class="nav-number">1.3.</span> <span class="nav-text">等待、通知和中断 的交互（Interactions of Waits, Notification, and Interruption）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#休眠和礼让（Sleep-and-Yield）"><span class="nav-number">1.4.</span> <span class="nav-text">休眠和礼让（Sleep and Yield）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存模型"><span class="nav-number">2.</span> <span class="nav-text">内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发三问题"><span class="nav-number">2.1.</span> <span class="nav-text">并发三问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-对于并发的规范约束"><span class="nav-number">2.2.</span> <span class="nav-text">Java 对于并发的规范约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Synchronization-Order"><span class="nav-number">2.2.1.</span> <span class="nav-text">Synchronization Order</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Happens-before-Order"><span class="nav-number">2.2.2.</span> <span class="nav-text">Happens-before Order</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized-关键字"><span class="nav-number">2.3.</span> <span class="nav-text">synchronized 关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式中的双重检查"><span class="nav-number">2.4.</span> <span class="nav-text">单例模式中的双重检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile-关键字"><span class="nav-number">2.5.</span> <span class="nav-text">volatile 关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final-关键字"><span class="nav-number">2.6.</span> <span class="nav-text">final 关键字</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
