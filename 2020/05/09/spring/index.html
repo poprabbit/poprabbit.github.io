@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="git,">
+  <meta name="keywords" content="spring,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Github 配置SSH1234567ssh-keygen -t rsa -C &quot;xxx@126.com&quot;  ssh-agent -s  eval `ssh-agent -s`  ssh-add  clip &amp;lt; ~/.ssh/id_rsa.pub  ssh -T git@github.com">
-<meta name="keywords" content="git">
+<meta name="description" content="ioc本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean      ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实">
+<meta name="keywords" content="spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git-gen-ssh">
-<meta property="og:url" content="http://poprabbit.github.io/2019/09/21/git-gen-ssh/index.html">
+<meta property="og:title" content="spring">
+<meta property="og:url" content="http://poprabbit.github.io/2020/05/09/spring/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="Github 配置SSH1234567ssh-keygen -t rsa -C &quot;xxx@126.com&quot;  ssh-agent -s  eval `ssh-agent -s`  ssh-add  clip &amp;lt; ~/.ssh/id_rsa.pub  ssh -T git@github.com">
+<meta property="og:description" content="ioc本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean      ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-21T10:42:32.000Z">
+<meta property="og:updated_time" content="2020-05-09T03:35:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git-gen-ssh">
-<meta name="twitter:description" content="Github 配置SSH1234567ssh-keygen -t rsa -C &quot;xxx@126.com&quot;  ssh-agent -s  eval `ssh-agent -s`  ssh-add  clip &amp;lt; ~/.ssh/id_rsa.pub  ssh -T git@github.com">
+<meta name="twitter:title" content="spring">
+<meta name="twitter:description" content="ioc本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean      ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://poprabbit.github.io/2019/09/21/git-gen-ssh/">
+  <link rel="canonical" href="http://poprabbit.github.io/2020/05/09/spring/">
 
 
 
 
 
-  <title>git-gen-ssh | poprabbit</title>
+  <title>spring | poprabbit</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2019/09/21/git-gen-ssh/">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/09/spring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="popular rabbit">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git-gen-ssh</h1>
+          <h1 class="post-title" itemprop="name headline">spring</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-21T18:42:32+08:00">
-                2019-09-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-09T11:35:39+08:00">
+                2020-05-09
               </time>
             
 
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-21T18:42:32+08:00">
-                2019-09-21
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-09T11:35:39+08:00">
+                2020-05-09
               </time>
             
           </span>
@@ -322,8 +322,57 @@
       
 
       
-        <h2 id="Github-配置SSH"><a href="#Github-配置SSH" class="headerlink" title="Github 配置SSH"></a>Github 配置SSH</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"xxx@126.com"</span>  </span><br><span class="line">ssh-agent -s  </span><br><span class="line"><span class="built_in">eval</span> `ssh-agent -s`  </span><br><span class="line">ssh-add  </span><br><span class="line">clip &lt; ~/.ssh/id_rsa.pub  </span><br><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-
+        <h3 id="ioc"><a href="#ioc" class="headerlink" title="ioc"></a>ioc</h3><p>本文要说的 IOC 总体来说有两处地方最重要，<strong>一个是创建 Bean 容器，一个是初始化 Bean</strong>    </p>
+<ol>
+<li>ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，<br>而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。  </li>
+<li>// 我们把这步叫做 注册Bean 吧<br>BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());</li>
+<li>BeanDefinition  解析、加载、注册    </li>
+<li>Bean 创建、装填属性、回调 各种初始化函数(init-method,InitializingBean,BeanPostProcessor)</li>
+</ol>
+<p>ApplicationContext context = new ClassPathXmlApplicationContext(“classpath:applicationfile.xml”);<br>AbstractApplicationContext.refresh()</p>
+<p>初始化所有的 singleton beans  </p>
+<blockquote>
+<p>   finishBeanFactoryInitialization() –&gt;  preInstantiateSingletons()<br>for (String beanName : beanNames) {<br>    getBean()<br>    doGetBean()  // 已经初始化过了就从容器中直接返回，否则就先初始化再返回<br>    getObjectForBeanInstance()<br>    createBean()<br>    doCreateBean()<br>        instanceWrapper = createBeanInstance()  //实例化 Bean，这里非常关键<br>            instantiateUsingFactoryMethod()  // 采用工厂方法实例化<br>            autowireConstructor()  // 构造函数依赖注入<br>            instantiateBean()  //无参构造函数<br>        populateBean()  //这一步也是非常关键的，这一步负责属性装配（依赖注入）<br>        exposedObject = initializeBean()  //处理 bean 初始化完成后的各种回调<br>}  </p>
+</blockquote>
+<p>实现主要功能的类：<br>BeanDefinition<br>BeanDefinitionReader<br>Document<br>BeanDefinitionDocumentReader<br>Element<br>BeanDefinitionParserDelegate  </p>
+<p>FactoryBean<br>BeanWrapper<br>SimpleInstantiationStrategy  </p>
+<p>容易混淆的类：<br>AbstractRefreshableApplicationContext –&gt; ResourceLoader,ApplicationEventPublisher,MessageSource<br>DefaultListableBeanFactory               –&gt; BeanDefinitionRegistry<br>AbstractAutowireCapableBeanFactory    –主要为了 @Autowired 注解注入属性值<br>beanDefinitionNames    一个 ArrayList, 可以看到从前到后加载的 beanname </p>
+<ul>
+<li>// 让 InstantiationAwareBeanPostProcessor 在这一步有机会返回代理（自定义了 TargetSource 时）<br>createBean()  Object bean = resolveBeforeInstantiation(beanName, mbdToUse);   </li>
+<li>populateBean()  里面两次用到 InstantiationAwareBeanPostProcessor ：<ul>
+<li>ibp.postProcessAfterInstantiation()  可以在这里对 bean 进行状态修改，没找到有实际的使用</li>
+<li>// 这里有个非常有用的 BeanPostProcessor 进到这里: AutowiredAnnotationBeanPostProcessor<br>ibp.postProcessPropertyValues()  // 对采用 @Autowired、@Value 注解的依赖进行设值</li>
+</ul>
+</li>
+<li><strong>AbstractAutowireCapableBeanFactory.initializeBean() –在 bean 实例化完成、属性注入完成之后，会执行该方法</strong><br><strong>applyBeanPostProcessorsAfterInitialization()  实现 AOP ，进行代理增强</strong></li>
+</ul>
+<p><strong>spring到底支持哪样子的循环依赖？？？    答案：单例的 setter 属性方式依赖</strong><br>isSingletonCurrentlyInCreation()：判断当前 singleton bean 是否处于创建中；</p>
+<hr>
+<h3 id="aop"><a href="#aop" class="headerlink" title="aop"></a>aop</h3><h4 id="spring-1-2-支持的-aop-配置"><a href="#spring-1-2-支持的-aop-配置" class="headerlink" title="spring 1.2 支持的 aop 配置"></a>spring 1.2 支持的 aop 配置</h4><ol>
+<li>配置bean  </li>
+<li>配置Advice –指定执行前/执行后，处理逻辑  </li>
+<li>指定Advisor–配置指定方法用指定Advice增强  4、配置Proxy–配置指定的bean用指定的Advisor增强  </li>
+</ol>
+<p><strong>缺点：</strong>我们得为每个 bean 都配置一个代理，之后获取 bean 的时候需要获取这个代理类的 bean 实例（如 (UserService) context.getBean(“userServiceProxy”)）</p>
+<h4 id="autoproxy-方式"><a href="#autoproxy-方式" class="headerlink" title="autoproxy 方式"></a>autoproxy 方式</h4><ol>
+<li>….  </li>
+<li>配置 RegexpMethodPointcutAdvisor  </li>
+<li>配置 DefaultAdvisorAutoProxyCreator  </li>
+</ol>
+<p>Advisor 有一个更加灵活的实现类 RegexpMethodPointcutAdvisor，它能实现正则匹配 指定方法增强<br>DefaultAdvisorAutoProxyCreator 让 ioc 容器中的所有 advisor 来匹配方法，advisor 内部都是有 advice 的，让它们内部的 advice 来执行拦截处理。  </p>
+<h4 id="Spring-2-0-AspectJ-配置"><a href="#Spring-2-0-AspectJ-配置" class="headerlink" title="Spring 2.0 @AspectJ 配置"></a>Spring 2.0 @AspectJ 配置</h4><ol>
+<li>开启 @AspectJ 的注解配置方式  </li>
+<li>配置 Pointcut 用于定义哪些方法需要被增强或者说需要被拦截  </li>
+<li>配置 Advice ，JoinPoint用于获取方法入参</li>
+</ol>
+<p>Pointcut 中可以使用 execution within annotation 等方式配置</p>
+<ul>
+<li>Spring AOP 的原理很简单，就是动态代理，它和 AspectJ 不一样，AspectJ 是直接修改掉你的字节码。  </li>
+<li>如果被代理的目标类实现了一个或多个自定义的接口，那么就会使用 JDK 动态代理，如果没有实现任何接口，会使用 CGLIB 实现代理，如果设置了 proxy-target-class=”true”，那么都会使用 CGLIB。  </li>
+<li>InvocationHandler 只有一个方法，当生成的代理类对外提供服务的时候，都会导到这个方法中</li>
+</ul>
+<p>实现主要功能的类：<br>DefaultAdvisorAutoProxyCreator 类，实现的动态代理<br>AbstractAutoProxyCreator<br>ProxyFactory<br>AopProxy<br>AopProxyFactory<br>JdkDynamicAopProxy   –&gt; InvocationHandler,Proxy<br>ObjenesisCglibAopProxy  –&gt; CglibAopProxy,AopProxy<br>Enhancer  </p>
+<p><strong>InstantiationAwareBeanPostProcessor</strong><br>很多人都以为 Spring AOP 是通过这个接口来作用于 bean 生成代理的。 它和 BeanPostProcessor 的方法非常相似，而且它还继承了 BeanPostProcessor。<br>InstantiationAwareBeanPostProcessor 是 Instantiation，BeanPostProcessor 是 Initialization 也有创建代理的逻辑，需要配置一个 customTargetSourceCreators。</p>
 
       
     </div>
@@ -341,7 +390,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag"># git</a>
+            <a href="/tags/spring/" rel="tag"># spring</a>
           
         </div>
       
@@ -354,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/20/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2020/05/08/mysql/" rel="next" title="mysql">
+                <i class="fa fa-chevron-left"></i> mysql
               </a>
             
           </div>
@@ -363,10 +412,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/20/multi-thread/" rel="prev" title="multi-thread">
-                multi-thread <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -493,7 +538,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-配置SSH"><span class="nav-number">1.</span> <span class="nav-text">Github 配置SSH</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ioc"><span class="nav-number">1.</span> <span class="nav-text">ioc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aop"><span class="nav-number">2.</span> <span class="nav-text">aop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spring-1-2-支持的-aop-配置"><span class="nav-number">2.1.</span> <span class="nav-text">spring 1.2 支持的 aop 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#autoproxy-方式"><span class="nav-number">2.2.</span> <span class="nav-text">autoproxy 方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-2-0-AspectJ-配置"><span class="nav-number">2.3.</span> <span class="nav-text">Spring 2.0 @AspectJ 配置</span></a></li></ol></li></ol></div>
             
 
           </div>
