@@ -243,6 +243,890 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/06/02/分布式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/02/分布式/" itemprop="url">分布式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-02T12:33:40+08:00">
+                2020-06-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-06-02T12:33:40+08:00">
+                2020-06-02
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          分布式锁分布式事务分布式锁和分布式事务区别：
+锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。
+而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。
+
+2PC两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调参与者的行为，并最终决定这些参与者是否要真正执行事务。
+本地消息表（最终一致性）本地消息表与业务数据表处于同一个数据库中，这样就能利用本地事务来保证在对这两个表的操作满足事务特性，并且使用了消息队列来保证最终一致性。（分布式事务操作的另一方执行成功，消息才是真正消费成功）
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/02/分布式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/20/springcloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/20/springcloud/" itemprop="url">springcloud</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-20T00:17:33+08:00">
+                2020-05-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-20T00:17:33+08:00">
+                2020-05-20
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/20/springcloud/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/20/springboot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/20/springboot/" itemprop="url">springboot</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-20T00:17:21+08:00">
+                2020-05-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-20T00:17:21+08:00">
+                2020-05-20
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          springboot目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；  
+核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；  
+starter：启动器，包含很多的依赖项，帮助快速启动应用和运行所必须的依赖；命名规范：1)官方命名模式 spring-boot-starter-*；2）第三方命名模式 thirdparty-spring-boot-starter；实现其一：在 resources/META-INF/spring.factories 定义@Configuration 配置类  
+
+@EnableAutoConfiguration 注解的理念和工作原理和其他 @Enable 注解 一脉相承。简单的来说，就是该注解借助 @Import 注解的支持，Spring 的 IoC 容器收集和注册特定场景相关的 Bean 定义：
+
+@EnableScheduling是通过@Import将Spring调度框架相关的bean都加载到IoC容器。
+@EnableAutoConfiguration 注解的源码：@Impor(EnableAutoConfigurationImportSelector.cl
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/20/springboot/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/19/redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/19/redis/" itemprop="url">redis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-19T11:22:04+08:00">
+                2020-05-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-19T11:22:04+08:00">
+                2020-05-19
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          概述Redis 是速度非常快的非关系型（NoSQL）内存键值数据库，可以存储键和五种不同类型的值之间的映射。键的类型只能为字符串，值支持五种数据类型：字符串、列表、集合、散列表、有序集合。  
+使用场景计数器可以对 String 进行自增自减运算，从而实现计数器功能。  
+缓存将热点数据放到内存中，设置内存的最大使用量以及淘汰策略来保证缓存的命中率。  
+会话缓存可以使用 Redis 来统一存储多台应用服务器的会话信息。
+分布式锁实现可以使用 Redis 自带的 SETNX 命令实现分布式锁，除此之外，还可以使用官方提供的 RedLock 分布式锁实现。  
+键的过期时间Redis 可以为每个键设置过期时间，当键过期时，会自动删除该键。  
+数据淘汰策略（失效策略）可以设置内存最大使用量，当内存使用量超出时，会施行数据淘汰策略。Redis 具体有 6 种淘汰策略：从已设置过期时间的数据集中：volatile-lru,volatile-ttl,volatile-random从所有数据集中：allkeys-lru,allkeys-random,noeviction提高缓存命中率的做法：可以将内存最大使用量设置为热点数据占用的内存量，然后启用 allkeys-lru 淘汰策略，将最近最少使用的数据淘汰。
+持久化RDB 持久化（for backups）将某个时间点的所有数据都存放到硬盘上。
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/19/redis/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/19/系统设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/19/系统设计/" itemprop="url">系统设计</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-19T10:43:35+08:00">
+                2020-05-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-19T10:43:35+08:00">
+                2020-05-19
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          系统设计实践短链接服务系统开发短链接
+系统分库分表改造的注意事项分表改造注意事项
+系统设计基础知识
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/19/系统设计/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/18/base01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/18/base01/" itemprop="url">base01</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-18T16:07:26+08:00">
+                2020-05-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-18T16:07:26+08:00">
+                2020-05-18
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Java 运算符
+算术运算符：除法 /， 取余 ％  
+关系运算符：==， &gt;=  
+位运算符：A = 0011 1100， B = 0000 1101  
+（A＆B）得到12，即0000 1100
+（A | B）得到61，即 0011 1101
+（A ^ B）得到49，即 0011 0001，异或
+（~A）得到-61，即1100 0011，取反
+
+
+按位左移，符号位不动，低位补0操作
+
+
+
+
+
+按位右移，符号位不动，高位补0操作
+
+
+
+
+
+
+按位无符号右移，符号位动，高位补0操作
+
+
+
+
+
+
+逻辑运算符：&amp;&amp;， ！  
+赋值运算符：&gt;&gt;= 右移位赋值运算符， |=     按位或赋值操作符  
+条件运算符：（?:）
+
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/18/base01/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/09/spring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -331,12 +1215,10 @@
 ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。  
 // 我们把这步叫做 注册Bean 吧BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
 BeanDefinition  解析、加载、注册    
-Bean 创建、装填属性、回调 各种初始化函数(init-method,InitializingBean,BeanPostProcessor)
+Bean 的生命周期：创建、装填属性、回调 各种初始化函数(init-method,InitializingBean,BeanPostProcessor)
 
-ApplicationContext context = new ClassPathXmlApplicationContext(“classpath:applicationfile.xml”);AbstractApplicationContext.refresh()
-初始化所有的 singleton beans  
-
-   finish
+ApplicationContext context = new ClassPathXmlApplicationContext(“classpath:applicationfile.xml”);AbstractApplicationContext.refresh()  
+123456789101112131415161718
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -642,8 +1524,8 @@ explain：获取 MySQL 中 SQL 语句的执行计划，比如语句是否使用�
 在并发的情况下，多个事务并行执行，事务不仅要满足原子性，还需要满足隔离性，才能满足一致性。  
 事务满足持久化是为了能应对系统崩溃的情况。
 
-
-          
+查询时的注意事项（一般是报表等功能）关联查询时，当某个查询条件需要引入新的连接表，且不方便直接放在 sql 中作为查询条件（连接条件较为复杂，包含大于等于或小于等于关系运算），可将该查询条件转化为已经存在的连接表的查询条件；缺点：每次查询
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/05/08/database/#more" rel="contents">
@@ -825,892 +1707,6 @@ start 阶段，会执行 ContainerBase 的 startInternal 方法，它会寻找�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/06/io/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/06/io/" itemprop="url">io</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-06T21:31:50+08:00">
-                2020-05-06
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-13T11:31:50+08:00">
-                2020-05-13
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Java 的 I/O 大概可以分成以下几类：
-磁盘操作：File  
-字节操作：InputStream 和 OutputStream  
-字符操作：Reader 和 Writer  
-对象操作：Serializable  
-网络操作：Socket  
-新的输入/输出：NIO
-
-装饰者模式Java I/O 使用了装饰者模式来实现。以 InputStream 为例，InputStream 是抽象组件；FileInputStream 是 InputStream 的子类，属于具体组件，提供了字节流的输入操作；FilterInputStream 属于抽象装饰者，装饰者用于装饰组件，为组件提供额外的功能。例如 BufferedInputStream 为 FileInputStream 提供缓存的功能。实例化一个具有缓存功能的字节流对象  
-12FileInputStream fileInputStream = new FileInputStream(filePath);BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-
-编码与解码编码就是把字符转换为字节，而解码是把字节重新组合成字符。Java 的内存编码使用双字节编码 UTF-16be；一个中文或者一个英文都能使用一个 cha
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/06/io/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/05/JVM 类文件及类加载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/05/JVM 类文件及类加载/" itemprop="url">JVM 类文件及类加载</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-05T19:35:13+08:00">
-                2020-05-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-05T19:35:13+08:00">
-                2020-05-05
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          《深入理解java虚拟机》 jvm 功能划分：
-自动内存管理机制：内存区域、垃圾收集器、性能监控与故障处理工具；运行程序的堆大小？垃圾回收的策略？  
-执行子系统：类文件结构、类加载机制、字节码执行引擎；  
-程序编译与代码优化；  
-高效并发：内存模型与线程、线程安全与锁优化；  
-
-
-双亲委派机制BootstrapClassLoader 不能被 java 代码获取；其它类加载器都继承自 抽象类 ClassLoader，其 loadClass(String, boolean) 方法的逻辑是：没有父类加载器才去查询引导类加载器有没有加载过该类,子类加载器相当于间接拥有查询引导类加载器有没有加载的能力；子类加载器复用父类加载器是通过 组合的方式，默认的构造方法会设置应用程序类加载器为父类加载器；  
-JVM 方法区的 类信息区 是按照 类加载器 进行划分的，每个类加载器会维护自己加载类信息，比较类相等先比较类加载器。  
-class 文件基本组织结构
-魔数(magic)、版本号(minor_version，major_version)、访问标志(access_flags)、类索引(this_class)、父类索引(super_class)  
-
-常量池计数器(constant_pool_count)、常量池数据区(constant_pool[contstant_pool_count-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/05/JVM 类文件及类加载/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/04/JVM 自动内存管理机制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/04/JVM 自动内存管理机制/" itemprop="url">JVM 自动内存管理机制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-04T07:35:30+08:00">
-                2020-05-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-04T07:35:30+08:00">
-                2020-05-04
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          运行时数据区域
-程序计数器记录正在执行的虚拟机字节码指令的地址（如果正在执行的是本地方法则为空）。  
-
-Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息。从方法调用直至执行完成的过程，对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。可以通过 -Xss 这个虚拟机参数来指定每个线程的 Java 虚拟机栈内存大小，在 JDK 1.4 中默认为 256K，而在 JDK 1.5+ 默认为 1M：该区域可能抛出以下异常：  
-
-当线程请求的栈深度超过最大值，会抛出 StackOverflowError 异常；  
-栈进行动态扩展时如果无法申请到足够内存，会抛出 OutOfMemoryError 异常。  
-
-
-本地方法栈本地方法栈与 Java 虚拟机栈类似，它们之间的区别只不过是本地方法栈为本地方法服务。  
-
-堆所有对象都在这里分配内存，是垃圾收集的主要区域（”GC 堆”）。现代的垃圾收集器基本都是采用分代收集算法，其主要的思想是针对不同类型的对象采取不同的垃圾回收算法。可以将堆分成两块：  
-
-新生代（Young Generation）  
-老年代（Old Generation）堆不需要连续内存，并且可以动态增加其内存，增加失败会抛出 OutOfMemoryError 异常。可以通过 -Xms 和 -Xmx 这两个虚
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/04/JVM 自动内存管理机制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/04/29/threadpool/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/29/threadpool/" itemprop="url">threadpool</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-29T22:30:07+08:00">
-                2020-04-29
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-01T13:30:07+08:00">
-                2020-05-01
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          BlockingQueue是一个先进先出的队列（Queue），为什么说是阻塞（Blocking）的呢？是因为 BlockingQueue 支持当获取队列元素但是队列为空时，会阻塞等待队列中有元素再返回；也支持添加元素时，如果队列已满，那么等到队列可以放入新元素时再放入。  
-
-BlockingQueue 对插入操作、移除操作、获取元素操作提供了四种不同的方法用于不同的场景中使用，我们的关注点应该在 put(e) 和 take() 这两个方法，因为这两个方法是带阻塞的。  
-BlockingQueue 不接受 null 值的插入  
-可以是有界的，也可以是无界的（容量为Integer.MAX_VALUE）  
-BlockingQueue 的实现都是线程安全的（除批量操作），常用于生产者-消费者的场景中。  
-
-ArrayBlockingQueue底层是数组，有界队列，如果我们要使用生产者-消费者模式，这是非常好的选择。  
-LinkedBlockingQueue底层是单项链表，可以当做无界和有界队列来使用，使用两个锁来实现线程安全。takeLock 和 notEmpty 搭配  – putLock 和 notFull 搭配  （唤醒对方的设计比较特别）  
-SynchronousQueue读线程和写线程需要同步，本身不带有空间来存储任何元素，使用上可以选择公平模式和非公平模式。tra
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/29/threadpool/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/04/20/AQS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/20/AQS/" itemprop="url">AbstractQueuedSynchronizer</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-20T23:33:02+08:00">
-                2020-04-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-04-20T00:00:00+08:00">
-                2020-04-20
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          AbstractQueuedSynchronizer是 Java 并发包的基础工具类，是实现 ReentrantLock、CountDownLatch、CyclicBarrier、Semaphore、FutureTask 等类的基础属性如下：  
-
-// 头结点，你直接把它当做 当前持有锁的线程private transient volatile Node head;// 阻塞的尾节点，每个新的节点进来，都插入到最后，也就形成了一个链表private transient volatile Node tail;// 这个是最重要的，代表当前锁的状态，0代表没有被占用，大于 0 代表有线程持有当前锁// 这个值可以大于 1，是因为锁可以重入，每次重入都加上 1private volatile int state;// 代表当前持有独占锁的线程，举个最重要的使用例子，因为锁可以重入private transient Thread exclusiveOwnerThread; //继承自AbstractOwnableSynchronizer  
-
-其内部维护了一个等待队列  –包含头节点及阻塞队列 –由Node 组成的双向链表  
-Node 的结构简介
-// 取值为上面的1、-1、-2、-3，或者0(以后会讲到)// 这么理解，暂时只需要知道如果这个值 大于0 代表此线程取消了等待，//  
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/20/AQS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/04/20/multi-thread/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/20/multi-thread/" itemprop="url">multi-thread</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-20T23:33:02+08:00">
-                2020-04-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-02T13:33:02+08:00">
-                2020-05-02
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Threads and Locks用户创建线程的唯一方式是创建 Thread 类的一个实例，每一个线程都和这样的一个实例关联。这个章节将描述多线程编程的语义问题，包括一系列的规则，这些规则定义了在多线程环境中线程对共享内存中值的修改是否对其他线程立即可见。  
-同步（synchronization）最基本的多种线程之间通信的机制。java中的每个对象都关联了一个监视器，线程可以对其进行加锁和解锁操作。在同一时间，只有一个线程可以拿到对象上的监视器锁。如果其他线程在锁被占用期间试图去获取锁，那么将会被阻塞直到成功获取到锁。同步机制：synchronized 关键字、对 volatile 变量的读写、使用 java.util.concurrent 包中的同步工具类等  
-等待集合 和 唤醒（Wait Sets and Notification）每个 java 对象，都关联了一个监视器，也关联了一个等待集合。等待集合是一个线程集合。  
-等待 （Wait）我们在线程 t 中对对象 m 调用 m.wait() 方法，n 代表加锁编号，同时还没有相匹配的解锁操作，则下面的其中之一会发生：  
-
-如果 n 等于 0（如线程 t 没有持有对象 m 的锁），那么会抛出 IllegalMonitorStateException 异常。  
-如果线程 t 调用的是 m.wait(millisecs) 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/20/multi-thread/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1765,7 +1761,7 @@ Node 的结构简介
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1778,7 +1774,7 @@ Node 的结构简介
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -336,6 +336,34 @@
 <li>在并发的情况下，多个事务并行执行，事务不仅要满足原子性，还需要满足隔离性，才能满足一致性。  </li>
 <li>事务满足持久化是为了能应对系统崩溃的情况。</li>
 </ul>
+<h3 id="查询时的注意事项（一般是报表等功能）"><a href="#查询时的注意事项（一般是报表等功能）" class="headerlink" title="查询时的注意事项（一般是报表等功能）"></a>查询时的注意事项（一般是报表等功能）</h3><p>关联查询时，当某个查询条件需要引入新的连接表，且不方便直接放在 sql 中作为查询条件（连接条件较为复杂，包含大于等于或小于等于关系运算），可将该查询条件转化为已经存在的连接表的查询条件；<br>缺点：每次查询前需要先查数据库转化查询条件；查询出来的数据需循环查数据库，设置该条件字段的具体值。<br>优点：sql出问题的风险低，不会担心某张表数据一多改sql运行较慢，阿里不推荐三张以上表的join。  </p>
+<pre><code class="sql">//join 中可以用 &lt;=连接；查询条件的账期段跟数据库的账期段关联起来  
+<span class="keyword">SELECT</span>
+    odb.*,    
+    odi.*,
+    od.do_date,
+    fch.accounting_month
+<span class="keyword">FROM</span>
+    od_do_batch odb
+<span class="keyword">INNER</span> <span class="keyword">JOIN</span> od_do_items odi <span class="keyword">ON</span> odb.do_items_id = odi.do_items_id
+<span class="keyword">INNER</span> <span class="keyword">JOIN</span> od_do od <span class="keyword">ON</span> odb.do_no = od.do_no
+<span class="keyword">INNER</span> <span class="keyword">JOIN</span> fi_company_his fch <span class="keyword">ON</span> od.company_id = fch.company_id
+<span class="keyword">AND</span> fch.begindate &lt;= <span class="keyword">DATE_FORMAT</span>(od.do_date, <span class="string">'%Y-%m-%d'</span>)
+<span class="keyword">AND</span> fch.enddate &gt;= <span class="keyword">DATE_FORMAT</span>(od.do_date, <span class="string">'%Y-%m-%d'</span>)
+<span class="keyword">WHERE</span>
+    od.do_status = <span class="number">10450025</span>
+<span class="keyword">and</span> ((fch.begindate &amp;lt;= DATE_FORMAT(now(), '%Y-%m-%d') and fch.enddate &amp;gt;= DATE_FORMAT(now(), '%Y-%m-%d'))
+      ||(fch.begindate &amp;lt;= DATE_FORMAT(now(), '%Y-%m-%d') and fch.enddate &amp;gt;= DATE_FORMAT(now(), '%Y-%m-%d'))
+      ||(fch.begindate &amp;gt;= DATE_FORMAT(now(), '%Y-%m-%d') and fch.enddate &amp;lt;= DATE_FORMAT(now(), '%Y-%m-%d')))
+ORDER BY
+    do_no DESC
+LIMIT 0,10  </code></pre>
+<p>包含查询条件的连接表需要使用 inner join 连接，让查询条件生效？（对头）</p>
+<h3 id="性能描述"><a href="#性能描述" class="headerlink" title="性能描述"></a>性能描述</h3><ul>
+<li>大多数关系型数据库支持 每秒 200-2000次的增删改操作  </li>
+<li>单表行数超过 1000w 或者容量超过 2GB，才推荐进行分库分表  </li>
+<li>一个数据库大概存放 300张左右的表</li>
+</ul>
 
       
     </div>
@@ -459,7 +487,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -472,7 +500,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -505,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统原理"><span class="nav-number">1.</span> <span class="nav-text">数据库系统原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">1.1.</span> <span class="nav-text">事务</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统原理"><span class="nav-number">1.</span> <span class="nav-text">数据库系统原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">1.1.</span> <span class="nav-text">事务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询时的注意事项（一般是报表等功能）"><span class="nav-number">2.</span> <span class="nav-text">查询时的注意事项（一般是报表等功能）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能描述"><span class="nav-number">3.</span> <span class="nav-text">性能描述</span></a></li></ol></div>
             
 
           </div>
