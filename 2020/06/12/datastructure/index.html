@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="practice,">
+  <meta name="keywords" content="base,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="分布式锁分布式事务分布式锁和分布式事务区别： 锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。 而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。  2PC两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调">
-<meta name="keywords" content="practice">
+<meta name="description" content="java 容器实战spring 容器实战1234567891011121314151617181920212223242526272829303132333435363738AbstractApplicationContext/** ApplicationEvents published early */private Set&amp;lt;ApplicationEvent&amp;gt; earlyApplic">
+<meta name="keywords" content="base">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式">
-<meta property="og:url" content="http://poprabbit.github.io/2020/06/02/分布式/index.html">
+<meta property="og:title" content="datastructure">
+<meta property="og:url" content="http://poprabbit.github.io/2020/06/12/datastructure/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="分布式锁分布式事务分布式锁和分布式事务区别： 锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。 而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。  2PC两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调">
+<meta property="og:description" content="java 容器实战spring 容器实战1234567891011121314151617181920212223242526272829303132333435363738AbstractApplicationContext/** ApplicationEvents published early */private Set&amp;lt;ApplicationEvent&amp;gt; earlyApplic">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-02T04:33:40.000Z">
+<meta property="og:updated_time" content="2020-06-12T02:13:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分布式">
-<meta name="twitter:description" content="分布式锁分布式事务分布式锁和分布式事务区别： 锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。 而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。  2PC两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调">
+<meta name="twitter:title" content="datastructure">
+<meta name="twitter:description" content="java 容器实战spring 容器实战1234567891011121314151617181920212223242526272829303132333435363738AbstractApplicationContext/** ApplicationEvents published early */private Set&amp;lt;ApplicationEvent&amp;gt; earlyApplic">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://poprabbit.github.io/2020/06/02/分布式/">
+  <link rel="canonical" href="http://poprabbit.github.io/2020/06/12/datastructure/">
 
 
 
 
 
-  <title>分布式 | poprabbit</title>
+  <title>datastructure | poprabbit</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/06/02/分布式/">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/06/12/datastructure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="popular rabbit">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">分布式</h1>
+          <h1 class="post-title" itemprop="name headline">datastructure</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-02T12:33:40+08:00">
-                2020-06-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-12T10:13:09+08:00">
+                2020-06-12
               </time>
             
 
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-06-02T12:33:40+08:00">
-                2020-06-02
+              <time title="更新于" itemprop="dateModified" datetime="2020-06-12T10:13:09+08:00">
+                2020-06-12
               </time>
             
           </span>
@@ -322,13 +322,7 @@
       
 
       
-        <h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><h3 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h3><h4 id="分布式锁和分布式事务区别："><a href="#分布式锁和分布式事务区别：" class="headerlink" title="分布式锁和分布式事务区别："></a>分布式锁和分布式事务区别：</h4><ul>
-<li>锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。</li>
-<li>而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。</li>
-</ul>
-<h4 id="2PC"><a href="#2PC" class="headerlink" title="2PC"></a>2PC</h4><p>两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调参与者的行为，并最终决定这些参与者是否要真正执行事务。</p>
-<h4 id="本地消息表（最终一致性）"><a href="#本地消息表（最终一致性）" class="headerlink" title="本地消息表（最终一致性）"></a>本地消息表（最终一致性）</h4><p>本地消息表与业务数据表处于同一个数据库中，这样就能利用本地事务来保证在对这两个表的操作满足事务特性，并且使用了消息队列来保证最终一致性。（分布式事务操作的另一方执行成功，消息才是真正消费成功）</p>
-
+        <h3 id="java-容器实战"><a href="#java-容器实战" class="headerlink" title="java 容器实战"></a>java 容器实战</h3><h3 id="spring-容器实战"><a href="#spring-容器实战" class="headerlink" title="spring 容器实战"></a>spring 容器实战</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">AbstractApplicationContext</span><br><span class="line"><span class="comment">/** ApplicationEvents published early */</span></span><br><span class="line"><span class="keyword">private</span> Set&lt;ApplicationEvent&gt; earlyApplicationEvents;</span><br><span class="line"><span class="comment">/** BeanFactoryPostProcessors to apply on refresh */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> List&lt;BeanFactoryPostProcessor&gt; beanFactoryPostProcessors = <span class="keyword">new</span> ArrayList&lt;BeanFactoryPostProcessor&gt;();</span><br><span class="line"></span><br><span class="line">DefaultSingletonBeanRegistry</span><br><span class="line"><span class="comment">/** Cache of singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Disposable bean instances: bean name --&gt; disposable instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; disposableBeans = <span class="keyword">new</span> LinkedHashMap&lt;String, Object&gt;();</span><br><span class="line"><span class="comment">/** Map between dependent bean names: bean name --&gt; Set of dependent（依赖他人者） bean names */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Set&lt;String&gt;&gt; dependentBeanMap = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Set&lt;String&gt;&gt;(<span class="number">64</span>);</span><br><span class="line"><span class="comment">/** Cache of singleton factories: bean name --&gt; ObjectFactory */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = <span class="keyword">new</span> HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Cache of early singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Set of registered singletons, containing the bean names in registration order; getSingleton() # addSingleton()*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;String&gt; registeredSingletons = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;(<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">DefaultListableBeanFactory</span><br><span class="line"><span class="comment">/** List of names of manually registered singletons（spring 手动注册）, in registration order */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> Set&lt;String&gt; manualSingletonNames = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** List of bean definition names, in registration order */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> List&lt;String&gt; beanDefinitionNames = <span class="keyword">new</span> ArrayList&lt;String&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Map of bean definition objects, keyed by bean name */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BeanDefinition&gt; beanDefinitionMap = <span class="keyword">new</span> ConcurrentHashMap&lt;String, BeanDefinition&gt;(<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">AbstractBeanFactory</span><br><span class="line"><span class="comment">/** BeanPostProcessors to apply in createBean */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> List&lt;BeanPostProcessor&gt; beanPostProcessors = <span class="keyword">new</span> ArrayList&lt;BeanPostProcessor&gt;();</span><br><span class="line"></span><br><span class="line">AbstractAutowireCapableBeanFactory</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Dependency interfaces to ignore on dependency check and autowire, as Set of</span></span><br><span class="line"><span class="comment"> * Class objects. By default, only the BeanFactory interface is ignored.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;Class&lt;?&gt;&gt; ignoredDependencyInterfaces = <span class="keyword">new</span> HashSet&lt;Class&lt;?&gt;&gt;();</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -345,7 +339,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/practice/" rel="tag"># practice</a>
+            <a href="/tags/base/" rel="tag"># base</a>
           
         </div>
       
@@ -358,8 +352,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/20/springcloud/" rel="next" title="springcloud">
-                <i class="fa fa-chevron-left"></i> springcloud
+              <a href="/2020/06/07/spring-transaction/" rel="next" title="spring-transaction">
+                <i class="fa fa-chevron-left"></i> spring-transaction
               </a>
             
           </div>
@@ -367,10 +361,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/05/mybatis/" rel="prev" title="mybatis">
-                mybatis <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -497,7 +487,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁"><span class="nav-number">1.</span> <span class="nav-text">分布式锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式事务"><span class="nav-number">2.</span> <span class="nav-text">分布式事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式锁和分布式事务区别："><span class="nav-number">2.1.</span> <span class="nav-text">分布式锁和分布式事务区别：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2PC"><span class="nav-number">2.2.</span> <span class="nav-text">2PC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地消息表（最终一致性）"><span class="nav-number">2.3.</span> <span class="nav-text">本地消息表（最终一致性）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java-容器实战"><span class="nav-number">1.</span> <span class="nav-text">java 容器实战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-容器实战"><span class="nav-number">2.</span> <span class="nav-text">spring 容器实战</span></a></li></ol></div>
             
 
           </div>

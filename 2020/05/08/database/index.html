@@ -336,6 +336,12 @@
 <li>在并发的情况下，多个事务并行执行，事务不仅要满足原子性，还需要满足隔离性，才能满足一致性。  </li>
 <li>事务满足持久化是为了能应对系统崩溃的情况。</li>
 </ul>
+<h4 id="并发一致性问题"><a href="#并发一致性问题" class="headerlink" title="并发一致性问题"></a>并发一致性问题</h4><ol>
+<li>丢失修改：丢失修改指一个事务的更新操作被另外一个事务的更新操作替换。</li>
+<li>读脏数据：读脏数据指在不同的事务下，当前事务可以读到另外事务未提交的数据。</li>
+<li>不可重复读：不可重复读指在一个事务内多次读取同一数据集合。</li>
+<li>幻影读：幻读本质上也属于不可重复读的情况，T1 读取某个范围的数据，T2 在这个范围内插入新的数据，T1 再次读取这个范围的数据，此时读取的结果和和第一次读取的结果不同。</li>
+</ol>
 <h3 id="查询时的注意事项（一般是报表等功能）"><a href="#查询时的注意事项（一般是报表等功能）" class="headerlink" title="查询时的注意事项（一般是报表等功能）"></a>查询时的注意事项（一般是报表等功能）</h3><p>关联查询时，当某个查询条件需要引入新的连接表，且不方便直接放在 sql 中作为查询条件（连接条件较为复杂，包含大于等于或小于等于关系运算），可将该查询条件转化为已经存在的连接表的查询条件；<br>缺点：每次查询前需要先查数据库转化查询条件；查询出来的数据需循环查数据库，设置该条件字段的具体值。<br>优点：sql出问题的风险低，不会担心某张表数据一多改sql运行较慢，阿里不推荐三张以上表的join。  </p>
 <pre><code class="sql">//join 中可以用 &lt;=连接；查询条件的账期段跟数据库的账期段关联起来  
 <span class="keyword">SELECT</span>
@@ -487,7 +493,7 @@ LIMIT 0,10  </code></pre>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -500,7 +506,7 @@ LIMIT 0,10  </code></pre>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -533,7 +539,7 @@ LIMIT 0,10  </code></pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统原理"><span class="nav-number">1.</span> <span class="nav-text">数据库系统原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">1.1.</span> <span class="nav-text">事务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询时的注意事项（一般是报表等功能）"><span class="nav-number">2.</span> <span class="nav-text">查询时的注意事项（一般是报表等功能）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能描述"><span class="nav-number">3.</span> <span class="nav-text">性能描述</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统原理"><span class="nav-number">1.</span> <span class="nav-text">数据库系统原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">1.1.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发一致性问题"><span class="nav-number">1.2.</span> <span class="nav-text">并发一致性问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询时的注意事项（一般是报表等功能）"><span class="nav-number">2.</span> <span class="nav-text">查询时的注意事项（一般是报表等功能）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能描述"><span class="nav-number">3.</span> <span class="nav-text">性能描述</span></a></li></ol></div>
             
 
           </div>

@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java_frame,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Mybatis 架构设计与实例分析MyBatis 的框架设计 接口层，和数据库交互的方式    使用传统的MyBatis 提供的API（SqlSession） 使用 Mapper 接口根据 MyBatis 的配置规范配置好后，通过 SqlSession.getMapper(XXXMapper.class) 方法，MyBatis 会根据相应的接口声明的方法信息，通过动态代理机制生成一个 Mapper">
+<meta name="keywords" content="java_frame">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis">
+<meta property="og:url" content="http://poprabbit.github.io/2020/06/05/mybatis/index.html">
+<meta property="og:site_name" content="poprabbit">
+<meta property="og:description" content="Mybatis 架构设计与实例分析MyBatis 的框架设计 接口层，和数据库交互的方式    使用传统的MyBatis 提供的API（SqlSession） 使用 Mapper 接口根据 MyBatis 的配置规范配置好后，通过 SqlSession.getMapper(XXXMapper.class) 方法，MyBatis 会根据相应的接口声明的方法信息，通过动态代理机制生成一个 Mapper">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://poprabbit.github.io/images/mybatis_cache_structure.jpg">
+<meta property="og:updated_time" content="2020-06-21T12:50:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mybatis">
+<meta name="twitter:description" content="Mybatis 架构设计与实例分析MyBatis 的框架设计 接口层，和数据库交互的方式    使用传统的MyBatis 提供的API（SqlSession） 使用 Mapper 接口根据 MyBatis 的配置规范配置好后，通过 SqlSession.getMapper(XXXMapper.class) 方法，MyBatis 会根据相应的接口声明的方法信息，通过动态代理机制生成一个 Mapper">
+<meta name="twitter:image" content="http://poprabbit.github.io/images/mybatis_cache_structure.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://poprabbit.github.io/2020/06/05/mybatis/">
+
+
+
+
+
+  <title>mybatis | poprabbit</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">poprabbit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">learn something,apply to actual,or reverse</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/06/05/mybatis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mybatis</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-05T22:50:51+08:00">
+                2020-06-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-06-21T20:50:51+08:00">
+                2020-06-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Mybatis-架构设计与实例分析"><a href="#Mybatis-架构设计与实例分析" class="headerlink" title="Mybatis 架构设计与实例分析"></a>Mybatis 架构设计与实例分析</h3><h4 id="MyBatis-的框架设计"><a href="#MyBatis-的框架设计" class="headerlink" title="MyBatis 的框架设计"></a>MyBatis 的框架设计</h4><ol>
+<li><p>接口层，和数据库交互的方式  </p>
+<ul>
+<li>使用传统的MyBatis 提供的API（SqlSession）</li>
+<li>使用 Mapper 接口<br>根据 MyBatis 的配置规范配置好后，通过 SqlSession.getMapper(XXXMapper.class) 方法，MyBatis 会根据相应的接口声明的方法信息，通过动态代理机制生成一个 Mapper 实例，我们使用 Mapper 接口的某一个方法时，MyBatis 会根据这个方法的方法名和参数类型，确定 Statement Id，底层还是通过 SqlSession.select(“statementId”,parameterObject);或者 SqlSession.update(“statementId”,parameterObject); 等等来实现对数据库的操作。  </li>
+</ul>
+</li>
+<li><p>数据处理层可以说是MyBatis 的核心，从大的方面上讲，它要完成三个功能：  </p>
+<ul>
+<li>通过传入参数构建动态SQL语句；  </li>
+<li>SQL语句的执行；</li>
+<li>封装查询结果集成List<e>。  </e></li>
+</ul>
+</li>
+<li><p>框架支撑层<br>事务管理机制， 连接池管理机制，缓存机制， SQL语句的配置方式  </p>
+</li>
+<li><p>引导层</p>
+</li>
+</ol>
+<h4 id="MyBatis-的主要构件及其相互关系"><a href="#MyBatis-的主要构件及其相互关系" class="headerlink" title="MyBatis 的主要构件及其相互关系"></a>MyBatis 的主要构件及其相互关系</h4><ul>
+<li>SqlSession   作为MyBatis工作的主要顶层API，表示和数据库交互的会话，完成必要数据库增删改查功能</li>
+<li>Executor   MyBatis执行器，是MyBatis 调度的核心，负责SQL语句的生成和查询缓存的维护</li>
+<li>StatementHandler   封装了JDBC Statement操作，负责对JDBC statement 的操作，如设置参数、将Statement结果集转换成List集合。</li>
+<li>ParameterHandler   负责对用户传递的参数转换成JDBC Statement 所需要的参数，</li>
+<li>ResultSetHandler   负责将JDBC返回的ResultSet结果集对象转换成List类型的集合；</li>
+<li>TypeHandler   负责java数据类型和jdbc数据类型之间的映射和转换</li>
+<li>MappedStatement   MappedStatement维护了一条&lt;select|update|delete|insert&gt;节点的封装，</li>
+<li>SqlSource   负责根据用户传递的parameterObject，动态地生成SQL语句，将信息封装到BoundSql对象中，并返回</li>
+<li>BoundSql   表示动态生成的SQL语句以及相应的参数信息</li>
+<li>Configuration   MyBatis所有的配置信息都维持在Configuration对象之中。</li>
+</ul>
+<h3 id="Mybatis-初始化机制详解"><a href="#Mybatis-初始化机制详解" class="headerlink" title="Mybatis 初始化机制详解"></a>Mybatis 初始化机制详解</h3><h4 id="初始化做了什么"><a href="#初始化做了什么" class="headerlink" title="初始化做了什么"></a>初始化做了什么</h4><p>可以这么说，MyBatis 初始化的过程，就是创建 Configuration 对象的过程。而 Configuration 对象包含 MyBatis 初始化所需的全部信息，大致包含：settings 设置，typeAliases 类型命名，typeHandlers 类型处理器，objectFactory 对象工厂，plugins 插件，environments 环境（environment 环境变量，transactionManager 事务管理器，dataSource 数据源 ）等。</p>
+<h4 id="XML-文件创建-Configuration-对象的过程"><a href="#XML-文件创建-Configuration-对象的过程" class="headerlink" title="XML 文件创建 Configuration 对象的过程"></a>XML 文件创建 Configuration 对象的过程</h4><ol>
+<li>调用 SqlSessionFactoryBuilder 对象的 build(inputStream) 方法；</li>
+<li>SqlSessionFactoryBuilder 会根据输入流 inputStream 等信息创建 XMLConfigBuilder 对象;</li>
+<li>SqlSessionFactoryBuilder 调用 XMLConfigBuilder 对象的 parse() 方法；</li>
+<li>XMLConfigBuilder 对象返回 Configuration 对象；</li>
+<li>SqlSessionFactoryBuilder 根据 Configuration 对象创建一个 DefaultSessionFactory 对象；</li>
+<li>SqlSessionFactoryBuilder 返回 DefaultSessionFactory 对象给 Client，供 Client 使用。</li>
+</ol>
+<h3 id="Mybatis-数据源与连接池"><a href="#Mybatis-数据源与连接池" class="headerlink" title="Mybatis 数据源与连接池"></a>Mybatis 数据源与连接池</h3><h4 id="MyBatis-数据源-DataSource-分类"><a href="#MyBatis-数据源-DataSource-分类" class="headerlink" title="MyBatis 数据源 DataSource 分类"></a>MyBatis 数据源 DataSource 分类</h4><p>UnpooledDataSource，PooledDataSource，JNDI。PooledDataSource 内部持有一个 UnpooledDataSource 的引用，当 PooledDataSource 需要创建 java.sql.Connection 对象时，还是通过 UnpooledDataSource 来创建，PooledDataSource 只是提供一种缓存连接池机制。</p>
+<h4 id="为什么要使用连接池？"><a href="#为什么要使用连接池？" class="headerlink" title="为什么要使用连接池？"></a>为什么要使用连接池？</h4><p>创建一个 Connection 对象，要用 250 毫秒左右，对频繁地跟数据库交互的应用程序浪费性能。</p>
+<h3 id="Mybatis-事务管理机制"><a href="#Mybatis-事务管理机制" class="headerlink" title="Mybatis 事务管理机制"></a>Mybatis 事务管理机制</h3><p>MyBatis 的事务管理分为两种形式：  </p>
+<ol>
+<li>使用 JDBC 的事务管理机制（实现为 JdbcTransaction）：即利用 java.sql.Connection 对象完成对事务的提交（commit()）、回滚（rollback()）、关闭（close()）等</li>
+<li>使用 MANAGED 的事务管理机制（实现为 ManagedTransaction）：这种机制 MyBatis 自身不会去实现事务管理，而是让程序的容器如（JBOSS，Weblogic）来实现对事务的管理</li>
+</ol>
+<h3 id="Mybatis-缓存机制的设计与实现"><a href="#Mybatis-缓存机制的设计与实现" class="headerlink" title="Mybatis 缓存机制的设计与实现"></a>Mybatis 缓存机制的设计与实现</h3><p>MyBatis 将数据缓存设计成两级结构，分为一级缓存、二级缓存：</p>
+<ul>
+<li>一级缓存是 Session 会话级别的缓存，位于表示一次数据库会话的 SqlSession 对象之中，又被称之为本地缓存。一级缓存是 MyBatis 内部实现的一个特性，用户不能配置，默认情况下自动支持的缓存，用户没有定制它的权利（不过这也不是绝对的，可以通过开发插件对它进行修改）；</li>
+<li>二级缓存是 Application 应用级别的缓存，它的是生命周期很长，跟 Application 的声明周期一样，也就是说它的作用范围是整个 Application 应用。  </li>
+</ul>
+<p><img src="/images/mybatis_cache_structure.jpg" alt="mybatis 缓存整体结构图">  </p>
+<h3 id="Mybatis-一级缓存实现详解-及使用注意事项"><a href="#Mybatis-一级缓存实现详解-及使用注意事项" class="headerlink" title="Mybatis 一级缓存实现详解 及使用注意事项"></a>Mybatis 一级缓存实现详解 及使用注意事项</h3><h4 id="什么是一级缓存？-为什么使用一级缓存？"><a href="#什么是一级缓存？-为什么使用一级缓存？" class="headerlink" title="什么是一级缓存？ 为什么使用一级缓存？"></a>什么是一级缓存？ 为什么使用一级缓存？</h4><p>在对数据库的一次会话中（或者说使用同一个 SqlSession 对象查询时？），我们有可能会反复地执行完全相同的查询语句，如果不采取一些措施的话，每一次查询都会查询一次数据库,而我们在极短的时间内做了完全相同的查询，那么它们的结果极有可能完全相同，由于查询一次数据库的代价很大，这有可能造成很大的资源浪费。<br>为了解决这一问题，减少资源的浪费，<strong>MyBatis 会在表示会话的 SqlSession 对象中建立一个简单的缓存，将每次查询到的结果结果缓存起来，当下次查询的时候，如果判断先前有个完全一样的查询，会直接从缓存中直接将结果取出，返回给用户，不需要再进行一次数据库查询了。</strong>  </p>
+<h4 id="SqlSession-中的缓存是怎样组织的？"><a href="#SqlSession-中的缓存是怎样组织的？" class="headerlink" title="SqlSession 中的缓存是怎样组织的？"></a>SqlSession 中的缓存是怎样组织的？</h4><p>当创建了一个 SqlSession 对象时，MyBatis 会为这个 SqlSession 对象创建一个新的 Executor 执行器，而缓存信息就被维护在这个Executor执行器中，MyBatis 将缓存和对缓存相关的操作封装成了 Cache 接口中。<br>Executor 接口的实现类 BaseExecutor 中拥有一个 Cache 接口的实现类 PerpetualCache，则对于 BaseExecutor 对象而言，它将使用 PerpetualCache 对象维护缓存。<br>PerpetualCache 实现原理其实很简单，其内部就是通过一个简单的 HashMap&lt;k,v&gt; 来实现的，没有其他的任何限制。  </p>
+<h4 id="一级缓存的生命周期有多长？"><a href="#一级缓存的生命周期有多长？" class="headerlink" title="一级缓存的生命周期有多长？"></a>一级缓存的生命周期有多长？</h4><ol>
+<li>MyBatis 在开启一个数据库会话时，会 创建一个新的 SqlSession 对象，SqlSession 对象中会有一个新的 Executor 对象，Executor 对象中持有一个新的 PerpetualCache 对象；当会话结束时，SqlSession 对象及其内部的 Executor 对象还有 PerpetualCache 对象也一并释放掉。</li>
+<li>如果 SqlSession 调用了 close() 方法，会释放掉一级缓存 PerpetualCache 对象，一级缓存将不可用；</li>
+<li>如果 SqlSession调用了 clearCache()，会清空 PerpetualCache 对象中的数据，但是该对象仍可使用；</li>
+<li>SqlSession 中执行了任何一个 update 操作(update()、delete()、insert()) ，都会清空 PerpetualCache 对象的数据，但是该对象可以继续使用；</li>
+</ol>
+<h4 id="Cache-接口的设计以及-CacheKey-的定义（非常重要）"><a href="#Cache-接口的设计以及-CacheKey-的定义（非常重要）" class="headerlink" title="Cache 接口的设计以及 CacheKey 的定义（非常重要）"></a>Cache 接口的设计以及 CacheKey 的定义（非常重要）</h4><p>Cache 最核心的实现其实就是一个 Map，将本次查询使用的特征值作为 key，将查询结果作为 value 存储到Map 中。<br>MyBatis 认为，对于两次查询，如果以下条件都完全一样，那么就认为它们是完全相同的两次查询：</p>
+<ol>
+<li>传入的 statementId</li>
+<li>查询时要求的结果集中的结果范围 （结果的范围通过 rowBounds.offset 和 rowBounds.limit 表示）；</li>
+<li>这次查询所产生的最终要传递给 JDBC java.sql.Preparedstatement 的 Sql 语句字符串（boundSql.getSql() ）</li>
+<li>传递给 java.sql.Statement 要设置的参数值  </li>
+</ol>
+<p>综上所述, CacheKey 由以下条件决定：<br>statementId  + rowBounds  + 传递给JDBC的SQL  + 传递给JDBC的参数值</p>
+<p>对于每次的查询请求，Executor 都会根据传递的参数信息以及动态生成的SQL语句，将上面的条件根据一定的计算规则，创建一个对应的 CacheKey 对象。<br>我们知道创建 CacheKey 的目的，就两个：<br>    1. 根据 CacheKey 作为 key,去 Cache 缓存中查找缓存结果；<br>    2. 如果查找缓存命中失败，则通过此 CacheKey 作为 key，将从数据库查询到的结果作为 value，组成key,value 对存储到 Cache 缓存中。<br>CacheKey 的构建被放置到了 Executor 接口的实现类 BaseExecutor 中，</p>
+<h4 id="根据一级缓存的特性，在使用的过程中，应该注意："><a href="#根据一级缓存的特性，在使用的过程中，应该注意：" class="headerlink" title="根据一级缓存的特性，在使用的过程中，应该注意："></a>根据一级缓存的特性，在使用的过程中，应该注意：</h4><ol>
+<li>对于数据变化频率很大，并且需要高时效准确性的数据要求，我们使用 SqlSession 查询的时候，要控制好 SqlSession 的生存时间，SqlSession 的生存时间越长，它其中缓存的数据有可能就越旧，从而造成和真实数据库的误差；同时对于这种情况，用户也可以手动地适时清空 SqlSession 中的缓存；  </li>
+<li>对于只执行、并且频繁执行大范围的 select 操作的 SqlSession 对象，SqlSession对象的生存时间不应过长。</li>
+</ol>
+<h3 id="Mybatis-二级缓存的设计原理"><a href="#Mybatis-二级缓存的设计原理" class="headerlink" title="Mybatis 二级缓存的设计原理"></a>Mybatis 二级缓存的设计原理</h3><h4 id="MyBatis-二级缓存的工作模式"><a href="#MyBatis-二级缓存的工作模式" class="headerlink" title="MyBatis 二级缓存的工作模式"></a>MyBatis 二级缓存的工作模式</h4><p>MyBatis 的二级缓存是 Application 级别的缓存，如果用户配置了 “cacheEnabled=true”，那么MyBatis在为 SqlSession 对象创建 Executor 对象时，会对 Executor对象加上一个装饰者：CachingExecutor，这时 SqlSession 使用 CachingExecutor 对象来完成操作请求。CachingExecutor 对于查询请求，会先判断该查询请求在 Application 级别的二级缓存中是否有缓存结果，如果有查询结果，则直接返回缓存结果；如果缓存中没有，再交给真正的 Executor 对象来完成查询操作，之后 CachingExecutor 会将真正 Executor 返回的查询结果放置到缓存中，然后在返回给用户。  </p>
+<h4 id="MyBatis二级缓存的划分"><a href="#MyBatis二级缓存的划分" class="headerlink" title="MyBatis二级缓存的划分"></a>MyBatis二级缓存的划分</h4><p>MyBatis 并不是简单地对整个 Application 就只有一个 Cache 缓存对象，它将缓存划分的更细，即是 Mapper 级别的，即每一个 Mapper 都可以拥有一个 Cache 对象，具体如下：  </p>
+<ol>
+<li>为每一个 Mapper 分配一个 Cache 缓存对象（使用 cache 节点配置）；</li>
+<li>多个 Mapper 共用一个 Cache 缓存对象（使用 cache-ref 节点配置）；</li>
+</ol>
+<h4 id="使用二级缓存，必须要具备的条件"><a href="#使用二级缓存，必须要具备的条件" class="headerlink" title="使用二级缓存，必须要具备的条件"></a>使用二级缓存，必须要具备的条件</h4><p>MyBatis 对二级缓存的支持粒度很细，它会指定某一条查询语句是否使用二级缓存。<br>虽然在 Mapper 中配置了 cache,并且为此 Mapper 分配了 Cache 对象，这并不表示我们使用 Mapper 中定义的查询语句查到的结果都会放置到Cache对象之中，我们必须指定 Mapper 中的某条选择语句是否支持缓存，即如下所示，在 select 节点中配置 useCache=”true”，Mapper 才会对此 Select 的查询支持缓存特性，否则，不会对此 Select 查询，不会经过 Cache 缓存。  </p>
+<h4 id="一级缓存和二级缓存的使用顺序"><a href="#一级缓存和二级缓存的使用顺序" class="headerlink" title="一级缓存和二级缓存的使用顺序"></a>一级缓存和二级缓存的使用顺序</h4><p>请注意，如果你的MyBatis使用了二级缓存，并且你的Mapper和select语句也配置使用了二级缓存，那么在执行select查询的时候，MyBatis会先从二级缓存中取输入，其次才是一级缓存，即MyBatis查询数据的顺序是：二级缓存  —&gt;  一级缓存  —&gt;  数据库</p>
+<h4 id="二级缓存实现的选择"><a href="#二级缓存实现的选择" class="headerlink" title="二级缓存实现的选择"></a>二级缓存实现的选择</h4><p>使用 MyBatis 的二级缓存有三个选择:  </p>
+<ol>
+<li>MyBatis 自身提供的缓存实现；</li>
+<li>用户自定义的 Cache 接口实现；</li>
+<li>跟第三方内存缓存库的集成；</li>
+</ol>
+<h4 id="MyBatis自身提供的二级缓存的实现"><a href="#MyBatis自身提供的二级缓存的实现" class="headerlink" title="MyBatis自身提供的二级缓存的实现"></a>MyBatis自身提供的二级缓存的实现</h4><p>MyBatis主要提供了以下几个刷新和置换策略：</p>
+<ul>
+<li>LRU：（Least Recently Used）,最近最少使用算法，即如果缓存中容量已经满了，会将缓存中最近做少被使用的缓存记录清除掉，然后添加新的记录；</li>
+<li>FIFO：（First in first out）,先进先出算法，如果缓存中的容量已经满了，那么会将最先进入缓存中的数据清除掉；</li>
+<li>Scheduled：指定时间间隔清空算法，该算法会以指定的某一个时间间隔将Cache缓存中的数据清空；</li>
+</ul>
+<hr>
+<h3 id="双数据源关键代码"><a href="#双数据源关键代码" class="headerlink" title="双数据源关键代码"></a>双数据源关键代码</h3><ol>
+<li>mapper.java,mapper.xml 按库分，存在两个文件夹下</li>
+<li>@MapperScan(basePackages = “org.sang.mybatis.mapper1”,sqlSessionFactoryRef = “sqlSessionFactory1”,sqlSessionTemplateRef = “sqlSessionTemplate1”)</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java-frame/" rel="tag"># java_frame</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/02/分布式/" rel="next" title="分布式">
+                <i class="fa fa-chevron-left"></i> 分布式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/07/spring-transaction/" rel="prev" title="spring-transaction">
+                spring-transaction <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/poprabbit.jpg" alt="popular rabbit">
+            
+              <p class="site-author-name" itemprop="name">popular rabbit</p>
+              <p class="site-description motion-element" itemprop="description">java</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis-架构设计与实例分析"><span class="nav-number">1.</span> <span class="nav-text">Mybatis 架构设计与实例分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MyBatis-的框架设计"><span class="nav-number">1.1.</span> <span class="nav-text">MyBatis 的框架设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MyBatis-的主要构件及其相互关系"><span class="nav-number">1.2.</span> <span class="nav-text">MyBatis 的主要构件及其相互关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis-初始化机制详解"><span class="nav-number">2.</span> <span class="nav-text">Mybatis 初始化机制详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化做了什么"><span class="nav-number">2.1.</span> <span class="nav-text">初始化做了什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XML-文件创建-Configuration-对象的过程"><span class="nav-number">2.2.</span> <span class="nav-text">XML 文件创建 Configuration 对象的过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis-数据源与连接池"><span class="nav-number">3.</span> <span class="nav-text">Mybatis 数据源与连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MyBatis-数据源-DataSource-分类"><span class="nav-number">3.1.</span> <span class="nav-text">MyBatis 数据源 DataSource 分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要使用连接池？"><span class="nav-number">3.2.</span> <span class="nav-text">为什么要使用连接池？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis-事务管理机制"><span class="nav-number">4.</span> <span class="nav-text">Mybatis 事务管理机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis-缓存机制的设计与实现"><span class="nav-number">5.</span> <span class="nav-text">Mybatis 缓存机制的设计与实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis-一级缓存实现详解-及使用注意事项"><span class="nav-number">6.</span> <span class="nav-text">Mybatis 一级缓存实现详解 及使用注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是一级缓存？-为什么使用一级缓存？"><span class="nav-number">6.1.</span> <span class="nav-text">什么是一级缓存？ 为什么使用一级缓存？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SqlSession-中的缓存是怎样组织的？"><span class="nav-number">6.2.</span> <span class="nav-text">SqlSession 中的缓存是怎样组织的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一级缓存的生命周期有多长？"><span class="nav-number">6.3.</span> <span class="nav-text">一级缓存的生命周期有多长？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-接口的设计以及-CacheKey-的定义（非常重要）"><span class="nav-number">6.4.</span> <span class="nav-text">Cache 接口的设计以及 CacheKey 的定义（非常重要）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据一级缓存的特性，在使用的过程中，应该注意："><span class="nav-number">6.5.</span> <span class="nav-text">根据一级缓存的特性，在使用的过程中，应该注意：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis-二级缓存的设计原理"><span class="nav-number">7.</span> <span class="nav-text">Mybatis 二级缓存的设计原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MyBatis-二级缓存的工作模式"><span class="nav-number">7.1.</span> <span class="nav-text">MyBatis 二级缓存的工作模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MyBatis二级缓存的划分"><span class="nav-number">7.2.</span> <span class="nav-text">MyBatis二级缓存的划分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用二级缓存，必须要具备的条件"><span class="nav-number">7.3.</span> <span class="nav-text">使用二级缓存，必须要具备的条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一级缓存和二级缓存的使用顺序"><span class="nav-number">7.4.</span> <span class="nav-text">一级缓存和二级缓存的使用顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二级缓存实现的选择"><span class="nav-number">7.5.</span> <span class="nav-text">二级缓存实现的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MyBatis自身提供的二级缓存的实现"><span class="nav-number">7.6.</span> <span class="nav-text">MyBatis自身提供的二级缓存的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双数据源关键代码"><span class="nav-number">8.</span> <span class="nav-text">双数据源关键代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popular rabbit</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
