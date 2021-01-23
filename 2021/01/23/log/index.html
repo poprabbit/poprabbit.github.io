@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java_frame,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="日志框架的兼容性另一篇文档：https://my.oschina.net/pingpangkuangmo/blog/406618 。   日志facade:编程的时候，对外提供的jar中应该只能引用日志的facade，目前常见的日志facade包有：    log4j的日志api，log4j的api与log4j的实现在同一个包中； log4j2的日志api； JCL(Jakarta Common">
+<meta name="keywords" content="java_frame">
+<meta property="og:type" content="article">
+<meta property="og:title" content="log">
+<meta property="og:url" content="http://poprabbit.github.io/2021/01/23/log/index.html">
+<meta property="og:site_name" content="poprabbit">
+<meta property="og:description" content="日志框架的兼容性另一篇文档：https://my.oschina.net/pingpangkuangmo/blog/406618 。   日志facade:编程的时候，对外提供的jar中应该只能引用日志的facade，目前常见的日志facade包有：    log4j的日志api，log4j的api与log4j的实现在同一个包中； log4j2的日志api； JCL(Jakarta Common">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-01-23T14:33:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="log">
+<meta name="twitter:description" content="日志框架的兼容性另一篇文档：https://my.oschina.net/pingpangkuangmo/blog/406618 。   日志facade:编程的时候，对外提供的jar中应该只能引用日志的facade，目前常见的日志facade包有：    log4j的日志api，log4j的api与log4j的实现在同一个包中； log4j2的日志api； JCL(Jakarta Common">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://poprabbit.github.io/2021/01/23/log/">
+
+
+
+
+
+  <title>log | poprabbit</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">poprabbit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">learn something,apply to actual,or reverse</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/23/log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">log</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-23T22:33:57+08:00">
+                2021-01-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-23T22:33:57+08:00">
+                2021-01-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="日志框架的兼容性"><a href="#日志框架的兼容性" class="headerlink" title="日志框架的兼容性"></a>日志框架的兼容性</h2><p>另一篇文档：<a href="https://my.oschina.net/pingpangkuangmo/blog/406618" target="_blank" rel="noopener">https://my.oschina.net/pingpangkuangmo/blog/406618</a> 。  </p>
+<h3 id="日志facade"><a href="#日志facade" class="headerlink" title="日志facade:"></a>日志facade:</h3><p>编程的时候，对外提供的jar中应该只能引用日志的facade，目前常见的日志facade包有：  </p>
+<ul>
+<li>log4j的日志api，log4j的api与log4j的实现在同一个包中；</li>
+<li>log4j2的日志api；</li>
+<li>JCL(Jakarta Common Log)(commons-logging)，这个也只是一个api；</li>
+<li>slf4j(Simple Log Facade for Java) api；</li>
+</ul>
+<h3 id="日志实现系统。"><a href="#日志实现系统。" class="headerlink" title="日志实现系统。"></a>日志实现系统。</h3><p>这些包建议可以只在运行阶段引入（<scope>runtime</scope>），要不当别人的系统使用的日志实现与你提供的jar使用的不是同一个日志实现的时候，会有问题，可能造成你jar中的日志打印不出来或者报缺少包。目前常见的日志实现包有：  </p>
+<ul>
+<li>log4j的日志实现；</li>
+<li>log4j2的日志实现；</li>
+<li>slf4j 的具体实现是logback；</li>
+<li>JUL 的具体实现在JDK中；</li>
+</ul>
+<h3 id="日志接口桥接器-接口转换器-："><a href="#日志接口桥接器-接口转换器-：" class="headerlink" title="日志接口桥接器(接口转换器)："></a>日志接口桥接器(接口转换器)：</h3><p>所谓的桥接器就是一个假的日志实现工具, 目前最流行的日志facade是slf4j,  由于历史原因，一些三方包已经使用了其它的日志facade, 比如，早期Spring, Apache引用的都是commons-logging的facade，那为了兼容这些接口，则就有了日志接口桥接器，也即将这些接口通过代理，转发到slf4j接口上去。  </p>
+<h3 id="日志实现适配器："><a href="#日志实现适配器：" class="headerlink" title="日志实现适配器："></a>日志实现适配器：</h3><p>slf4j的直接实现是logback, slf4j为了使用log4j的实现（slf4j-log4j12），slf4j适配jdk 日志的实现（slf4j-jdk14）。</p>
+<p>日志接口桥接器(将别人的日志接口桥接到自己的日志系统) 与 日志实现适配器（将自己的日志接口适配别人的日志接口或实现） 并没有严格的区分，这两者的使用并没有一个强制的规范，这里也是引用日志的包最容易出现问题的地方，很容易互相转换，造成死循环。比如，同时引入 log4j-over-slf4j.jar 与 slf4j-log4j12 就会有问题。  </p>
+<ul>
+<li>log4j-over-slf4j  与 slf4j-log4j12 不能并存</li>
+<li>log4j-slf4j-impl 与 slf4j-log4j12 不能并存</li>
+<li>log4j-slf4j-impl 与 log4j-to-slf4j 不能并存</li>
+<li>log4j-jcl 与 jcl-over-slf4j 不能并存</li>
+<li>jcl-over-slf4j 与 commons-logging 不能并存</li>
+</ul>
+<p><strong>如何确定要使用哪些桥接器，重要的是看你使用哪个日志facade及哪个日志实现系统，并要兼容哪些日志接口。</strong></p>
+<h3 id="基于目前最常见的搭配-slf4j-log4j-slf4j-log4j2-下面给出这两种搭配的最佳实践："><a href="#基于目前最常见的搭配-slf4j-log4j-slf4j-log4j2-下面给出这两种搭配的最佳实践：" class="headerlink" title="基于目前最常见的搭配 slf4j+log4j,  slf4j+log4j2, 下面给出这两种搭配的最佳实践："></a>基于目前最常见的搭配 slf4j+log4j,  slf4j+log4j2, 下面给出这两种搭配的最佳实践：</h3><ul>
+<li>slf4j+log4j, 即自己的应用使用slf4j facade 并使用 lof4j日志实现系统；</li>
+<li>slf4j + log4j2 即自己的应用使用slf4j facade 并使用 lof4j2日志实现系统；</li>
+</ul>
+<h2 id="异常注意事项"><a href="#异常注意事项" class="headerlink" title="异常注意事项"></a>异常注意事项</h2><ol>
+<li>异常被打印的地方（logger）；</li>
+<li>异常的类型：异常的内容（message）；</li>
+<li>at 后面是异常的堆栈信息，从 异常产生的地方（new或jvm产生） 到 最初调用的地方；</li>
+<li>Caused by 顾名思义，真正发生问题的地方，最下面的是直接原因；</li>
+<li>分清 异常产生的地方（new或jvm产生） 与 异常被打印的地方（logger）；</li>
+<li>catch 异常后可以抛出一个新的异常，也可抛出原异常，还可忽略异常继续执行；异常设计（catch,new E）很重要，混乱的异常设计不利于问题排查；</li>
+</ol>
+<h2 id="日志注意事项"><a href="#日志注意事项" class="headerlink" title="日志注意事项"></a>日志注意事项</h2><ol>
+<li>代码中写了就打，一般会先判断级别是否合适</li>
+<li>日志的格式怎么：时间，级别，（线程），名称或者类，这四样是固定的，其他的想怎么打怎么打；</li>
+<li>应用下日志的分类：中间件（rpc,health-check,tracelog），本应用各子模块日志；</li>
+</ol>
+<h3 id="logbakc日志框架要点"><a href="#logbakc日志框架要点" class="headerlink" title="logbakc日志框架要点"></a>logbakc日志框架要点</h3><p>appender -指定日志文件名，日志格式，日志文件最大天数；<br>logger   -指向代码中的日志name，或者日志class，需要ref上面的appender<br>root     -指向代码中的其他日志（除去上面的指定）<br>springProfile -在指定的profile下才生效</p>
+<h3 id="log4j2-日志框架"><a href="#log4j2-日志框架" class="headerlink" title="log4j2 日志框架"></a>log4j2 日志框架</h3><p>RollingFile -指定日志文件名<br>AsyncLogger/Logger -指向代码中的日志name，或者日志class</p>
+<h3 id="Tracer"><a href="#Tracer" class="headerlink" title="Tracer"></a>Tracer</h3><p>TraceId 不是rpc拦截器，是SofaRequest的一个属性传下去的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java-frame/" rel="tag"># java_frame</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/23/books/" rel="next" title="books">
+                <i class="fa fa-chevron-left"></i> books
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/poprabbit.jpg" alt="popular rabbit">
+            
+              <p class="site-author-name" itemprop="name">popular rabbit</p>
+              <p class="site-description motion-element" itemprop="description">java</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#日志框架的兼容性"><span class="nav-number">1.</span> <span class="nav-text">日志框架的兼容性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志facade"><span class="nav-number">1.1.</span> <span class="nav-text">日志facade:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志实现系统。"><span class="nav-number">1.2.</span> <span class="nav-text">日志实现系统。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志接口桥接器-接口转换器-："><span class="nav-number">1.3.</span> <span class="nav-text">日志接口桥接器(接口转换器)：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志实现适配器："><span class="nav-number">1.4.</span> <span class="nav-text">日志实现适配器：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于目前最常见的搭配-slf4j-log4j-slf4j-log4j2-下面给出这两种搭配的最佳实践："><span class="nav-number">1.5.</span> <span class="nav-text">基于目前最常见的搭配 slf4j+log4j,  slf4j+log4j2, 下面给出这两种搭配的最佳实践：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常注意事项"><span class="nav-number">2.</span> <span class="nav-text">异常注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志注意事项"><span class="nav-number">3.</span> <span class="nav-text">日志注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#logbakc日志框架要点"><span class="nav-number">3.1.</span> <span class="nav-text">logbakc日志框架要点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#log4j2-日志框架"><span class="nav-number">3.2.</span> <span class="nav-text">log4j2 日志框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tracer"><span class="nav-number">3.3.</span> <span class="nav-text">Tracer</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popular rabbit</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
