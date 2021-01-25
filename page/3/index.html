@@ -243,6 +243,316 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/05/JVM 类文件及类加载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/05/JVM 类文件及类加载/" itemprop="url">JVM 类文件及类加载</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-05T19:35:13+08:00">
+                2020-05-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-05T19:35:13+08:00">
+                2020-05-05
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          类加载机制类加载过程包含了加载、验证、准备、解析和初始化这 5 个阶段。  
+
+加载从 类的二进制字节流 到 内存中一个代表该类的 Class 对象  
+验证确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求  
+准备类变量是被 static 修饰的变量，准备阶段为类变量分配内存并设置初始值，使用的是方法区的内存。
+解析将常量池的符号引用替换为直接引用的过程。其中解析过程在某些情况下可以在初始化阶段之后再开始，这是为了支持 Java 的动态绑定。  
+初始化初始化阶段才真正开始执行类中定义的 Java 程序代码。初始化阶段是虚拟机执行类构造器 () 方法的过程。 
+
+类初始化时机
+主动引用虚拟机规范严格规定了有且只有下列五种情况必须对类进行初始化（加载、验证、准备都会随之发生）：
+遇到 new、getstatic、putstatic、invokestatic 这四条字节码指令时；
+使用 java.lang.reflect 包的方法对类进行反射调用的时候；
+当初始化一个类的时候，如果发现其父类还没有进行过初始化；
+当虚拟机启动时，用户需要指定一个要执行的主类（包含 main() 方法的那个类）；
+当使用 JDK 1.7 的动态语言支持时；
+
+
+被动引用（不会触发初始化）  
+通过子类引用父类的静态字段，不会导致子类初始化。
+通过数组定义来引用类。
+常量在编译阶段会存入调用
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/05/JVM 类文件及类加载/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/04/JVM 自动内存管理机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/04/JVM 自动内存管理机制/" itemprop="url">JVM 自动内存管理机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-04T07:35:30+08:00">
+                2020-05-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-04T07:35:30+08:00">
+                2020-05-04
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          运行时数据区域
+程序计数器记录正在执行的虚拟机字节码指令的地址（如果正在执行的是本地方法则为空）。  
+
+Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息。从方法调用直至执行完成的过程，对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。可以通过 -Xss 这个虚拟机参数来指定每个线程的 Java 虚拟机栈内存大小，在 JDK 1.4 中默认为 256K，而在 JDK 1.5+ 默认为 1M：该区域可能抛出以下异常：  
+
+当线程请求的栈深度超过最大值，会抛出 StackOverflowError 异常；  
+栈进行动态扩展时如果无法申请到足够内存，会抛出 OutOfMemoryError 异常。  
+
+
+本地方法栈本地方法栈与 Java 虚拟机栈类似，它们之间的区别只不过是本地方法栈为本地方法服务。  
+
+堆所有对象都在这里分配内存，是垃圾收集的主要区域（”GC 堆”）。现代的垃圾收集器基本都是采用分代收集算法，其主要的思想是针对不同类型的对象采取不同的垃圾回收算法。可以将堆分成两块：  
+
+新生代（Young Generation）  
+老年代（Old Generation）堆不需要连续内存，并且可以动态增加其内存，增加失败会抛出 OutOfMemoryError 异常。可以通过 -Xms 和 -Xmx 这两个虚
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/04/JVM 自动内存管理机制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/04/29/threadpool/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -678,7 +988,7 @@ Node 的结构简介
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2019/09/21/git-gen-ssh/">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2019/09/21/git-maven/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="popular rabbit">
@@ -697,7 +1007,7 @@ Node 的结构简介
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/21/git-gen-ssh/" itemprop="url">git-gen-ssh</a></h1>
+                <a class="post-title-link" href="/2019/09/21/git-maven/" itemprop="url">git-maven</a></h1>
         
 
         <div class="post-meta">
@@ -725,8 +1035,8 @@ Node 的结构简介
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-21T18:42:32+08:00">
-                2019-09-21
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-21T18:42:32+08:00">
+                2021-01-21
               </time>
             
           </span>
@@ -761,13 +1071,12 @@ Node 的结构简介
       
         
           
-          Github 配置SSH1234567ssh-keygen -t rsa -C "xxx@126.com"  ssh-agent -s  eval `ssh-agent -s`  ssh-add  clip &lt; ~/.ssh/id_rsa.pub  ssh -T git@github.com
-
-
-          
+          gitorigin 在 git 里是 远程主机名git checkout –b dev     创建并切换分支git merge dev           合并指定分支到当前分支git push origin dev        该分支上的所有本地提交推送到指定的远程分支git checkout -b dev origin/dev        抓取分支：创建远程origin的dev分支到本地（默认的clone 后只有 master分支）git branch –set-upstream-to origin/dev        设置当前分支和origin/dev的链接（否则 git pull 等远程指令会失败）rebase 与 merge要是想要干净的、线性的提交树，使用rebase操作会好一点，这样可以在一条线上看到每一次提交，并且没有增加提交节点。但是如果你想要保存项目完整的历史，并且避免重写公共分支上的 commit，就用merge。git push origin –delete branchname 删除远端分支git reset –hard [commit_id]  退回到指定分支  
+mavenmvn package -Dmaven.test.skip=truemvn dependency:treemvn dependency:tree &gt; tree.txt 
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/21/git-gen-ssh/#more" rel="contents">
+            <a class="btn" href="/2019/09/21/git-maven/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -865,8 +1174,8 @@ Node 的结构简介
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-04-27T12:33:02+08:00">
-                2020-04-27
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-25T12:33:02+08:00">
+                2021-01-25
               </time>
             
           </span>
@@ -913,7 +1222,17 @@ Generate static files1$ hexo generate
 Deploy to remote sites1$ hexo deploy
 
 rebuild1$ hexo clean
-          
+
+其它面试技术点
+java基础（语法；集合；IO；多线程）；
+web及web常用框架；
+jvm底层知识（线程与内存与类文件）；
+数据库，各种中间件；
+分布式原理及分布式框架（java）；
+大数据；
+
+计划工程代码；中间件；（问题排查，原理理解对比）基础知识博客，杂谈博客；jvm、cyc2018（3、4天的工作量）spring 功能提纲；
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/20/hello-world/#more" rel="contents">
@@ -1008,7 +1327,7 @@ rebuild1$ hexo clean
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

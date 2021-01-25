@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="ioc本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean      ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实">
+<meta name="description" content="ioc IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean     ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个">
 <meta name="keywords" content="spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring">
 <meta property="og:url" content="http://poprabbit.github.io/2020/05/09/spring/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="ioc本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean      ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实">
+<meta property="og:description" content="ioc IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean     ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-06-12T03:35:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring">
-<meta name="twitter:description" content="ioc本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean      ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实">
+<meta name="twitter:description" content="ioc IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean     ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个">
 
 
 
@@ -322,8 +322,8 @@
       
 
       
-        <h3 id="ioc"><a href="#ioc" class="headerlink" title="ioc"></a>ioc</h3><p>本文要说的 IOC 总体来说有两处地方最重要，<strong>一个是创建 Bean 容器，一个是初始化 Bean</strong>    </p>
-<ol>
+        <h3 id="ioc"><a href="#ioc" class="headerlink" title="ioc"></a>ioc</h3><ol start="0">
+<li>IOC 总体来说有两处地方最重要，<strong>一个是创建 Bean 容器，一个是初始化 Bean</strong>    </li>
 <li>ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，<br>而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。  </li>
 <li>// 我们把这步叫做 注册Bean 吧<br>BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());</li>
 <li>BeanDefinition  解析、加载、注册    </li>
@@ -336,8 +336,8 @@
 <blockquote>
 </blockquote>
 <p>AbstractApplicationContext # finishBeanFactoryInitialization()<br>DefaultListableBeanFactory # preInstantiateSingletons()<br>for (String beanName : beanNames) {<br>AbstractBeanFactory # getBean()<br>  doGetBean()  // 已经初始化过了就从容器中直接返回，否则就先初始化再返回<br>  getObjectForBeanInstance();  //处理 FactoryBean 的形式<br>  String[] dependsOn = mbd.getDependsOn(); //先创建依赖的 bean<br>  sharedInstance = getSingleton(String beanName, ObjectFactory&lt;?&gt; singletonFactory)  //创建 singleton beans<br>AbstractAutowireCapableBeanFactory # createBean()<br>  resolveBeforeInstantiation(beanName, mbdToUse); //自定义了 TargetSource 时返回代理对象<br>  doCreateBean()<br>  instanceWrapper = createBeanInstance()  //实例化 Bean，这里非常关键<br>  boolean earlySingletonExposure = (mbd.isSingleton() &amp;&amp; this.allowCircularReferences &amp;&amp; isSingletonCurrentlyInCreation(beanName));addSingletonFactory(); // 提前创建循环依赖的 ObjectFactory<br>ConstructorResolver # instantiateUsingFactoryMethod()  // 采用工厂方法实例化<br>  autowireConstructor()  // 构造函数依赖注入<br>InstantiationStrategy # instantiateBean()  //无参构造函数<br>AbstractAutowireCapableBeanFactory # populateBean()  //这一步也是非常关键的，这一步负责属性装配（依赖注入）<br>AbstractAutowireCapableBeanFactory # exposedObject = initializeBean()  //处理 xxxAware 接口；bean 初始化完成后的各种回调；BeanPostProcessor 的增强处理<br>AbstractAutowireCapableBeanFactory # registerDisposableBeanIfNecessary()  //注册销毁回调<br>}  </p>
-<p>实现主要功能的类：<br>BeanDefinition<br>BeanDefinitionReader<br>Document<br>BeanDefinitionDocumentReader<br>Element<br>BeanDefinitionParserDelegate  </p>
-<p>FactoryBean<br>BeanWrapper<br>SimpleInstantiationStrategy  </p>
+<p>实现主要功能的类：<br>BeanDefinition  ,BeanDefinitionReader  ,Document  ,BeanDefinitionDocumentReader  ,Element  ,BeanDefinitionParserDelegate  </p>
+<p>FactoryBean  ,BeanWrapper  ,SimpleInstantiationStrategy  </p>
 <p>容易混淆的类：<br>AbstractRefreshableApplicationContext –&gt; ResourceLoader,ApplicationEventPublisher,MessageSource<br>DefaultListableBeanFactory               –&gt; BeanDefinitionRegistry<br>AbstractAutowireCapableBeanFactory    –主要为了 @Autowired 注解注入属性值<br>beanDefinitionNames    一个 ArrayList, 可以看到从前到后加载的 beanname </p>
 <ul>
 <li>// 让 InstantiationAwareBeanPostProcessor 在这一步有机会返回代理（自定义了 TargetSource 时）<br>createBean()  Object bean = resolveBeforeInstantiation(beanName, mbdToUse);   </li>
@@ -348,11 +348,11 @@
 </li>
 <li><strong>AbstractAutowireCapableBeanFactory.initializeBean() –在 bean 实例化完成、属性注入完成之后，会执行该方法</strong><br><strong>applyBeanPostProcessorsAfterInitialization()  实现 AOP ，进行代理增强</strong></li>
 </ul>
-<p><strong>spring到底支持哪样子的循环依赖？？？    答案：单例的 setter 属性方式依赖</strong><br>isSingletonCurrentlyInCreation()：判断当前 singleton bean 是否处于创建中；</p>
 <h3 id="aop"><a href="#aop" class="headerlink" title="aop"></a>aop</h3><h4 id="spring-1-2-支持的-aop-配置"><a href="#spring-1-2-支持的-aop-配置" class="headerlink" title="spring 1.2 支持的 aop 配置"></a>spring 1.2 支持的 aop 配置</h4><ol>
 <li>配置bean  </li>
 <li>配置Advice –指定执行前/执行后，处理逻辑  </li>
-<li>指定Advisor–配置指定方法用指定Advice增强  4、配置Proxy–配置指定的bean用指定的Advisor增强  </li>
+<li>指定Advisor–配置指定方法用指定Advice增强  </li>
+<li>配置Proxy–配置指定的bean用指定的Advisor增强  </li>
 </ol>
 <p><strong>缺点：</strong>我们得为每个 bean 都配置一个代理，之后获取 bean 的时候需要获取这个代理类的 bean 实例（如 (UserService) context.getBean(“userServiceProxy”)）</p>
 <h4 id="autoproxy-方式"><a href="#autoproxy-方式" class="headerlink" title="autoproxy 方式"></a>autoproxy 方式</h4><ol>
@@ -366,14 +366,13 @@
 <li>配置 Pointcut 用于定义哪些方法需要被增强或者说需要被拦截  </li>
 <li>配置 Advice ，JoinPoint用于获取方法入参</li>
 </ol>
-<p>Pointcut 中可以使用 execution within annotation 等方式配置</p>
 <ul>
 <li>Spring AOP 的原理很简单，就是动态代理，它和 AspectJ 不一样，AspectJ 是直接修改掉你的字节码。  </li>
 <li>如果被代理的目标类实现了一个或多个自定义的接口，那么就会使用 JDK 动态代理，如果没有实现任何接口，会使用 CGLIB 实现代理，如果设置了 proxy-target-class=”true”，那么都会使用 CGLIB。  </li>
 <li>InvocationHandler 只有一个方法，当生成的代理类对外提供服务的时候，都会导到这个方法中</li>
 </ul>
 <p>实现主要功能的类：<br>DefaultAdvisorAutoProxyCreator 类，实现的动态代理<br>AbstractAutoProxyCreator<br>ProxyFactory<br>AopProxy<br>AopProxyFactory<br>JdkDynamicAopProxy   –&gt; InvocationHandler,Proxy<br>ObjenesisCglibAopProxy  –&gt; CglibAopProxy,AopProxy<br>Enhancer  </p>
-<p><strong>InstantiationAwareBeanPostProcessor</strong><br>很多人都以为 Spring AOP 是通过这个接口来作用于 bean 生成代理的。 它和 BeanPostProcessor 的方法非常相似，而且它还继承了 BeanPostProcessor。<br>InstantiationAwareBeanPostProcessor 是 Instantiation，BeanPostProcessor 是 Initialization 也有创建代理的逻辑，需要配置一个 customTargetSourceCreators。</p>
+<p><strong>spring到底支持哪样子的循环依赖？？？    答案：单例的 setter 属性方式依赖</strong><br>isSingletonCurrentlyInCreation()：判断当前 singleton bean 是否处于创建中；<br><strong>InstantiationAwareBeanPostProcessor</strong><br>很多人都以为 Spring AOP 是通过这个接口来作用于 bean 生成代理的。 它和 BeanPostProcessor 的方法非常相似，而且它还继承了 BeanPostProcessor。<br>InstantiationAwareBeanPostProcessor 是 Instantiation，BeanPostProcessor 是 Initialization 也有创建代理的逻辑，需要配置一个 customTargetSourceCreators。</p>
 <h3 id="spring-的数据库事务"><a href="#spring-的数据库事务" class="headerlink" title="spring 的数据库事务"></a>spring 的数据库事务</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//开启基于注解的声明式事务  </span><br><span class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>实现主要功能的类：<br>TxNamespaceHandler,AnnotationDrivenBeanDefinitionParser<br>InfrastructureAdvisorAutoProxyCreator  间接实现 InstantiationAwareBeanPostProcessor<br>AbstractAutoProxyCreator # postProcessAfterInitialization //主要工作有两点：</p>
@@ -457,8 +456,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/05/18/基础语法/" rel="prev" title="基础语法">
-                基础语法 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/05/18/开发基础知识点/" rel="prev" title="dev_base">
+                dev_base <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -540,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
