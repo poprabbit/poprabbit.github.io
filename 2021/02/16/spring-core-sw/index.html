@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="practice,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="系统设计实践短链接服务系统开发短链接 系统分库分表改造的注意事项分表改造注意事项 系统设计基础知识服务器、数据库资源xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。">
-<meta name="keywords" content="practice">
+<meta name="description" content="ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(“config.xml”);SimpleBean bean = context.getBean(SimpleBean.class);bean.send();context.close(); 功能列表：1、System.getProperty(“”)">
+<meta name="keywords" content="popular rabbit">
 <meta property="og:type" content="article">
-<meta property="og:title" content="系统设计">
-<meta property="og:url" content="http://poprabbit.github.io/2020/05/19/系统设计/index.html">
+<meta property="og:title" content="poprabbit">
+<meta property="og:url" content="http://poprabbit.github.io/2021/02/16/spring-core-sw/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="系统设计实践短链接服务系统开发短链接 系统分库分表改造的注意事项分表改造注意事项 系统设计基础知识服务器、数据库资源xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。">
+<meta property="og:description" content="ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(“config.xml”);SimpleBean bean = context.getBean(SimpleBean.class);bean.send();context.close(); 功能列表：1、System.getProperty(“”)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-19T02:43:35.000Z">
+<meta property="og:updated_time" content="2021-01-23T13:59:01.010Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统设计">
-<meta name="twitter:description" content="系统设计实践短链接服务系统开发短链接 系统分库分表改造的注意事项分表改造注意事项 系统设计基础知识服务器、数据库资源xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。">
+<meta name="twitter:title" content="poprabbit">
+<meta name="twitter:description" content="ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(“config.xml”);SimpleBean bean = context.getBean(SimpleBean.class);bean.send();context.close(); 功能列表：1、System.getProperty(“”)">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://poprabbit.github.io/2020/05/19/系统设计/">
+  <link rel="canonical" href="http://poprabbit.github.io/2021/02/16/spring-core-sw/">
 
 
 
 
 
-  <title>系统设计 | poprabbit</title>
+  <title> | poprabbit</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/19/系统设计/">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/02/16/spring-core-sw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="popular rabbit">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">系统设计</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-19T10:43:35+08:00">
-                2020-05-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-16T21:37:53+08:00">
+                2021-02-16
               </time>
             
 
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-19T10:43:35+08:00">
-                2020-05-19
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-23T21:59:01+08:00">
+                2021-01-23
               </time>
             
           </span>
@@ -322,9 +322,11 @@
       
 
       
-        <h3 id="系统设计实践"><a href="#系统设计实践" class="headerlink" title="系统设计实践"></a>系统设计实践</h3><h4 id="短链接服务系统开发"><a href="#短链接服务系统开发" class="headerlink" title="短链接服务系统开发"></a>短链接服务系统开发</h4><p><a href="https://javadoop.com/post/url-shortener" target="_blank" rel="noopener">短链接</a></p>
-<h4 id="系统分库分表改造的注意事项"><a href="#系统分库分表改造的注意事项" class="headerlink" title="系统分库分表改造的注意事项"></a>系统分库分表改造的注意事项</h4><p><a href="http://mp.weixin.qq.com/s?__biz=MzIyMzgyODkxMQ==&mid=2247484306&idx=1&sn=217a51cde907249045a1568071a11ccf&chksm=e8190d52df6e84444cdf5c06a2720857c5fd9a9b4e8446b4d3c977dad6252ef4237e600dcee9&scene=126&sessionid=1584518090#rd" target="_blank" rel="noopener">分表改造注意事项</a></p>
-<h3 id="系统设计基础知识"><a href="#系统设计基础知识" class="headerlink" title="系统设计基础知识"></a>系统设计基础知识</h3><h3 id="服务器、数据库资源"><a href="#服务器、数据库资源" class="headerlink" title="服务器、数据库资源"></a>服务器、数据库资源</h3><p>xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。<br>tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。</p>
+        <p>ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(“config.xml”);<br>SimpleBean bean = context.getBean(SimpleBean.class);<br>bean.send();<br>context.close();</p>
+<p>功能列表：<br>1、System.getProperty(“”);System.getenv(“”);<br>2、xml –&gt; Document –&gt; BeanDefinition<br>3、BeanFactory,ApplicationContext 等容器的准备工作<br>4、BeanDefinition –&gt; Bean，(preInstantiateSingletons)</p>
+<p>1<br>//null<br>super(parent);<br>ApplicationContext  –&gt;  ResourceLoader<br>—-ResourcePatternResolver<br>setConfigLocations(configLocations);<br>—-StandardEnvironment –&gt;  PropertyResolver<br>——–MutablePropertySources  –&gt;  内部含有一个 CopyOnWriteArrayList 作为存储载体，是 PropertySource 的容器<br>————MapPropertySource  –&gt;  getSystemProperties() 保存系统属性的键值对<br>————SystemEnvironmentPropertySource  –&gt;  getSystemEnvironment() 保存系统环境的键值对<br>——–PropertySourcesPropertyResolver  –&gt;  用来解析 PropertyResource<br>————PropertyPlaceholderHelper  –&gt;  字符串操作，替换${spring}:config.xml 中的 spring 。<br>Environmen 接口<strong>代表了当前应用所处的环境。</strong>从此接口的方法可以看出，其主要和 profile、Property 相关。<br>从继承关系可以看出，Environment 是 PropertyResolver<br>从属性上可以看出， StandardEnvironment 是 PropertySource 的容器<br>PropertySource 接口代表了键值对的 Property 来源。<br>2<br>//默认true<br>if (refresh) {<br>    refresh();<br>}<br>DefaultDocumentLoader<br>DefaultNamespaceHandlerResolver  –&gt;  用来获取 xsd 对应的处理器<br>XmlBeanDefinitionReader#doLoadBeanDefinitions  –&gt;  xml 文件的解析入口<br>——–DefaultDocumentLoader#loadDocument<br>————DocumentBuilderFactory,DocumentBuilder  –&gt;  临时对象 xml=&gt;Document<br>—-XmlBeanDefinitionReader#registerBeanDefinitions<br>——–BeanDefinitionDocumentReader,XmlReaderContext  –&gt;  临时对象 Document=&gt;BeanDefinition<br>EntityResolver 接口在 org.xml.sax 中定义。DelegatingEntityResolver 用于 schema 和 dtd 的解析。<br>InputSource 是 org.xml.sax 的类。<br>java 标准套路获取 xml Document<br>DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();<br>DocumentBuilder docBuilder = factory.newDocumentBuilder();<br>docBuilder.parse(inputSource)<br>xmlns 命名空间类似于 java 的包名。设置了之后 bean 元素全名就相当于<a href="http://www.springframework.org/schema/beans:bean。" target="_blank" rel="noopener">http://www.springframework.org/schema/beans:bean。</a><br>对于非默认命名空间的元素交由 BeanDefinitionParserDelegate 处理（获取对应的 NamespaceHandler）。<br>非默认命名空间的元素：每种子标签的解析仍是策略模式的体现，init 负责向父类 NamespaceHandlerSupport 注册不同的策略（BeanDefinitionParser 对象），<br>由父类的 NamespaceHandlerSupport.parse 方法根据具体的子标签调用相应的策略完成解析的过程。<br>3<br>—-prepareBeanFactory  –&gt;  对 BeanFactory 进行一些特征的设置工作<br>——–StandardBeanExpressionResolver  –&gt;  Spel 表达式<br>——–ResourceEditorRegistrar  –&gt;  PropertyEditor 将字符串转换成需要的类型（组合模式）<br>——–ApplicationContextAwareProcessor  –&gt;  通过 xxxAware 接口获取到Spring内部的一些对象<br>——–依赖解析忽略  –&gt;  设置哪些接口在进行依赖注入的时候应该被忽略<br>——–bean 伪装  –&gt;  有些对象并不在 BeanFactory 中，但是我们依然想让它们可以被装配<br>——–LoadTimeWeaver  –&gt;<br>——–注册环境  –&gt;  environment,systemProperties,systemEnvironment<br>—-postProcessBeanFactory  –&gt;  见注释（post-processing of the bean factory）<br>—-invokeBeanFactoryPostProcessors  –&gt;  BeanFactoryPostProcessor,BeanDefinitionRegistryPostProcessor.（核心方法beanFactory.getBeanNamesForType）<br>—-registerBeanPostProcessors  –&gt;  BeanPostProcessor 注册（有优先级的概念）<br>—-initMessageSource  –&gt;  用以处理ApplicationContext的getMessage调用（从继承体系上来看，此处是委托模式的体现）<br>—-initApplicationEventMulticaster  –&gt;  事件驱动（EventObject、EventListener，监听器获取，Spring在此处使用了缓存来加速查找的过程）<br>—-onRefresh  –&gt;  模版方法，允许子类在进行 bean 初始化之前进行一些定制操作<br>—-registerListeners  –&gt;  注册监听器，即对 defaultRetriever 赋值<br>—-finishBeanFactoryInitialization  –&gt;  singleton 初始化<br>——–ConversionService  –&gt;  此接口用于类型之间的转换，在Spring里其实就是把配置文件中的String转为其它类型<br>——–StringValueResolver  –&gt;  用于解析注解的值<br>——–LoadTimeWeaverAware  –&gt;  Initialize LoadTimeWeaverAware beans early<br>——–preInstantiateSingletons  –&gt;  初始化<br>————FactoryBean&amp;SmartFactoryBean  –&gt;  isEagerInit<br>————getBean,doGetBean  –&gt;  isEagerInit<br>—————-transformedBeanName  –&gt;  将FactoryBean的前缀去掉以及将别名转为真实的名字<br>—————-getSingleton  –&gt;  是否是手动注册的单例bean<br>—————-parentBeanFactory!=null &amp;&amp; !containsBeanDefinition(beanName)  –&gt;  检查父容器<br>—————-mbd.getDependsOn()  –&gt;  依赖初始化<br>—————-getSingleton  –&gt;  获取单例bean</p>
+<h2 id="—————-getObjectForBeanInstance-–-gt-如果bean是FactoryBean，那么返回其工厂方法创建的bean，而不是自身"><a href="#—————-getObjectForBeanInstance-–-gt-如果bean是FactoryBean，那么返回其工厂方法创建的bean，而不是自身" class="headerlink" title="—————-getObjectForBeanInstance  –&gt;  如果bean是FactoryBean，那么返回其工厂方法创建的bean，而不是自身"></a>—————-getObjectForBeanInstance  –&gt;  如果bean是FactoryBean，那么返回其工厂方法创建的bean，而不是自身</h2><p>4<br>createBean  –&gt;  bean创建<br>—-resolveBeanClass<br>—-mbdToUse.prepareMethodOverrides()  –&gt;  lookup-method检测<br>—-resolveBeforeInstantiation  –&gt;  InstantiationAwareBeanPostProcessor触发，主要是在Spring内部使用<br>—-doCreateBean<br>——–createBeanInstance（仅对说明的方法）<br>————instantiateUsingFactoryMethod  –&gt;  配置了factory-bean/factory-method属性的bean，不是实现了FacrotyBean接口的bean<br>—————-初始化一个BeanWrapperImpl，根据设置的参数列表使用反射的方法寻找相应的方法对象<br>—————-InstantiationStrategy  –&gt;  Strategy for creating bean instances.<br>————autowireConstructor  –&gt;  构造器自动装配<br>—————-得到合适的构造器对象，根据构造器参数的类型去BeanFactory查找相应的bean<br>—————-最终调用SimpleInstantiationStrategy#instantiate –&gt;  如果配置了lookup-method标签，得到的实际上是用Cglib生成的目标类的代理子类<br>————determineConstructorsFromBeanPostProcessors  –&gt;  由SmartInstantiationAwareBeanPostProcessor决定构造函数，默认是没有配置<br>————instantiateBean  –&gt;  默认构造器<br>——–applyMergedBeanDefinitionPostProcessors  –&gt;  MergedBeanDefinitionPostProcessor（Spring内部使用的）<br>——–addSingletonFactory  –&gt;  getEarlyBeanReference<br>——–populateBean  –&gt;  处理不同autowire方式<br>————autowireByName,autowireByType  –&gt;  只是先获取到引用的bean，真正的设值是在 applyPropertyValues 中进行的<br>—————-unsatisfiedNonSimpleProperties  –&gt;  返回所有引用的beanName(ref=”XXX”)<br>————applyPropertyValues  –&gt;  Spring判断一个属性可不可以被设置(存不存在)是通过java bean的内省操作来完成的<br>——–initializeBean  –&gt;  执行诸如调用其init方法的操作<br>——–registerDisposableBeanIfNecessary  –&gt;  Register bean as disposable</p>
+<p>autowire共有以下几种选项:<br>no: 默认的，不进行自动装配。在这种情况下，只能通过ref方式引用其它bean。<br>byName: 根据bean里面属性的名字在BeanFactory中进行查找并装配。<br>byType: 按类型。<br>constructor: 以byType的方式查找bean的构造参数列表。<br>default: 由父bean决定。</p>
 
       
     </div>
@@ -340,12 +342,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/practice/" rel="tag"># practice</a>
-          
-        </div>
-      
 
       
       
@@ -355,8 +351,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/18/开发基础知识点/" rel="next" title="dev_base">
-                <i class="fa fa-chevron-left"></i> dev_base
+              <a href="/2021/02/16/spring-context-sw/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -364,10 +360,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/19/redis/" rel="prev" title="redis">
-                redis <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -494,7 +486,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统设计实践"><span class="nav-number">1.</span> <span class="nav-text">系统设计实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#短链接服务系统开发"><span class="nav-number">1.1.</span> <span class="nav-text">短链接服务系统开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统分库分表改造的注意事项"><span class="nav-number">1.2.</span> <span class="nav-text">系统分库分表改造的注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统设计基础知识"><span class="nav-number">2.</span> <span class="nav-text">系统设计基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器、数据库资源"><span class="nav-number">3.</span> <span class="nav-text">服务器、数据库资源</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#—————-getObjectForBeanInstance-–-gt-如果bean是FactoryBean，那么返回其工厂方法创建的bean，而不是自身"><span class="nav-number">1.</span> <span class="nav-text">—————-getObjectForBeanInstance  –&gt;  如果bean是FactoryBean，那么返回其工厂方法创建的bean，而不是自身</span></a></li></ol></div>
             
 
           </div>

@@ -361,7 +361,7 @@
 <li>catch 异常后可以抛出一个新的异常，也可抛出原异常，还可忽略异常继续执行；异常设计（catch,new E）很重要，混乱的异常设计不利于问题排查；</li>
 </ol>
 <h2 id="日志注意事项"><a href="#日志注意事项" class="headerlink" title="日志注意事项"></a>日志注意事项</h2><ol>
-<li>代码中写了就打，一般会先判断级别是否合适</li>
+<li>打印前一般会先判断级别是否合适；info日志一般是包含关键信息的字符串，格式化要借助String.format()函数；error日志要输出异常的堆栈信息；</li>
 <li>日志的格式怎么：时间，级别，（线程），名称或者类，这四样是固定的，其他的想怎么打怎么打；</li>
 <li>应用下日志的分类：中间件（rpc,health-check,tracelog），本应用各子模块日志；</li>
 </ol>
@@ -491,7 +491,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

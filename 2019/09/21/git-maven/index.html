@@ -331,9 +331,14 @@
 <li>多 Module 的 Project ，模块之间一般是同一个项目业务，且彼此之间存在 maven 依赖关系；<br>任何一个 Module 引入了某组件，工程的 Libraries 下都会有该组件，因此需要一个个排除或调解；<br>父pom 的作用是指定 依赖的版本号，Module 中即不必重复指定。    </li>
 <li>依赖排除：下面代码  </li>
 <li>依赖调解：下面代码<br>路径最短等，仅仅对该 pom 工程起作用，调解的结果并不能向下传递；<br>maven idea 分析 xxx.jar 被哪些工程使用（libraries –&gt; 右键改jar –&gt; 分析使用）。  </li>
-<li>maven 的依赖传递会带来很多的问题（或者说这是项目做大了造成的原因），如某个类冲突，版本升级引发更多问题；<br>解决这些问题需要对各种依赖的功能很清楚，并对依赖间的关联关系较清楚，最好很熟悉项目的骨架。   </li>
-<li>本地setting.xml不一样，确实会导致同样的工程，打出不一样的包，maven 非常奇怪的行为，可以切换本地setting.xml文件，并换一个新仓库打包试下。    </li>
 <li>依赖传递<br>依赖中依赖的坐标 没有指定版本时会去 父pom 中去找版本号，所以默认是 父pom指定的版本号，也可主动申明去覆盖。  </li>
+<li>maven 的依赖传递会带来很多的问题（或者说这是项目做大了造成的原因），如某个类冲突，版本升级引发更多问题；<br>解决这些问题需要对各种依赖的功能很清楚，并对依赖间的关联关系较清楚，最好很熟悉项目的骨架。   </li>
+<li>本地setting.xml不一样，确实会导致同样的工程，打出不一样的包，maven 非常奇怪的行为，可以切换本地setting.xml文件，并换一个新仓库打包试下。      </li>
+<li>maven 依赖导致的程序启动报错问题排查步骤（日志类报错）：  <ul>
+<li>首先看 该类在当前应用中 是否存在多个（在不同依赖中，有两个完全一样的这个类，加载了错误的类导致程序报错）。</li>
+<li>再分析是否符合日志引用规范（列出所有的 日志api和日志实现等）。</li>
+</ul>
+</li>
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">exclusions</span>&gt;</span><span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span> 可以排除任何下层引入的依赖。  </span><br><span class="line"><span class="comment">&lt;!-- 最强排除，排除所有的commons-logging --&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>   </span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>99.0-does-not-exist<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -462,7 +467,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

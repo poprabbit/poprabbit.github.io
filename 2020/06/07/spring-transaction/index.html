@@ -82,14 +82,14 @@
 <meta name="description" content="Connection 对象数据库连接 java.sql.Connection 的特性、事务表示、以及和 Java 线程之间的天然关系    Java 事务控制的基本单位（Conection 对象）Connection 实例来表示和数据库的一个连接，通信方式TCP/IP，事务控制方法：commit()，rollback()。    Connection 是宝贵的系统资源（数据库线程数；增加锁竞争的开">
 <meta name="keywords" content="spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring-transaction">
+<meta property="og:title" content="used spring-transaction">
 <meta property="og:url" content="http://poprabbit.github.io/2020/06/07/spring-transaction/index.html">
 <meta property="og:site_name" content="poprabbit">
 <meta property="og:description" content="Connection 对象数据库连接 java.sql.Connection 的特性、事务表示、以及和 Java 线程之间的天然关系    Java 事务控制的基本单位（Conection 对象）Connection 实例来表示和数据库的一个连接，通信方式TCP/IP，事务控制方法：commit()，rollback()。    Connection 是宝贵的系统资源（数据库线程数；增加锁竞争的开">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-06-11T07:21:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spring-transaction">
+<meta name="twitter:title" content="used spring-transaction">
 <meta name="twitter:description" content="Connection 对象数据库连接 java.sql.Connection 的特性、事务表示、以及和 Java 线程之间的天然关系    Java 事务控制的基本单位（Conection 对象）Connection 实例来表示和数据库的一个连接，通信方式TCP/IP，事务控制方法：commit()，rollback()。    Connection 是宝贵的系统资源（数据库线程数；增加锁竞争的开">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>spring-transaction | poprabbit</title>
+  <title>used spring-transaction | poprabbit</title>
   
 
 
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">spring-transaction</h1>
+          <h1 class="post-title" itemprop="name headline">used spring-transaction</h1>
         
 
         <div class="post-meta">
@@ -322,7 +322,7 @@
       
 
       
-        <h3 id="Connection-对象"><a href="#Connection-对象" class="headerlink" title="Connection 对象"></a>Connection 对象</h3><p>数据库连接 java.sql.Connection 的特性、事务表示、以及和 Java 线程之间的天然关系  </p>
+        <h2 id="Connection-对象"><a href="#Connection-对象" class="headerlink" title="Connection 对象"></a>Connection 对象</h2><p>数据库连接 java.sql.Connection 的特性、事务表示、以及和 Java 线程之间的天然关系  </p>
 <ol>
 <li><p>Java 事务控制的基本单位（Conection 对象）<br>Connection 实例来表示和数据库的一个连接，通信方式TCP/IP，事务控制方法：commit()，rollback()。  </p>
 <ul>
@@ -352,28 +352,35 @@
 <li>根据实际 Connection 的使用情况，为了提高系统之间的利用率，动态调整连接池中 Connection 对象的数量，如应用实际使用的连接数比较少时，会自动关闭掉一些处于无用状态的连接；当请求量大的时候，再动态创建。</li>
 </ul>
 </li>
+<li><p>Connection 的使用</p>
+<ul>
+<li>开启事务（Connection.setAutoCommit(false)）之前设置隔离级别  </li>
+<li>commit()，rollback()  </li>
+<li>Connection 对象设置的隔离级别只对该 Connection 对象有效，与其他链接Connection对象无关。 </li>
+</ul>
+</li>
 </ol>
-<h3 id="数据库的隔离级别和传播机制"><a href="#数据库的隔离级别和传播机制" class="headerlink" title="数据库的隔离级别和传播机制"></a>数据库的隔离级别和传播机制</h3><h4 id="事务的隔离级别，隔离的是什么"><a href="#事务的隔离级别，隔离的是什么" class="headerlink" title="事务的隔离级别，隔离的是什么?"></a>事务的隔离级别，隔离的是什么?</h4><ul>
+<h2 id="数据库的隔离级别和传播机制"><a href="#数据库的隔离级别和传播机制" class="headerlink" title="数据库的隔离级别和传播机制"></a>数据库的隔离级别和传播机制</h2><h3 id="事务的隔离级别，隔离的是什么"><a href="#事务的隔离级别，隔离的是什么" class="headerlink" title="事务的隔离级别，隔离的是什么?"></a>事务的隔离级别，隔离的是什么?</h3><ul>
 <li>隔离性,是指不同的客户端在做事务操作时，理想状态下，各个客户端之间不会有任何相互影响，好像感知不到对方存在一样。  </li>
 <li>真正隔离的对象在实现上是数据库资源的互斥性访问，不同的隔离级别就是通过数据库资源划分的不同粒度体现的。   </li>
 <li>隔离级别的理解<br>原理：资源互斥访问的粒度。解决了什么最高级别的问题。没有解决什么最低级别的问题。  </li>
 <li>数据库性能的一个衡量标准：TPS: 单位时间内的事务数(Transactions Per Second)，TPS越高，表示数据库的性能越好。  </li>
 </ul>
-<h4 id="序列化读-SERIALIZABLE-READ"><a href="#序列化读-SERIALIZABLE-READ" class="headerlink" title="序列化读(SERIALIZABLE READ)"></a>序列化读(SERIALIZABLE READ)</h4><ul>
+<h3 id="序列化读-SERIALIZABLE-READ"><a href="#序列化读-SERIALIZABLE-READ" class="headerlink" title="序列化读(SERIALIZABLE READ)"></a>序列化读(SERIALIZABLE READ)</h3><ul>
 <li>将整个数据库作为互斥资源   –不同的客户端访问不同的表？？</li>
 <li>使用数据库的表作为互斥资源   –锁全表，事务隔离的级别最高，即：序列化读(SERIALIZABLE READ)  </li>
 <li>解决的问题：幻读，并发性能最低</li>
 <li>最大 TPS = （1 / T）* N    –假设客户端的平均事务操作的耗时为T，资源互斥组数量为N</li>
 </ul>
-<h4 id="可重复读-REPEATABLE-READ"><a href="#可重复读-REPEATABLE-READ" class="headerlink" title="可重复读(REPEATABLE_READ)"></a>可重复读(REPEATABLE_READ)</h4><p>使用表的某行记录作为互斥资源；<br>解决的最高级别的问题：不可重复读；没解决的最低级别的问题：幻读。</p>
-<h4 id="读已提交-READ-COMMITTED"><a href="#读已提交-READ-COMMITTED" class="headerlink" title="读已提交(READ_COMMITTED)"></a>读已提交(READ_COMMITTED)</h4><p>实际上，数据库在实现原子性(Atomic)时，对于表的特定行，其实有两个状态：Uncommited、Commited，并且使用读写分离锁的机制，读锁只读取 Commited 状态的记录，是共享锁，可同时进行；<br>在事务要完成 Uncommited—&gt; Commited 的状态转变时，即真正 commit 的时候，则使用写锁以互斥的方式完成。<br>使用 committed 的行数据作为互斥资源；<br>解决的最高级别的问题：脏读；没解决的最低级别的问题：不可重复读。</p>
-<h4 id="读未提交-READ-UNCOMMITTED"><a href="#读未提交-READ-UNCOMMITTED" class="headerlink" title="读未提交(READ_UNCOMMITTED)"></a>读未提交(READ_UNCOMMITTED)</h4><p>同样是读写锁分离机制，读并发，写互斥。但是这里允许读锁读取 uncommited 的行数据。<br>使用 uncommited 的行数据作为互斥资源；<br>解决的最高级别的问题：修改丢失；没解决的最低级别的问题：脏读。</p>
-<h4 id="不加事务隔离级别"><a href="#不加事务隔离级别" class="headerlink" title="不加事务隔离级别"></a>不加事务隔离级别</h4><p>产生修改丢失问题  </p>
-<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><ul>
+<h3 id="可重复读-REPEATABLE-READ"><a href="#可重复读-REPEATABLE-READ" class="headerlink" title="可重复读(REPEATABLE_READ)"></a>可重复读(REPEATABLE_READ)</h3><p>使用表的某行记录作为互斥资源；<br>解决的最高级别的问题：不可重复读；没解决的最低级别的问题：幻读。</p>
+<h3 id="读已提交-READ-COMMITTED"><a href="#读已提交-READ-COMMITTED" class="headerlink" title="读已提交(READ_COMMITTED)"></a>读已提交(READ_COMMITTED)</h3><p>实际上，数据库在实现原子性(Atomic)时，对于表的特定行，其实有两个状态：Uncommited、Commited，并且使用读写分离锁的机制，读锁只读取 Commited 状态的记录，是共享锁，可同时进行；<br>在事务要完成 Uncommited—&gt; Commited 的状态转变时，即真正 commit 的时候，则使用写锁以互斥的方式完成。<br>使用 committed 的行数据作为互斥资源；<br>解决的最高级别的问题：脏读；没解决的最低级别的问题：不可重复读。</p>
+<h3 id="读未提交-READ-UNCOMMITTED"><a href="#读未提交-READ-UNCOMMITTED" class="headerlink" title="读未提交(READ_UNCOMMITTED)"></a>读未提交(READ_UNCOMMITTED)</h3><p>同样是读写锁分离机制，读并发，写互斥。但是这里允许读锁读取 uncommited 的行数据。<br>使用 uncommited 的行数据作为互斥资源；<br>解决的最高级别的问题：修改丢失；没解决的最低级别的问题：脏读。</p>
+<h3 id="不加事务隔离级别"><a href="#不加事务隔离级别" class="headerlink" title="不加事务隔离级别"></a>不加事务隔离级别</h3><p>产生修改丢失问题  </p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul>
 <li>资源互斥粒度控制的越细，客户端事务的并发能力就越高，但是与此同时，会相应地降低数据的一致性。</li>
 <li>事务的并发数和数据数据一致性这两个是两个相反的理想指标。</li>
 </ul>
-<h4 id="扩展知识"><a href="#扩展知识" class="headerlink" title="扩展知识"></a>扩展知识</h4><ul>
+<h3 id="扩展知识"><a href="#扩展知识" class="headerlink" title="扩展知识"></a>扩展知识</h3><ul>
 <li>读已提交的不可重复读现象对开发同学有什么启示？<br>不可重复读会导致一条行数据两次读取数据可能不一致，这就要求我们在数据库事务操作上，尽可能少用查询出来的结果作为参数执行后续的updateSQL 语句，尽可能使用状态机来保证数据的完整性。这方面的知识可以单独开一个课题来讨论 ：如何使用数据库来保证业务数据的逻辑完整性？</li>
 <li>不同问题产生的方式？<ul>
 <li>幻影读：读数据的时候插入了新数据</li>
@@ -383,13 +390,31 @@
 </ul>
 </li>
 </ul>
-<h3 id="Spring-基于事务和连接池的抽象和设计"><a href="#Spring-基于事务和连接池的抽象和设计" class="headerlink" title="Spring 基于事务和连接池的抽象和设计"></a>Spring 基于事务和连接池的抽象和设计</h3><h3 id="Spring-事务的实现原理"><a href="#Spring-事务的实现原理" class="headerlink" title="Spring 事务的实现原理"></a>Spring 事务的实现原理</h3><hr>
-<p>开启事务（Connection.setAutoCommit(false)）之前设置隔离级别<br>Connection 对象设置的隔离级别只对该 Connection 对象有效，与其他链接Connection对象无关。<br>注解事务手动回滚：<br>TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();</p>
-<p>事务需要验证的问题：  </p>
-<ol>
-<li>Connection 设置事务的隔离级别会改变数据库的隔离级别吗？不会，仅针对本次调用  </li>
-<li>同一个spring 事务里面，上面的修改对下面可见吗？？（可见）不同的spring 事务里面，前面的修改可见吗？？（不可见）  </li>
-<li>事务方法，在java 代码里 先将数据查出，在代码里面做减法再更新数据，这样在并发的情况下会不会产生修改丢失？？（会丢失数据）  </li>
+<h2 id="Spring-基于事务和连接池的抽象和设计"><a href="#Spring-基于事务和连接池的抽象和设计" class="headerlink" title="Spring 基于事务和连接池的抽象和设计"></a>Spring 基于事务和连接池的抽象和设计</h2><h2 id="Spring-事务的实现原理"><a href="#Spring-事务的实现原理" class="headerlink" title="Spring 事务的实现原理"></a>Spring 事务的实现原理</h2><h3 id="spring-的事务概述"><a href="#spring-的事务概述" class="headerlink" title="spring 的事务概述"></a>spring 的事务概述</h3><ul>
+<li>基础类：TransactionDefinition,TransactionStatus,PlatformTransactionManager,SavepointManager  </li>
+<li>声明式事务：aop；类：TransactionTemplate  </li>
+<li>编程式事务：模板方法；类：TransactionAspectSupport,TransactionInfo  </li>
+<li>事务同步器：TransactionSynchronizationManager,TransactionSynchronizationAdapter  </li>
+<li>注册事务同步器；可以在外层 try{}catch(){} 异常，保证不影响主流程。TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {})  </li>
+<li>注解事务手动回滚：TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();</li>
+</ul>
+<h3 id="注解事务"><a href="#注解事务" class="headerlink" title="注解事务"></a>注解事务</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//开启基于注解的声明式事务  </span><br><span class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>实现主要功能的类<br>TxNamespaceHandler,AnnotationDrivenBeanDefinitionParser<br>InfrastructureAdvisorAutoProxyCreator  间接实现 InstantiationAwareBeanPostProcessor<br>AbstractAutoProxyCreator # postProcessAfterInitialization //主要工作有两点：</p>
+<ul>
+<li>找出指定 bean 对应的增强器</li>
+<li>根据找出的增强器创建代理</li>
+</ul>
+<p>AnnotationTransactionAttributeSource<br>BeanFactoryTransactionAttributeSourceAdvisor //事务增强器<br>TransactionInterceptor //支撑整个事务功能的架构，主要完成的工作：  </p>
+<ul>
+<li>获取事务，处理已经存在的事务，准备事务信息</li>
+<li>回滚条件，回滚处理，回滚后信息清除</li>
+<li>提交事务  </li>
+</ul>
+<h3 id="关于事务的一些基础验证："><a href="#关于事务的一些基础验证：" class="headerlink" title="关于事务的一些基础验证："></a>关于事务的一些基础验证：</h3><ol>
+<li>Connection 设置事务的隔离级别会改变数据库的隔离级别吗？（不会，仅针对本次调用）  </li>
+<li>同一个 spring 事务里面，上面的修改对下面可见吗？？（可见）不同的 spring 事务里面，前面的修改可见吗？？（不可见）  </li>
+<li>事务方法中，先将数据查出，再在代码里做减法，最后更新数据，这样在并发的情况下会不会产生修改丢失？？（会修改丢失，加上版本号）  </li>
 </ol>
 
       
@@ -514,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -560,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Connection-对象"><span class="nav-number">1.</span> <span class="nav-text">Connection 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的隔离级别和传播机制"><span class="nav-number">2.</span> <span class="nav-text">数据库的隔离级别和传播机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务的隔离级别，隔离的是什么"><span class="nav-number">2.1.</span> <span class="nav-text">事务的隔离级别，隔离的是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#序列化读-SERIALIZABLE-READ"><span class="nav-number">2.2.</span> <span class="nav-text">序列化读(SERIALIZABLE READ)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可重复读-REPEATABLE-READ"><span class="nav-number">2.3.</span> <span class="nav-text">可重复读(REPEATABLE_READ)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读已提交-READ-COMMITTED"><span class="nav-number">2.4.</span> <span class="nav-text">读已提交(READ_COMMITTED)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读未提交-READ-UNCOMMITTED"><span class="nav-number">2.5.</span> <span class="nav-text">读未提交(READ_UNCOMMITTED)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不加事务隔离级别"><span class="nav-number">2.6.</span> <span class="nav-text">不加事务隔离级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论"><span class="nav-number">2.7.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展知识"><span class="nav-number">2.8.</span> <span class="nav-text">扩展知识</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-基于事务和连接池的抽象和设计"><span class="nav-number">3.</span> <span class="nav-text">Spring 基于事务和连接池的抽象和设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-事务的实现原理"><span class="nav-number">4.</span> <span class="nav-text">Spring 事务的实现原理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Connection-对象"><span class="nav-number">1.</span> <span class="nav-text">Connection 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的隔离级别和传播机制"><span class="nav-number">2.</span> <span class="nav-text">数据库的隔离级别和传播机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的隔离级别，隔离的是什么"><span class="nav-number">2.1.</span> <span class="nav-text">事务的隔离级别，隔离的是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化读-SERIALIZABLE-READ"><span class="nav-number">2.2.</span> <span class="nav-text">序列化读(SERIALIZABLE READ)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可重复读-REPEATABLE-READ"><span class="nav-number">2.3.</span> <span class="nav-text">可重复读(REPEATABLE_READ)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读已提交-READ-COMMITTED"><span class="nav-number">2.4.</span> <span class="nav-text">读已提交(READ_COMMITTED)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读未提交-READ-UNCOMMITTED"><span class="nav-number">2.5.</span> <span class="nav-text">读未提交(READ_UNCOMMITTED)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不加事务隔离级别"><span class="nav-number">2.6.</span> <span class="nav-text">不加事务隔离级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">2.7.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展知识"><span class="nav-number">2.8.</span> <span class="nav-text">扩展知识</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-基于事务和连接池的抽象和设计"><span class="nav-number">3.</span> <span class="nav-text">Spring 基于事务和连接池的抽象和设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-事务的实现原理"><span class="nav-number">4.</span> <span class="nav-text">Spring 事务的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-的事务概述"><span class="nav-number">4.1.</span> <span class="nav-text">spring 的事务概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解事务"><span class="nav-number">4.2.</span> <span class="nav-text">注解事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于事务的一些基础验证："><span class="nav-number">4.3.</span> <span class="nav-text">关于事务的一些基础验证：</span></a></li></ol></li></ol></div>
             
 
           </div>

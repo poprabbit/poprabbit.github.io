@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="ioc IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean     ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个">
+<meta name="description" content="iocioc概述 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean     ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 DefaultListableBeanFactory。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。">
 <meta name="keywords" content="spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring">
+<meta property="og:title" content="used spring">
 <meta property="og:url" content="http://poprabbit.github.io/2020/05/09/spring/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="ioc IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean     ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个">
+<meta property="og:description" content="iocioc概述 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean     ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 DefaultListableBeanFactory。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-06-12T03:35:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spring">
-<meta name="twitter:description" content="ioc IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean     ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个">
+<meta name="twitter:title" content="used spring">
+<meta name="twitter:description" content="iocioc概述 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean     ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 DefaultListableBeanFactory。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>spring | poprabbit</title>
+  <title>used spring | poprabbit</title>
   
 
 
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">spring</h1>
+          <h1 class="post-title" itemprop="name headline">used spring</h1>
         
 
         <div class="post-meta">
@@ -322,23 +322,62 @@
       
 
       
-        <h3 id="ioc"><a href="#ioc" class="headerlink" title="ioc"></a>ioc</h3><ol start="0">
+        <h2 id="ioc"><a href="#ioc" class="headerlink" title="ioc"></a>ioc</h2><h3 id="ioc概述"><a href="#ioc概述" class="headerlink" title="ioc概述"></a>ioc概述</h3><ol>
 <li>IOC 总体来说有两处地方最重要，<strong>一个是创建 Bean 容器，一个是初始化 Bean</strong>    </li>
-<li>ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，<br>而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。  </li>
-<li>// 我们把这步叫做 注册Bean 吧<br>BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());</li>
-<li>BeanDefinition  解析、加载、注册    </li>
+<li>ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，<br>而是说其内部持有一个实例化的 DefaultListableBeanFactory。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。  </li>
+<li>BeanDefinition  解析、加载、注册 </li>
+<li>// 我们把这步叫做 注册Bean 吧<br>BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());  </li>
 <li>Bean 的生命周期：创建、装填属性、回调 各种初始化函数(init-method,InitializingBean,BeanPostProcessor)</li>
 </ol>
-<p>ApplicationContext context = new ClassPathXmlApplicationContext(“classpath:applicationfile.xml”);<br>AbstractApplicationContext.refresh()  </p>
+<h3 id="ioc总的流程"><a href="#ioc总的流程" class="headerlink" title="ioc总的流程"></a>ioc总的流程</h3><p>ApplicationContext context = new ClassPathXmlApplicationContext(“classpath:applicationfile.xml”);<br>AbstractApplicationContext # refresh()  </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">refresh</span><span class="params">()</span> <span class="keyword">throws</span> BeansException, IllegalStateException </span>&#123;</span><br><span class="line">   <span class="comment">// 来个锁，不然 refresh() 还没结束，你又来个启动或销毁容器的操作，那不就乱套了嘛</span></span><br><span class="line">   <span class="keyword">synchronized</span> (<span class="keyword">this</span>.startupShutdownMonitor) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符</span></span><br><span class="line">      prepareRefresh();</span><br><span class="line">     </span><br><span class="line">      <span class="comment">// 这步比较关键，这步完成后，配置文件就会解析成一个个 Bean 定义，注册到 BeanFactory 中，</span></span><br><span class="line">      <span class="comment">// 当然，这里说的 Bean 还没有初始化，只是配置信息都提取出来了，</span></span><br><span class="line">      <span class="comment">// 注册也只是将这些信息都保存到了注册中心(说到底核心是一个 beanName-&gt; beanDefinition 的 map)</span></span><br><span class="line">      ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 设置 BeanFactory 的类加载器，添加几个 BeanPostProcessor，手动注册几个特殊的 bean</span></span><br><span class="line">      <span class="comment">// 这块待会会展开说</span></span><br><span class="line">      prepareBeanFactory(beanFactory);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">         <span class="comment">// 【这里需要知道 BeanFactoryPostProcessor 这个知识点，Bean 如果实现了此接口，</span></span><br><span class="line">         <span class="comment">// 那么在容器初始化以后，Spring 会负责调用里面的 postProcessBeanFactory 方法。】</span></span><br><span class="line">        </span><br><span class="line">         <span class="comment">// 这里是提供给子类的扩展点，到这里的时候，所有的 Bean 都加载、注册完成了，但是都还没有初始化</span></span><br><span class="line">         <span class="comment">// 具体的子类可以在这步的时候添加一些特殊的 BeanFactoryPostProcessor 的实现类或做点什么事</span></span><br><span class="line">         postProcessBeanFactory(beanFactory);</span><br><span class="line">         <span class="comment">// 调用 BeanFactoryPostProcessor 各个实现类的 postProcessBeanFactory(factory) 方法</span></span><br><span class="line">         invokeBeanFactoryPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 注册 BeanPostProcessor 的实现类，注意看和 BeanFactoryPostProcessor 的区别</span></span><br><span class="line">         <span class="comment">// 此接口两个方法: postProcessBeforeInitialization 和 postProcessAfterInitialization</span></span><br><span class="line">         <span class="comment">// 两个方法分别在 Bean 初始化之前和初始化之后得到执行。注意，到这里 Bean 还没初始化</span></span><br><span class="line">         registerBeanPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 初始化当前 ApplicationContext 的 MessageSource，国际化这里就不展开说了，不然没完没了了</span></span><br><span class="line">         initMessageSource();</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 初始化当前 ApplicationContext 的事件广播器，这里也不展开了</span></span><br><span class="line">         initApplicationEventMulticaster();</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 从方法名就可以知道，典型的模板方法(钩子方法)，</span></span><br><span class="line">         <span class="comment">// 具体的子类可以在这里初始化一些特殊的 Bean（在初始化 singleton beans 之前）</span></span><br><span class="line">         onRefresh();</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 注册事件监听器，监听器需要实现 ApplicationListener 接口。这也不是我们的重点，过</span></span><br><span class="line">         registerListeners();</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 重点，重点，重点</span></span><br><span class="line">         <span class="comment">// 初始化所有的 singleton beans</span></span><br><span class="line">         <span class="comment">//（lazy-init 的除外）</span></span><br><span class="line">         finishBeanFactoryInitialization(beanFactory);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 最后，广播事件，ApplicationContext 初始化完成</span></span><br><span class="line">         finishRefresh();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">catch</span> (BeansException ex) &#123;</span><br><span class="line">         <span class="keyword">if</span> (logger.isWarnEnabled()) &#123;</span><br><span class="line">            logger.warn(<span class="string">"Exception encountered during context initialization - "</span> +</span><br><span class="line">                  <span class="string">"cancelling refresh attempt: "</span> + ex);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="comment">// Destroy already created singletons to avoid dangling resources.</span></span><br><span class="line">         <span class="comment">// 销毁已经初始化的 singleton 的 Beans，以免有些 bean 会一直占用资源</span></span><br><span class="line">         destroyBeans();</span><br><span class="line"></span><br><span class="line">         <span class="comment">// Reset 'active' flag.</span></span><br><span class="line">         cancelRefresh(ex);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 把异常往外抛</span></span><br><span class="line">         <span class="keyword">throw</span> ex;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">finally</span> &#123;</span><br><span class="line">         <span class="comment">// Reset common introspection caches in Spring's core, since we</span></span><br><span class="line">         <span class="comment">// might not ever need metadata for singleton beans anymore...</span></span><br><span class="line">         resetCommonCaches();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>初始化所有的 singleton beans  </p>
-<blockquote>
+<h3 id="初始化-singleton-beans"><a href="#初始化-singleton-beans" class="headerlink" title="初始化 singleton beans"></a>初始化 singleton beans</h3><blockquote>
 </blockquote>
-<p>AbstractApplicationContext # finishBeanFactoryInitialization()<br>DefaultListableBeanFactory # preInstantiateSingletons()<br>for (String beanName : beanNames) {<br>AbstractBeanFactory # getBean()<br>  doGetBean()  // 已经初始化过了就从容器中直接返回，否则就先初始化再返回<br>  getObjectForBeanInstance();  //处理 FactoryBean 的形式<br>  String[] dependsOn = mbd.getDependsOn(); //先创建依赖的 bean<br>  sharedInstance = getSingleton(String beanName, ObjectFactory&lt;?&gt; singletonFactory)  //创建 singleton beans<br>AbstractAutowireCapableBeanFactory # createBean()<br>  resolveBeforeInstantiation(beanName, mbdToUse); //自定义了 TargetSource 时返回代理对象<br>  doCreateBean()<br>  instanceWrapper = createBeanInstance()  //实例化 Bean，这里非常关键<br>  boolean earlySingletonExposure = (mbd.isSingleton() &amp;&amp; this.allowCircularReferences &amp;&amp; isSingletonCurrentlyInCreation(beanName));addSingletonFactory(); // 提前创建循环依赖的 ObjectFactory<br>ConstructorResolver # instantiateUsingFactoryMethod()  // 采用工厂方法实例化<br>  autowireConstructor()  // 构造函数依赖注入<br>InstantiationStrategy # instantiateBean()  //无参构造函数<br>AbstractAutowireCapableBeanFactory # populateBean()  //这一步也是非常关键的，这一步负责属性装配（依赖注入）<br>AbstractAutowireCapableBeanFactory # exposedObject = initializeBean()  //处理 xxxAware 接口；bean 初始化完成后的各种回调；BeanPostProcessor 的增强处理<br>AbstractAutowireCapableBeanFactory # registerDisposableBeanIfNecessary()  //注册销毁回调<br>}  </p>
-<p>实现主要功能的类：<br>BeanDefinition  ,BeanDefinitionReader  ,Document  ,BeanDefinitionDocumentReader  ,Element  ,BeanDefinitionParserDelegate  </p>
-<p>FactoryBean  ,BeanWrapper  ,SimpleInstantiationStrategy  </p>
-<p>容易混淆的类：<br>AbstractRefreshableApplicationContext –&gt; ResourceLoader,ApplicationEventPublisher,MessageSource<br>DefaultListableBeanFactory               –&gt; BeanDefinitionRegistry<br>AbstractAutowireCapableBeanFactory    –主要为了 @Autowired 注解注入属性值<br>beanDefinitionNames    一个 ArrayList, 可以看到从前到后加载的 beanname </p>
+<p>AbstractApplicationContext # finishBeanFactoryInitialization()<br>DefaultListableBeanFactory # preInstantiateSingletons()<br>for (String beanName : beanNames) {<br>AbstractBeanFactory # getBean()<br>  doGetBean()  // 已经初始化过了就从容器中直接返回，否则就先初始化再返回<br>  getObjectForBeanInstance();  //处理 FactoryBean 的形式<br>  String[] dependsOn = mbd.getDependsOn(); //先创建依赖的 bean<br>  sharedInstance = getSingleton(String beanName, ObjectFactory&lt;?&gt; singletonFactory)  //创建 singleton beans<br>AbstractAutowireCapableBeanFactory # createBean()<br>  resolveBeforeInstantiation(beanName, mbdToUse); //自定义了 TargetSource 时返回代理对象<br>  doCreateBean()<br>  instanceWrapper = createBeanInstance()  //实例化 Bean，这里非常关键<br>  boolean earlySingletonExposure = (mbd.isSingleton() &amp;&amp; this.allowCircularReferences &amp;&amp; isSingletonCurrentlyInCreation(beanName));addSingletonFactory(); // 提前创建循环依赖的 ObjectFactory<br>ConstructorResolver # instantiateUsingFactoryMethod()  // 采用工厂方法实例化<br>  autowireConstructor()  // 构造函数依赖注入<br>InstantiationStrategy # instantiateBean()  //无参构造函数<br>AbstractAutowireCapableBeanFactory # populateBean()  //这一步也是非常关键的，这一步负责属性装配（依赖注入）<br>AbstractAutowireCapableBeanFactory # exposedObject = initializeBean()  //处理 xxxAware 接口；bean 初始化完成后的各种回调；BeanPostProcessor 的增强处理<br>AbstractAutowireCapableBeanFactory # registerDisposableBeanIfNecessary()  //注册销毁回调<br>}     </p>
+<h3 id="一些重要的类"><a href="#一些重要的类" class="headerlink" title="一些重要的类"></a>一些重要的类</h3><p>AbstractRefreshableApplicationContext –&gt; ResourceLoader,ApplicationEventPublisher,MessageSource<br>DefaultListableBeanFactory               –&gt; BeanDefinitionRegistry<br>AbstractAutowireCapableBeanFactory    –主要为了 @Autowired 注解注入属性值<br>beanDefinitionNames    一个 ArrayList, 可以看到从前到后加载的 beanname </p>
+<h2 id="aop"><a href="#aop" class="headerlink" title="aop"></a>aop</h2><h3 id="spring-1-2"><a href="#spring-1-2" class="headerlink" title="spring 1.2"></a>spring 1.2</h3><h4 id="proxy-的配置方式"><a href="#proxy-的配置方式" class="headerlink" title="proxy 的配置方式"></a>proxy 的配置方式</h4><ol>
+<li>配置 bean  </li>
+<li>配置 Advice –指定执行前/执行后，处理逻辑  </li>
+<li>指定 Advisor –配置指定方法用指定 Advice 增强 </li>
+<li>指定 Interceptor –一般的 MethodInterceptor，写处理逻辑</li>
+<li>配置 Proxy –配置指定的 bean 用指定的 interceptorNames 属性增强 <ul>
+<li>interceptorNames 可以指定为 Advice、Advisor、Interceptor 等  </li>
+</ul>
+</li>
+</ol>
+<p><strong>缺点：</strong>我们得为每个 bean 都配置一个代理，之后获取 bean 的时候需要获取这个代理类的 bean 实例（如 (UserService) context.getBean(“userServiceProxy”)）</p>
+<h4 id="autoproxy-的配置方式"><a href="#autoproxy-的配置方式" class="headerlink" title="autoproxy 的配置方式"></a>autoproxy 的配置方式</h4><ol>
+<li>配置 bean  </li>
+<li>配置 Advice  </li>
+<li>配置 NameMatchMethodPointcutAdvisor, RegexpMethodPointcutAdvisor  </li>
+<li>配置 BeanNameAutoProxyCreator, DefaultAdvisorAutoProxyCreator  </li>
+</ol>
+<p>Advisor 有一个更加灵活的实现类 RegexpMethodPointcutAdvisor，它能实现正则匹配 指定方法增强<br>BeanNameAutoProxyCreator 是自己匹配方法，然后交由内部配置 advice 来拦截处理；<br>而 DefaultAdvisorAutoProxyCreator 是让 ioc 容器中的所有 advisor 来匹配方法，advisor 内部都是有 advice 的，让它们内部的 advice 来执行拦截处理。</p>
+<hr>
+<p><strong>proxy 与 autoproxy 比较</strong><br>autoproxy 强调自动，也就是说 Spring 会自动做这件事，而不用像前面介绍的，我们需要显式地指定代理类的 bean。</p>
+<h3 id="Spring-2-0"><a href="#Spring-2-0" class="headerlink" title="Spring 2.0"></a>Spring 2.0</h3><h4 id="AspectJ-的配置方式"><a href="#AspectJ-的配置方式" class="headerlink" title="@AspectJ 的配置方式"></a>@AspectJ 的配置方式</h4><p><strong>@AspectJ 和 AspectJ 没多大关系</strong>，并不是说基于 AspectJ 实现的，而仅仅是使用了 AspectJ 中的概念，包括使用了 AspectJ 的注解。  </p>
+<ol>
+<li>开启 @AspectJ 的注解配置方式（@EnableAspectJAutoProxy）   </li>
+<li>配置 @Aspect，切面类，包含以下两点：<ul>
+<li>配置 Pointcut 用于定义哪些方法需要被增强或者说需要被拦截  </li>
+<li>配置 Advice ，JoinPoint用于获取方法入参</li>
+</ul>
+</li>
+</ol>
+<h4 id="Schema-based-的配置方式"><a href="#Schema-based-的配置方式" class="headerlink" title="Schema-based 的配置方式"></a>Schema-based 的配置方式</h4><p>示例如下：  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">expression</span>=<span class="string">"execution(* com.javadoop.springaoplearning.service.*.*(..))"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService2"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">expression</span>=<span class="string">"com.javadoop.SystemArchitecture.businessService()"</span>/&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"logArgsAspect"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"internalPointcut"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">expression</span>=<span class="string">"com.javadoop.SystemArchitecture.businessService()"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>aop 命名空间的解析类：AopNamespaceHandler。  </p>
+<hr>
+<ul>
+<li>Spring AOP 的原理很简单，就是动态代理，它和 AspectJ 不一样，AspectJ 是直接修改掉你的字节码。  </li>
+<li>如果被代理的目标类实现了一个或多个自定义的接口，那么就会使用 JDK 动态代理，如果没有实现任何接口，会使用 CGLIB 实现代理，如果设置了 proxy-target-class=”true”，那么都会使用 CGLIB。  </li>
+<li>InvocationHandler 只有一个方法，当生成的代理类对外提供服务的时候，都会导到这个方法中</li>
+</ul>
+<h3 id="aop-的主要类"><a href="#aop-的主要类" class="headerlink" title="aop 的主要类"></a>aop 的主要类</h3><p>DefaultAdvisorAutoProxyCreator 类，实现的动态代理<br>AbstractAutoProxyCreator<br>ProxyFactory<br>AopProxy<br>AopProxyFactory<br>JdkDynamicAopProxy   –&gt; InvocationHandler,Proxy<br>ObjenesisCglibAopProxy  –&gt; CglibAopProxy,AopProxy<br>Enhancer  </p>
+<hr>
+<p><strong><em>下面要么整体分析下，要么直接删除</em></strong>  </p>
 <ul>
 <li>// 让 InstantiationAwareBeanPostProcessor 在这一步有机会返回代理（自定义了 TargetSource 时）<br>createBean()  Object bean = resolveBeforeInstantiation(beanName, mbdToUse);   </li>
 <li>populateBean()  里面两次用到 InstantiationAwareBeanPostProcessor ：<ul>
@@ -348,46 +387,9 @@
 </li>
 <li><strong>AbstractAutowireCapableBeanFactory.initializeBean() –在 bean 实例化完成、属性注入完成之后，会执行该方法</strong><br><strong>applyBeanPostProcessorsAfterInitialization()  实现 AOP ，进行代理增强</strong></li>
 </ul>
-<h3 id="aop"><a href="#aop" class="headerlink" title="aop"></a>aop</h3><h4 id="spring-1-2-支持的-aop-配置"><a href="#spring-1-2-支持的-aop-配置" class="headerlink" title="spring 1.2 支持的 aop 配置"></a>spring 1.2 支持的 aop 配置</h4><ol>
-<li>配置bean  </li>
-<li>配置Advice –指定执行前/执行后，处理逻辑  </li>
-<li>指定Advisor–配置指定方法用指定Advice增强  </li>
-<li>配置Proxy–配置指定的bean用指定的Advisor增强  </li>
-</ol>
-<p><strong>缺点：</strong>我们得为每个 bean 都配置一个代理，之后获取 bean 的时候需要获取这个代理类的 bean 实例（如 (UserService) context.getBean(“userServiceProxy”)）</p>
-<h4 id="autoproxy-方式"><a href="#autoproxy-方式" class="headerlink" title="autoproxy 方式"></a>autoproxy 方式</h4><ol>
-<li>….  </li>
-<li>配置 RegexpMethodPointcutAdvisor  </li>
-<li>配置 DefaultAdvisorAutoProxyCreator  </li>
-</ol>
-<p>Advisor 有一个更加灵活的实现类 RegexpMethodPointcutAdvisor，它能实现正则匹配 指定方法增强<br>DefaultAdvisorAutoProxyCreator 让 ioc 容器中的所有 advisor 来匹配方法，advisor 内部都是有 advice 的，让它们内部的 advice 来执行拦截处理。  </p>
-<h4 id="Spring-2-0-AspectJ-配置"><a href="#Spring-2-0-AspectJ-配置" class="headerlink" title="Spring 2.0 @AspectJ 配置"></a>Spring 2.0 @AspectJ 配置</h4><ol>
-<li>开启 @AspectJ 的注解配置方式  </li>
-<li>配置 Pointcut 用于定义哪些方法需要被增强或者说需要被拦截  </li>
-<li>配置 Advice ，JoinPoint用于获取方法入参</li>
-</ol>
-<ul>
-<li>Spring AOP 的原理很简单，就是动态代理，它和 AspectJ 不一样，AspectJ 是直接修改掉你的字节码。  </li>
-<li>如果被代理的目标类实现了一个或多个自定义的接口，那么就会使用 JDK 动态代理，如果没有实现任何接口，会使用 CGLIB 实现代理，如果设置了 proxy-target-class=”true”，那么都会使用 CGLIB。  </li>
-<li>InvocationHandler 只有一个方法，当生成的代理类对外提供服务的时候，都会导到这个方法中</li>
-</ul>
-<p>实现主要功能的类：<br>DefaultAdvisorAutoProxyCreator 类，实现的动态代理<br>AbstractAutoProxyCreator<br>ProxyFactory<br>AopProxy<br>AopProxyFactory<br>JdkDynamicAopProxy   –&gt; InvocationHandler,Proxy<br>ObjenesisCglibAopProxy  –&gt; CglibAopProxy,AopProxy<br>Enhancer  </p>
 <p><strong>spring到底支持哪样子的循环依赖？？？    答案：单例的 setter 属性方式依赖</strong><br>isSingletonCurrentlyInCreation()：判断当前 singleton bean 是否处于创建中；<br><strong>InstantiationAwareBeanPostProcessor</strong><br>很多人都以为 Spring AOP 是通过这个接口来作用于 bean 生成代理的。 它和 BeanPostProcessor 的方法非常相似，而且它还继承了 BeanPostProcessor。<br>InstantiationAwareBeanPostProcessor 是 Instantiation，BeanPostProcessor 是 Initialization 也有创建代理的逻辑，需要配置一个 customTargetSourceCreators。</p>
-<h3 id="spring-的数据库事务"><a href="#spring-的数据库事务" class="headerlink" title="spring 的数据库事务"></a>spring 的数据库事务</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//开启基于注解的声明式事务  </span><br><span class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>实现主要功能的类：<br>TxNamespaceHandler,AnnotationDrivenBeanDefinitionParser<br>InfrastructureAdvisorAutoProxyCreator  间接实现 InstantiationAwareBeanPostProcessor<br>AbstractAutoProxyCreator # postProcessAfterInitialization //主要工作有两点：</p>
-<ul>
-<li>找出指定 bean 对应的增强器</li>
-<li>根据找出的增强器创建代理</li>
-</ul>
-<p>AnnotationTransactionAttributeSource<br>TransactionInterceptor //支撑整个事务功能的架构，主要完成的工作：  </p>
-<ul>
-<li>获取事务，处理已经存在的事务，准备事务信息</li>
-<li>回滚条件，回滚处理，回滚后信息清除</li>
-<li>提交事务  </li>
-</ul>
-<p>BeanFactoryTransactionAttributeSourceAdvisor //事务增强器 </p>
-<h3 id="spring-其他"><a href="#spring-其他" class="headerlink" title="spring 其他"></a>spring 其他</h3><h4 id="典型的设计模式"><a href="#典型的设计模式" class="headerlink" title="典型的设计模式"></a>典型的设计模式</h4><ol>
+<hr>
+<h2 id="spring-其他"><a href="#spring-其他" class="headerlink" title="spring 其他"></a>spring 其他</h2><h3 id="典型的设计模式"><a href="#典型的设计模式" class="headerlink" title="典型的设计模式"></a>典型的设计模式</h3><ol>
 <li>策略模式<ul>
 <li>代理生成的两种方式：jdk 代理；cglib 代理</li>
 <li>不同的资源加载方式，Resource 的设计思想</li>
@@ -398,25 +400,49 @@
 <li>代理模式  </li>
 </ol>
 <p>策略模式 与 模板方法 的区别<br>模板方法 侧重于继承结构，父类定义模板（或流程），子类重写指定方法；<br>策略模式 侧重于环境中的变化条件，根据不同的条件选择对应的策略。</p>
-<h4 id="使用到的容器"><a href="#使用到的容器" class="headerlink" title="使用到的容器"></a>使用到的容器</h4><p><a href="/2020/06/12/datastructure">spring 容器实战</a></p>
+<h3 id="使用到的容器"><a href="#使用到的容器" class="headerlink" title="使用到的容器"></a>使用到的容器</h3><p><a href="/2020/06/12/datastructure">spring 容器实战</a></p>
+<h3 id="spring-中的-java-基础知识"><a href="#spring-中的-java-基础知识" class="headerlink" title="spring 中的 java 基础知识"></a>spring 中的 java 基础知识</h3><ol>
+<li>反射-以一种更加通用的方式间接地操作目标类（相对于一般的调用）</li>
+<li>动态代理（代理实例-相对一般的实例；一般用于横向逻辑）<ul>
+<li>JDK动态代理（有接口的场景）  </li>
+<li>InvocationHandler，可以通过实现该接口定义横切逻辑，并通过反射机制调用目标类的代码，动态将横切逻辑和业务逻辑编织在一起。  </li>
+<li>Proxy 利用 InvocationHandler 动态创建一个符合某一接口的实例，生成目标类的代理对象。</li>
+</ul>
+</li>
+<li>PropertyEditor<br>JavaBean 规范通过 java.beans.PropertyEditor 定义了设置 JavaBean 属性的方法，通过 BeanInfo 描述了 JavaBean 哪些属性是可定制的，<br>此外还描述了可定制属性与 PropertyEditor 的对应关系。（属性描述器 PropertyDescriptor 为 JavaBean 属性指定编辑器）<br>PropertyEditorRegistrySupport -Spring 为常见的属性类型提供了默认的属性编辑器。<br>ConversionService，它提供了更为强大的类型转换的能力，可以完成任意类型之间的转换，还可以在转换过程中参考目标对象所在宿主类的上下文信息。</li>
+<li>XML基础知识<ul>
+<li>默认命名空间：它没有空间名，用于 Spring Bean 的定义；  </li>
+<li>xsi 命名空间：这个命名空间用于为每个文档中命名空间指定相应的 Schema 样式文件，是标准组织定义的标准命名空间；  </li>
+<li>aop 命名空间：这个命名空间是Spring配置AOP的命名空间，是用户自定义的命名空间。</li>
+<li>命名空间的定义分为两个步骤：第一步指定命名空间的名称，第二步指定命名空间的 Schema 文档样式文件的位置，用空格或回车换行进行分隔。</li>
+</ul>
+</li>
+<li>注解-Java 语言解释器会忽略这些注解，而由第三方工具负责对注解进行处理。</li>
+<li>ThreadLocal<br>思路浅析：在 ThreadLocal 类中有一个 Map，用于存储每一个线程的变量副本，Map 中元素的键为线程对象，而值对应线程的变量副本。<br>在管理request作用域的Bean、事务管理、任务调度、AOP等模块都出现了它的身影（ThreadLocal）。  </li>
+<li>国际化信息<br>Java通过 java.util.Locale 类表示一个本地化对象，它允许通过语言参数和国家/地区参数创建一个确定的本地化对象。<br>支持多国语言的Web应用程序 == 多种资源文件（&lt;资源名&gt;_&lt;语言代码&gt;_&lt;国家/地区代码&gt;.properties）<br>spring 中，国际化信息资源应该是容器级。  </li>
+<li>HTTP 报文<br>HTTP 请求报文由3部分组成（请求行+请求头+请求体）。  </li>
+<li>@Value 注解<br>目前Spring的注解不支持静态的变量和方法，至于原因：有人说是因为Spring是基于对象层面的依赖注入的，而且使用静态的变量或类什么的话，扩大了其生命周期，给Testing带来困难，故Spring不推荐这样做。</li>
+</ol>
 <hr>
-<h3 id="spring-in-action"><a href="#spring-in-action" class="headerlink" title="spring in action"></a>spring in action</h3><h4 id="常用应用上下文："><a href="#常用应用上下文：" class="headerlink" title="常用应用上下文："></a>常用应用上下文：</h4><ul>
+<h2 id="spring-in-action"><a href="#spring-in-action" class="headerlink" title="spring in action"></a>spring in action</h2><h3 id="常用应用上下文："><a href="#常用应用上下文：" class="headerlink" title="常用应用上下文："></a>常用应用上下文：</h3><ul>
 <li>AnnotationConfigApplicationContext 基于 java 配置类中加载 spring 应用上下文</li>
 <li>ClassPathXmlApplicationContext 基于类路径下的 xml 文件中加载 spring 应用上下文</li>
 </ul>
-<h4 id="bean-的生命周期"><a href="#bean-的生命周期" class="headerlink" title="bean 的生命周期"></a>bean 的生命周期</h4><p>实例化、填充属性、调用 BeanNameAware 接口、调用 BeanFactoryAware 接口、调用 ApplicationContextAware 接口、调用 postProcessBeforeInstantiation()、调用 InitializingBean 接口、调用自定义初始化方法、调用 postProcessAfterInstantiation()、创建完成使用、销毁 bean 对象、、、</p>
-<h4 id="spring-从两个角度来实现自动化装配："><a href="#spring-从两个角度来实现自动化装配：" class="headerlink" title="spring 从两个角度来实现自动化装配："></a>spring 从两个角度来实现自动化装配：</h4><ul>
+<h3 id="bean-的生命周期"><a href="#bean-的生命周期" class="headerlink" title="bean 的生命周期"></a>bean 的生命周期</h3><p>实例化、填充属性、调用 BeanNameAware 接口、调用 BeanFactoryAware 接口、调用 ApplicationContextAware 接口、调用 postProcessBeforeInstantiation()、调用 InitializingBean 接口、调用自定义初始化方法、调用 postProcessAfterInstantiation()、创建完成使用、销毁 bean 对象、、、</p>
+<h3 id="spring-从两个角度来实现自动化装配"><a href="#spring-从两个角度来实现自动化装配" class="headerlink" title="spring 从两个角度来实现自动化装配"></a>spring 从两个角度来实现自动化装配</h3><ul>
 <li>组件扫描（component scanning）:spring 会自动发现应用上下文中所创建的 bean。</li>
 <li>自动装配（autowiring）:spring 自动满足 bean 之间的依赖。</li>
 <li>@Component –注解申明组件。</li>
 </ul>
-<h4 id="通过-Java-代码装配-bean"><a href="#通过-Java-代码装配-bean" class="headerlink" title="通过 Java 代码装配 bean"></a>通过 Java 代码装配 bean</h4><blockquote>
+<h3 id="通过-Java-代码装配-bean"><a href="#通过-Java-代码装配-bean" class="headerlink" title="通过 Java 代码装配 bean"></a>通过 Java 代码装配 bean</h3><blockquote>
 <p>@Configuration 和 @Bean 的组合使用，但也少不了要开启组件扫描功能。</p>
 </blockquote>
-<h4 id="导入和混合配置"><a href="#导入和混合配置" class="headerlink" title="导入和混合配置"></a>导入和混合配置</h4><h5 id="在-JavaConfig-中引用-XML-配置"><a href="#在-JavaConfig-中引用-XML-配置" class="headerlink" title="在 JavaConfig 中引用 XML 配置"></a>在 JavaConfig 中引用 XML 配置</h5><blockquote>
+<h3 id="导入和混合配置"><a href="#导入和混合配置" class="headerlink" title="导入和混合配置"></a>导入和混合配置</h3><h4 id="在-JavaConfig-中引用-XML-配置"><a href="#在-JavaConfig-中引用-XML-配置" class="headerlink" title="在 JavaConfig 中引用 XML 配置"></a>在 JavaConfig 中引用 XML 配置</h4><blockquote>
 <p>@Configuration<br>@Import(MyJavaConfig.class)<br>@ImportResource(“classpath:WEB-INF/spring-context.xml”)</p>
 </blockquote>
 <h4 id="在-XML-中引用-JavaConfig-配置"><a href="#在-XML-中引用-JavaConfig-配置" class="headerlink" title="在 XML 中引用 JavaConfig 配置"></a>在 XML 中引用 JavaConfig 配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.poprabbit.smvcdemo.config.MyJavaConfig"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -539,7 +565,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -585,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ioc"><span class="nav-number">1.</span> <span class="nav-text">ioc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aop"><span class="nav-number">2.</span> <span class="nav-text">aop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spring-1-2-支持的-aop-配置"><span class="nav-number">2.1.</span> <span class="nav-text">spring 1.2 支持的 aop 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#autoproxy-方式"><span class="nav-number">2.2.</span> <span class="nav-text">autoproxy 方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-2-0-AspectJ-配置"><span class="nav-number">2.3.</span> <span class="nav-text">Spring 2.0 @AspectJ 配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-的数据库事务"><span class="nav-number">3.</span> <span class="nav-text">spring 的数据库事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-其他"><span class="nav-number">4.</span> <span class="nav-text">spring 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#典型的设计模式"><span class="nav-number">4.1.</span> <span class="nav-text">典型的设计模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用到的容器"><span class="nav-number">4.2.</span> <span class="nav-text">使用到的容器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-in-action"><span class="nav-number">5.</span> <span class="nav-text">spring in action</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用应用上下文："><span class="nav-number">5.1.</span> <span class="nav-text">常用应用上下文：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bean-的生命周期"><span class="nav-number">5.2.</span> <span class="nav-text">bean 的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spring-从两个角度来实现自动化装配："><span class="nav-number">5.3.</span> <span class="nav-text">spring 从两个角度来实现自动化装配：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-Java-代码装配-bean"><span class="nav-number">5.4.</span> <span class="nav-text">通过 Java 代码装配 bean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导入和混合配置"><span class="nav-number">5.5.</span> <span class="nav-text">导入和混合配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在-JavaConfig-中引用-XML-配置"><span class="nav-number">5.5.1.</span> <span class="nav-text">在 JavaConfig 中引用 XML 配置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-XML-中引用-JavaConfig-配置"><span class="nav-number">5.6.</span> <span class="nav-text">在 XML 中引用 JavaConfig 配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ioc"><span class="nav-number">1.</span> <span class="nav-text">ioc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ioc概述"><span class="nav-number">1.1.</span> <span class="nav-text">ioc概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ioc总的流程"><span class="nav-number">1.2.</span> <span class="nav-text">ioc总的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化-singleton-beans"><span class="nav-number">1.3.</span> <span class="nav-text">初始化 singleton beans</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些重要的类"><span class="nav-number">1.4.</span> <span class="nav-text">一些重要的类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#aop"><span class="nav-number">2.</span> <span class="nav-text">aop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-1-2"><span class="nav-number">2.1.</span> <span class="nav-text">spring 1.2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#proxy-的配置方式"><span class="nav-number">2.1.1.</span> <span class="nav-text">proxy 的配置方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#autoproxy-的配置方式"><span class="nav-number">2.1.2.</span> <span class="nav-text">autoproxy 的配置方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-2-0"><span class="nav-number">2.2.</span> <span class="nav-text">Spring 2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AspectJ-的配置方式"><span class="nav-number">2.2.1.</span> <span class="nav-text">@AspectJ 的配置方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Schema-based-的配置方式"><span class="nav-number">2.2.2.</span> <span class="nav-text">Schema-based 的配置方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aop-的主要类"><span class="nav-number">2.3.</span> <span class="nav-text">aop 的主要类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-其他"><span class="nav-number">3.</span> <span class="nav-text">spring 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#典型的设计模式"><span class="nav-number">3.1.</span> <span class="nav-text">典型的设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用到的容器"><span class="nav-number">3.2.</span> <span class="nav-text">使用到的容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-中的-java-基础知识"><span class="nav-number">3.3.</span> <span class="nav-text">spring 中的 java 基础知识</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-in-action"><span class="nav-number">4.</span> <span class="nav-text">spring in action</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用应用上下文："><span class="nav-number">4.1.</span> <span class="nav-text">常用应用上下文：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bean-的生命周期"><span class="nav-number">4.2.</span> <span class="nav-text">bean 的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-从两个角度来实现自动化装配"><span class="nav-number">4.3.</span> <span class="nav-text">spring 从两个角度来实现自动化装配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-Java-代码装配-bean"><span class="nav-number">4.4.</span> <span class="nav-text">通过 Java 代码装配 bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入和混合配置"><span class="nav-number">4.5.</span> <span class="nav-text">导入和混合配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在-JavaConfig-中引用-XML-配置"><span class="nav-number">4.5.1.</span> <span class="nav-text">在 JavaConfig 中引用 XML 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-XML-中引用-JavaConfig-配置"><span class="nav-number">4.5.2.</span> <span class="nav-text">在 XML 中引用 JavaConfig 配置</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
