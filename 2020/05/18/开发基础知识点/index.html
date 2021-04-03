@@ -356,6 +356,14 @@
 <li>赋值运算符：&gt;&gt;= 右移位赋值运算符， |=     按位或赋值操作符  </li>
 <li>条件运算符：（?:）</li>
 </ul>
+<h3 id="Java-语法"><a href="#Java-语法" class="headerlink" title="Java 语法"></a>Java 语法</h3><ol>
+<li>方法重写<br>以下示例不能称为 方法重写，虽然满足里氏替换，但是不符合子类的思想。  </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> List&lt;Integer&gt; <span class="title">func</span><span class="params">(Animal animal)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">func</span><span class="params">(Object animal)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>泛型<br>TlensuProjectGenerationController<tlensuprojectrequest> extends DefaultProjectGenerationController<br>DefaultProjectGenerationController extends ProjectGenerationController<projectrequest><br>这样写在 idea 中不报错，但编译的时候会报错。  </projectrequest></tlensuprojectrequest></li>
+</ol>
 <h3 id="JDK-基础库"><a href="#JDK-基础库" class="headerlink" title="JDK 基础库"></a>JDK 基础库</h3><ul>
 <li>字符串处理</li>
 <li>日期时间处理</li>
@@ -497,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -543,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-运算符"><span class="nav-number">1.</span> <span class="nav-text">Java 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-基础库"><span class="nav-number">2.</span> <span class="nav-text">JDK 基础库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">3.</span> <span class="nav-text">其它</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-运算符"><span class="nav-number">1.</span> <span class="nav-text">Java 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-语法"><span class="nav-number">2.</span> <span class="nav-text">Java 语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-基础库"><span class="nav-number">3.</span> <span class="nav-text">JDK 基础库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">4.</span> <span class="nav-text">其它</span></a></li></ol></div>
             
 
           </div>

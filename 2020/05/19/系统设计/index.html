@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="系统设计实践短链接服务系统开发短链接 系统分库分表改造的注意事项分表改造注意事项 系统设计基础知识服务器、数据库资源xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。">
+<meta name="description" content="系统设计实践短链接服务系统开发短链接 系统分库分表改造的注意事项分表改造注意事项 系统设计基础知识服务器、数据库资源xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。 设计模式创建型 简单工厂：在创建一个对象时不向客户暴">
 <meta name="keywords" content="practice">
 <meta property="og:type" content="article">
 <meta property="og:title" content="系统设计">
 <meta property="og:url" content="http://poprabbit.github.io/2020/05/19/系统设计/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="系统设计实践短链接服务系统开发短链接 系统分库分表改造的注意事项分表改造注意事项 系统设计基础知识服务器、数据库资源xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。">
+<meta property="og:description" content="系统设计实践短链接服务系统开发短链接 系统分库分表改造的注意事项分表改造注意事项 系统设计基础知识服务器、数据库资源xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。 设计模式创建型 简单工厂：在创建一个对象时不向客户暴">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-05-19T02:43:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="系统设计">
-<meta name="twitter:description" content="系统设计实践短链接服务系统开发短链接 系统分库分表改造的注意事项分表改造注意事项 系统设计基础知识服务器、数据库资源xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。">
+<meta name="twitter:description" content="系统设计实践短链接服务系统开发短链接 系统分库分表改造的注意事项分表改造注意事项 系统设计基础知识服务器、数据库资源xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。 设计模式创建型 简单工厂：在创建一个对象时不向客户暴">
 
 
 
@@ -325,6 +325,20 @@
         <h3 id="系统设计实践"><a href="#系统设计实践" class="headerlink" title="系统设计实践"></a>系统设计实践</h3><h4 id="短链接服务系统开发"><a href="#短链接服务系统开发" class="headerlink" title="短链接服务系统开发"></a>短链接服务系统开发</h4><p><a href="https://javadoop.com/post/url-shortener" target="_blank" rel="noopener">短链接</a></p>
 <h4 id="系统分库分表改造的注意事项"><a href="#系统分库分表改造的注意事项" class="headerlink" title="系统分库分表改造的注意事项"></a>系统分库分表改造的注意事项</h4><p><a href="http://mp.weixin.qq.com/s?__biz=MzIyMzgyODkxMQ==&mid=2247484306&idx=1&sn=217a51cde907249045a1568071a11ccf&chksm=e8190d52df6e84444cdf5c06a2720857c5fd9a9b4e8446b4d3c977dad6252ef4237e600dcee9&scene=126&sessionid=1584518090#rd" target="_blank" rel="noopener">分表改造注意事项</a></p>
 <h3 id="系统设计基础知识"><a href="#系统设计基础知识" class="headerlink" title="系统设计基础知识"></a>系统设计基础知识</h3><h3 id="服务器、数据库资源"><a href="#服务器、数据库资源" class="headerlink" title="服务器、数据库资源"></a>服务器、数据库资源</h3><p>xxx实际上这边第一年大概20-30万客户，单日累计扣款查询等指令不会超过一万，但是压测的时候要求是200-400tps。<br>tps不超过1000的话，统一所有应用4个4c/8g的容器就可以；数据库 32c64g，最大连接数 250。</p>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h4 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h4><ul>
+<li>简单工厂：在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口，通过不同的入参返回不同的对象。    </li>
+<li>工厂方法：定义了一个创建对象的接口，但由子类决定要实例化哪个类。工厂方法把实例化操作推迟到子类。（有些像 模板方法+简单工厂 的组合）  </li>
+<li>抽象工厂：提供一个接口，用于创建 相关的对象家族 。抽象工厂模式用到了工厂方法模式来创建单一对象；  <ul>
+<li>至于创建对象的家族这一概念是在 Client 体现，Client 要通过 AbstractFactory 同时调用两个方法来创建出两个对象。  </li>
+</ul>
+</li>
+<li>工厂方法 与 抽象工厂<ul>
+<li>从高层次来看，抽象工厂使用了组合，即 Client 组合了 AbstractFactory，而工厂方法模式使用了继承。  </li>
+</ul>
+</li>
+<li>生成器（英文 Builder）：封装一个对象的构造过程，并允许按步骤构造。</li>
+<li>策略模式 与 模板方法 的区别<br>模板方法 侧重于继承结构，父类定义模板（或流程），子类重写指定方法；<br>策略模式 侧重于环境中的变化条件，根据不同的条件选择对应的策略。</li>
+</ul>
 
       
     </div>
@@ -448,7 +462,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -494,7 +508,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统设计实践"><span class="nav-number">1.</span> <span class="nav-text">系统设计实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#短链接服务系统开发"><span class="nav-number">1.1.</span> <span class="nav-text">短链接服务系统开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统分库分表改造的注意事项"><span class="nav-number">1.2.</span> <span class="nav-text">系统分库分表改造的注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统设计基础知识"><span class="nav-number">2.</span> <span class="nav-text">系统设计基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器、数据库资源"><span class="nav-number">3.</span> <span class="nav-text">服务器、数据库资源</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统设计实践"><span class="nav-number">1.</span> <span class="nav-text">系统设计实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#短链接服务系统开发"><span class="nav-number">1.1.</span> <span class="nav-text">短链接服务系统开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统分库分表改造的注意事项"><span class="nav-number">1.2.</span> <span class="nav-text">系统分库分表改造的注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统设计基础知识"><span class="nav-number">2.</span> <span class="nav-text">系统设计基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器、数据库资源"><span class="nav-number">3.</span> <span class="nav-text">服务器、数据库资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式"><span class="nav-number">4.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建型"><span class="nav-number">4.1.</span> <span class="nav-text">创建型</span></a></li></ol></li></ol></div>
             
 
           </div>

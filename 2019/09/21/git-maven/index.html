@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="gitorigin 在 git 里是 远程主机名git checkout –b dev     创建并切换分支git merge dev           合并指定分支到当前分支git push origin dev        该分支上的所有本地提交推送到指定的远程分支git checkout -b dev origin/dev        抓取分支：创建远程origin的dev分支到本地">
+<meta name="description" content="git常用命令origin 在 git 里是 远程主机名git status 命令，用来查看发生变动的文件git checkout –b dev     创建并切换分支git merge dev           合并指定分支到当前分支git push origin dev        该分支上的所有本地提交推送到指定的远程分支git checkout -b dev origin/dev">
 <meta name="keywords" content="dev_tools">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git-maven">
 <meta property="og:url" content="http://poprabbit.github.io/2019/09/21/git-maven/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="gitorigin 在 git 里是 远程主机名git checkout –b dev     创建并切换分支git merge dev           合并指定分支到当前分支git push origin dev        该分支上的所有本地提交推送到指定的远程分支git checkout -b dev origin/dev        抓取分支：创建远程origin的dev分支到本地">
+<meta property="og:description" content="git常用命令origin 在 git 里是 远程主机名git status 命令，用来查看发生变动的文件git checkout –b dev     创建并切换分支git merge dev           合并指定分支到当前分支git push origin dev        该分支上的所有本地提交推送到指定的远程分支git checkout -b dev origin/dev">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-01-21T10:42:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git-maven">
-<meta name="twitter:description" content="gitorigin 在 git 里是 远程主机名git checkout –b dev     创建并切换分支git merge dev           合并指定分支到当前分支git push origin dev        该分支上的所有本地提交推送到指定的远程分支git checkout -b dev origin/dev        抓取分支：创建远程origin的dev分支到本地">
+<meta name="twitter:description" content="git常用命令origin 在 git 里是 远程主机名git status 命令，用来查看发生变动的文件git checkout –b dev     创建并切换分支git merge dev           合并指定分支到当前分支git push origin dev        该分支上的所有本地提交推送到指定的远程分支git checkout -b dev origin/dev">
 
 
 
@@ -322,7 +322,46 @@
       
 
       
-        <h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>origin 在 git 里是 远程主机名<br>git checkout –b dev     创建并切换分支<br>git merge dev           合并指定分支到当前分支<br>git push origin dev        该分支上的所有本地提交推送到指定的远程分支<br>git checkout -b dev origin/dev        抓取分支：创建远程origin的dev分支到本地（默认的clone 后只有 master分支）<br>git branch –set-upstream-to origin/dev        设置当前分支和origin/dev的链接（否则 git pull 等远程指令会失败）<br>rebase 与 merge<br>要是想要干净的、线性的提交树，使用rebase操作会好一点，这样可以在一条线上看到每一次提交，并且没有增加提交节点。<br>但是如果你想要保存项目完整的历史，并且避免重写公共分支上的 commit，就用merge。<br>git push origin –delete branchname 删除远端分支<br>git reset –hard [commit_id]  退回到指定分支  </p>
+        <h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>origin 在 git 里是 远程主机名<br>git status 命令，用来查看发生变动的文件<br>git checkout –b dev     创建并切换分支<br>git merge dev           合并指定分支到当前分支<br>git push origin dev        该分支上的所有本地提交推送到指定的远程分支<br>git checkout -b dev origin/dev        抓取分支：创建远程origin的dev分支到本地（默认的clone 后只有 master分支）<br>git branch –set-upstream-to origin/dev        设置当前分支和origin/dev的链接（否则 git pull 等远程指令会失败）<br>rebase 与 merge<br>要是想要干净的、线性的提交树，使用rebase操作会好一点，这样可以在一条线上看到每一次提交，并且没有增加提交节点。<br>但是如果你想要保存项目完整的历史，并且避免重写公共分支上的 commit，就用merge。<br>git push origin –delete branchname 删除远端分支<br>撤销操作<br>git reset [上次提交]  回退临时提交，工作区保持不变<br>git reset –hard [commit_id]  退回到指定分支<br>git rm –cached [filename]  从暂存区撤销文件<br>git stash | pop  暂时将未提交的变化移除，稍后再移入  </p>
+<h3 id="Git-原理入门"><a href="#Git-原理入门" class="headerlink" title="Git 原理入门"></a>Git 原理入门</h3><h4 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h4><ul>
+<li>项目的历史就是由不同时点的快照构成。快照在 Git 里面有一个专门名词，叫做 commit，生成快照又称为完成一次提交。  </li>
+<li>所谓快照，就是保存当前的目录结构，以及每个文件对应的二进制对象。 </li>
+<li>所谓分支（branch）就是指向某个快照的指针，分支名就是指针名。</li>
+<li>每一个分支都是一个文本文件，保存在.git/refs/heads/目录，该文件的内容就是它所指向的快照的二进制对象名（哈希值）。  </li>
+<li>Git 有一个特殊指针HEAD，对应的文本文件为.git/HEAD，内容为当前的分支。</li>
+</ul>
+<h4 id="git实体"><a href="#git实体" class="headerlink" title="git实体"></a>git实体</h4><ol>
+<li>文件二进制对象</li>
+<li>目录二进制对象</li>
+<li>提交对象</li>
+<li>分支</li>
+<li>特殊指针HEAD  </li>
+</ol>
+<p>对象所在目录：.git/objects；<br>指针存在文本文件中；</p>
+<h2 id="分支目录为：-git-refs-heads-；"><a href="#分支目录为：-git-refs-heads-；" class="headerlink" title="分支目录为：.git/refs/heads/；  "></a>分支目录为：.git/refs/heads/；  </h2><h4 id="git命令"><a href="#git命令" class="headerlink" title="git命令"></a>git命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">hash</span>-object -w test.txt   </span><br><span class="line">git cat-file -p e69de29bb2d1d6434b8b29ae775ad8c2e48c5391   </span><br><span class="line">git update-index --add --cacheinfo 100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad test.txt  </span><br><span class="line">git write-tree  </span><br><span class="line"><span class="built_in">echo</span> <span class="string">"second commit"</span> | git commit-tree 1552fd52bc14497c11313aa91547255c95728f37 -p c9053865e9dff393fd2f7a92a18f9bd7f2caa7fa</span><br></pre></td></tr></table></figure>
+
+<p>git log的运行过程是这样的：  </p>
+<blockquote>
+<ol>
+<li>查找HEAD指针对应的分支，本例是master</li>
+<li>找到master指针指向的快照，本例是785f188674ef3c6ddc5b516307884e1d551f53ca</li>
+<li>找到父节点（前一个快照）c9053865e9dff393fd2f7a92a18f9bd7f2caa7fa</li>
+<li>以此类推，显示当前分支的所有快照</li>
+</ol>
+</blockquote>
+<p>分支指针是动态的。原因在于，下面三个命令会自动改写分支指针。  </p>
+<blockquote>
+<ul>
+<li>git commit：当前分支指针移向新创建的快照。</li>
+<li>git pull：当前分支与远程分支合并后，指针指向新创建的快照。</li>
+<li>git reset [commit_sha]：当前分支指针重置为指定快照。</li>
+</ul>
+</blockquote>
+<hr>
+<p>文章看懂后反而抑郁了，因为想到几个问题却没有答案？<br>git hash-object 是怎么将文本转换成压缩二进制的；<br>sha 算法干了件什么事？为什么要用；<br>git 为什么会有暂存区？或者说 git的分布式方案的优点；</p>
+<h3 id="git其他文章"><a href="#git其他文章" class="headerlink" title="git其他文章"></a>git其他文章</h3><p>Git 原理入门<br>Github 的清点对象算法</p>
+<p>常用 Git 命令清单<br>如何撤销 Git 操作？<br>git cherry-pick 教程（将指定的提交应用于其他分支）<br>git bisect 命令教程（查找哪次提交导致的错误）</p>
+<p>Git 工作流程<br>Git 使用规范流程<br>Git 远程操作详解<br>Git 分支管理策略</p>
 <h2 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h2><p>mvn package -Dmaven.test.skip=true<br>mvn dependency:tree<br>mvn dependency:tree &gt; tree.txt  将命令输出指定到文件<br>mvn clean compile -U -Dmaven.test.skip=true 清理本地依赖  </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span>配置单元测试 使用的框架等信息<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">executions</span>&gt;</span>配置集成测试 使用的框架，测试类的 xml文件等信息<span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -467,7 +506,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -513,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git"><span class="nav-number">1.</span> <span class="nav-text">git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#maven"><span class="nav-number">2.</span> <span class="nav-text">maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-配置SSH"><span class="nav-number">3.</span> <span class="nav-text">Github 配置SSH</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git"><span class="nav-number">1.</span> <span class="nav-text">git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-原理入门"><span class="nav-number">1.2.</span> <span class="nav-text">Git 原理入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">一些概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git实体"><span class="nav-number">1.2.2.</span> <span class="nav-text">git实体</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支目录为：-git-refs-heads-；"><span class="nav-number">2.</span> <span class="nav-text">分支目录为：.git/refs/heads/；  </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git命令"><span class="nav-number">2.0.1.</span> <span class="nav-text">git命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git其他文章"><span class="nav-number">2.1.</span> <span class="nav-text">git其他文章</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#maven"><span class="nav-number">3.</span> <span class="nav-text">maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-配置SSH"><span class="nav-number">4.</span> <span class="nav-text">Github 配置SSH</span></a></li></div>
             
 
           </div>
