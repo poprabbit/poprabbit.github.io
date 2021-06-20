@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="java 容器实战spring 容器实战1234567891011121314151617181920212223242526272829303132333435363738AbstractApplicationContext/** ApplicationEvents published early */private Set&amp;lt;ApplicationEvent&amp;gt; earlyApplic">
+<meta name="description" content="常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；    array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素； LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链">
 <meta name="keywords" content="base">
 <meta property="og:type" content="article">
 <meta property="og:title" content="datastructure">
 <meta property="og:url" content="http://poprabbit.github.io/2020/06/12/datastructure/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="java 容器实战spring 容器实战1234567891011121314151617181920212223242526272829303132333435363738AbstractApplicationContext/** ApplicationEvents published early */private Set&amp;lt;ApplicationEvent&amp;gt; earlyApplic">
+<meta property="og:description" content="常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；    array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素； LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-06-12T02:13:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="datastructure">
-<meta name="twitter:description" content="java 容器实战spring 容器实战1234567891011121314151617181920212223242526272829303132333435363738AbstractApplicationContext/** ApplicationEvents published early */private Set&amp;lt;ApplicationEvent&amp;gt; earlyApplic">
+<meta name="twitter:description" content="常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；    array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素； LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链">
 
 
 
@@ -322,7 +322,170 @@
       
 
       
-        <h3 id="java-容器实战"><a href="#java-容器实战" class="headerlink" title="java 容器实战"></a>java 容器实战</h3><h3 id="spring-容器实战"><a href="#spring-容器实战" class="headerlink" title="spring 容器实战"></a>spring 容器实战</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">AbstractApplicationContext</span><br><span class="line"><span class="comment">/** ApplicationEvents published early */</span></span><br><span class="line"><span class="keyword">private</span> Set&lt;ApplicationEvent&gt; earlyApplicationEvents;</span><br><span class="line"><span class="comment">/** BeanFactoryPostProcessors to apply on refresh */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> List&lt;BeanFactoryPostProcessor&gt; beanFactoryPostProcessors = <span class="keyword">new</span> ArrayList&lt;BeanFactoryPostProcessor&gt;();</span><br><span class="line"></span><br><span class="line">DefaultSingletonBeanRegistry</span><br><span class="line"><span class="comment">/** Cache of singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Disposable bean instances: bean name --&gt; disposable instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; disposableBeans = <span class="keyword">new</span> LinkedHashMap&lt;String, Object&gt;();</span><br><span class="line"><span class="comment">/** Map between dependent bean names: bean name --&gt; Set of dependent（依赖他人者） bean names */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Set&lt;String&gt;&gt; dependentBeanMap = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Set&lt;String&gt;&gt;(<span class="number">64</span>);</span><br><span class="line"><span class="comment">/** Cache of singleton factories: bean name --&gt; ObjectFactory */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = <span class="keyword">new</span> HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Cache of early singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Set of registered singletons, containing the bean names in registration order; getSingleton() # addSingleton()*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;String&gt; registeredSingletons = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;(<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">DefaultListableBeanFactory</span><br><span class="line"><span class="comment">/** List of names of manually registered singletons（spring 手动注册）, in registration order */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> Set&lt;String&gt; manualSingletonNames = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** List of bean definition names, in registration order */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> List&lt;String&gt; beanDefinitionNames = <span class="keyword">new</span> ArrayList&lt;String&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Map of bean definition objects, keyed by bean name */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BeanDefinition&gt; beanDefinitionMap = <span class="keyword">new</span> ConcurrentHashMap&lt;String, BeanDefinition&gt;(<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">AbstractBeanFactory</span><br><span class="line"><span class="comment">/** BeanPostProcessors to apply in createBean */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> List&lt;BeanPostProcessor&gt; beanPostProcessors = <span class="keyword">new</span> ArrayList&lt;BeanPostProcessor&gt;();</span><br><span class="line"></span><br><span class="line">AbstractAutowireCapableBeanFactory</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Dependency interfaces to ignore on dependency check and autowire, as Set of</span></span><br><span class="line"><span class="comment"> * Class objects. By default, only the BeanFactory interface is ignored.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;Class&lt;?&gt;&gt; ignoredDependencyInterfaces = <span class="keyword">new</span> HashSet&lt;Class&lt;?&gt;&gt;();</span><br></pre></td></tr></table></figure>
+        <h2 id="常规数据结构"><a href="#常规数据结构" class="headerlink" title="常规数据结构"></a>常规数据结构</h2><p>本文总结自 <a href="https://github.com/trekhleb/javascript-algorithms" target="_blank" rel="noopener">数据结构与算法-js实现</a><br>数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；  </p>
+<ol>
+<li>array：长度固定，使用 index 进行操作<br>方法：push()；pop()-移除索引值最大的元素；</li>
+<li>LinkedList：增加删除很方便，连接查找不方便<br>在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链接)组成。<br>方法：prepend(value)；append(value)；delete(value)；find；reverse；</li>
+<li>doubly linkedlist：双向链表：每个节点包含两个字段，称为链接，它们是对节点序列中上一个节点和下一个节点的引用。 方法：与链表结构一样</li>
+<li>queue：队列基本操作有两种:向队列的后端位置添加实体，称为入队；从队列的前端位置移除实体，称为出队。FIFO<br>方法：入队enqueue(value)；出队dequeue()；peek()访问结构中的当前元素（不删除）</li>
+<li>stack：栈基本操作有两种:push, 添加元素到栈的顶端；pop, 移除栈最顶端的元素。LIFO<br>方法：push(value)；pop()；peek()</li>
+<li>HashTable：依赖LinkedList，哈希表(hashtable 或hashmap) 是一种实现 关联数组(associative array) 的抽象数据；该结构可以将 键映射到值。 （mps：实现了数组没有的取值方式）<br>哈希表使用哈希函数/散列函数来计算一个键在数组或桶(buckets)或槽(slots)中对应的索引,可使用该索引找到所需的值。 理想情况下,散列函数将为每个键分配给一个唯一的桶(bucket)索引,但是大多数哈希表设计采用不完美的散列函数,这可能会导致”哈希冲突(<br>hash collisions)”,也就是散列函数为多个键(key)生成了相同的索引,这种碰撞必须 以某种方式进行处理（可以类比柳条，柳叶；）。<br>方法：hash(key)–散列函数；set(key, value)–保存是带有key，做防重复处理； delete(key)<br>；get(key)；has(key)；getKeys()；</li>
+<li>heap：使用数组存储数据，在计算机科学中, 一个 堆(heap) 是一种特殊的基于树的数据结构。分为两种堆，在一个最小堆(min heap) 中, 如果p是c的一个父级节点, 那么p的key(或value)<br>应小于或等于c的对应值。在一个最大堆(max heap) 中,p的key(或value)大于c的对应值；最大最小维护了所有支点间的递增递减关系。<br>方法：add()；remove()；find()；peek()；poll()-返回堆最顶端的元素（会调整整个结构）；swap(<br>indexOne, indexTwo)；heapifyUp(customStartIndex)-从尾巴开始整理树；heapifyDown(customStartIndex = 0)-从顶端开始整理树；index(),has(),element() -基于index操作。</li>
+<li>priority queue：优先队列通常用堆来实现，每个元素都有与之关联的优先级。<br>二叉树：每个节点分左右子节点的树。二叉树常被用于实现二叉查找树和二叉堆。</li>
+<li>BinarySearchTree –实现没看 二叉查找树（BST）是一颗二叉树，并且每个节点的值都大于等于其左子树中的所有节点的值而小于等于右子树的所有节点的值。 BST有一个重要性质，就是它的中序遍历结果递增排序。</li>
+</ol>
+<h3 id="Big-O-Notation"><a href="#Big-O-Notation" class="headerlink" title="Big O Notation"></a>Big O Notation</h3><p><em>Big O notation</em> is used to classify algorithms according to how their running time or space requirements grow as the input size grows. On<br>the chart below you may find most common orders of growth of algorithms specified in Big O notation.</p>
+<p>Below is the list of some of the most used Big O notations and their performance comparisons against different sizes of the input data.</p>
+<table>
+<thead>
+<tr>
+<th>Big O Notation</th>
+<th>Computations for 10 elements</th>
+<th>Computations for 100 elements</th>
+<th>Computations for 1000 elements</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>O(1)</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>O(log N)</strong></td>
+<td>3</td>
+<td>6</td>
+<td>9</td>
+</tr>
+<tr>
+<td><strong>O(N)</strong></td>
+<td>10</td>
+<td>100</td>
+<td>1000</td>
+</tr>
+<tr>
+<td><strong>O(N log N)</strong></td>
+<td>30</td>
+<td>600</td>
+<td>9000</td>
+</tr>
+<tr>
+<td><strong>O(N^2)</strong></td>
+<td>100</td>
+<td>10000</td>
+<td>1000000</td>
+</tr>
+<tr>
+<td><strong>O(2^N)</strong></td>
+<td>1024</td>
+<td>1.26e+29</td>
+<td>1.07e+301</td>
+</tr>
+<tr>
+<td><strong>O(N!)</strong></td>
+<td>3628800</td>
+<td>9.3e+157</td>
+<td>4.02e+2567</td>
+</tr>
+</tbody></table>
+<h3 id="Data-Structure-Operations-Complexity"><a href="#Data-Structure-Operations-Complexity" class="headerlink" title="Data Structure Operations Complexity"></a>Data Structure Operations Complexity</h3><table>
+<thead>
+<tr>
+<th>Data Structure</th>
+<th align="center">Access</th>
+<th align="center">Search</th>
+<th align="center">Insertion</th>
+<th align="center">Deletion</th>
+<th align="left">Comments</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Array</strong></td>
+<td align="center">1</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><strong>Stack</strong></td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><strong>Queue</strong></td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><strong>Linked List</strong></td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">1</td>
+<td align="center">n</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><strong>Hash Table</strong></td>
+<td align="center">-</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="left">In case of perfect hash function costs would be O(1)</td>
+</tr>
+<tr>
+<td><strong>Binary Search Tree</strong></td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="left">In case of balanced tree costs would be O(log(n))</td>
+</tr>
+<tr>
+<td><strong>B-Tree</strong></td>
+<td align="center">log(n)</td>
+<td align="center">log(n)</td>
+<td align="center">log(n)</td>
+<td align="center">log(n)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><strong>Red-Black Tree</strong></td>
+<td align="center">log(n)</td>
+<td align="center">log(n)</td>
+<td align="center">log(n)</td>
+<td align="center">log(n)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><strong>AVL Tree</strong></td>
+<td align="center">log(n)</td>
+<td align="center">log(n)</td>
+<td align="center">log(n)</td>
+<td align="center">log(n)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><strong>Bloom Filter</strong></td>
+<td align="center">-</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">-</td>
+<td align="left">False positives are possible while searching</td>
+</tr>
+</tbody></table>
+<h3 id="算法分析指标"><a href="#算法分析指标" class="headerlink" title="算法分析指标"></a>算法分析指标</h3><p>算法的复杂性体现在运行该算法时所需的计算机资源多少上，计算机资源最重要的是时间和空间（即寄存器）资源，因此复杂度分为时间和空间复杂度。</p>
+<ul>
+<li>时间复杂度：是指执行算法所需要的计算工作量；</li>
+<li>空间复杂度：是指执行这个算法所需要的内存空间。</li>
+</ul>
+<h2 id="java-容器实战"><a href="#java-容器实战" class="headerlink" title="java 容器实战"></a>java 容器实战</h2><h2 id="spring-容器实战"><a href="#spring-容器实战" class="headerlink" title="spring 容器实战"></a>spring 容器实战</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">AbstractApplicationContext</span><br><span class="line"><span class="comment">/** ApplicationEvents published early */</span></span><br><span class="line"><span class="keyword">private</span> Set&lt;ApplicationEvent&gt; earlyApplicationEvents;</span><br><span class="line"><span class="comment">/** BeanFactoryPostProcessors to apply on refresh */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> List&lt;BeanFactoryPostProcessor&gt; beanFactoryPostProcessors = <span class="keyword">new</span> ArrayList&lt;BeanFactoryPostProcessor&gt;();</span><br><span class="line"></span><br><span class="line">DefaultSingletonBeanRegistry</span><br><span class="line"><span class="comment">/** Cache of singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Disposable bean instances: bean name --&gt; disposable instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; disposableBeans = <span class="keyword">new</span> LinkedHashMap&lt;String, Object&gt;();</span><br><span class="line"><span class="comment">/** Map between dependent bean names: bean name --&gt; Set of dependent（依赖他人者） bean names */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Set&lt;String&gt;&gt; dependentBeanMap = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Set&lt;String&gt;&gt;(<span class="number">64</span>);</span><br><span class="line"><span class="comment">/** Cache of singleton factories: bean name --&gt; ObjectFactory */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = <span class="keyword">new</span> HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Cache of early singleton objects: bean name --&gt; bean instance */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** Set of registered singletons, containing the bean names in registration order; getSingleton() # addSingleton()*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;String&gt; registeredSingletons = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;(<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">DefaultListableBeanFactory</span><br><span class="line"><span class="comment">/** List of names of manually registered singletons（spring 手动注册）, in registration order */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> Set&lt;String&gt; manualSingletonNames = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">/** List of bean definition names, in registration order */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> List&lt;String&gt; beanDefinitionNames = <span class="keyword">new</span> ArrayList&lt;String&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">/** Map of bean definition objects, keyed by bean name */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BeanDefinition&gt; beanDefinitionMap = <span class="keyword">new</span> ConcurrentHashMap&lt;String, BeanDefinition&gt;(<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">AbstractBeanFactory</span><br><span class="line"><span class="comment">/** BeanPostProcessors to apply in createBean */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> List&lt;BeanPostProcessor&gt; beanPostProcessors = <span class="keyword">new</span> ArrayList&lt;BeanPostProcessor&gt;();</span><br><span class="line"></span><br><span class="line">AbstractAutowireCapableBeanFactory</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Dependency interfaces to ignore on dependency check and autowire, as Set of</span></span><br><span class="line"><span class="comment"> * Class objects. By default, only the BeanFactory interface is ignored.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;Class&lt;?&gt;&gt; ignoredDependencyInterfaces = <span class="keyword">new</span> HashSet&lt;Class&lt;?&gt;&gt;();</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -445,7 +608,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -491,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java-容器实战"><span class="nav-number">1.</span> <span class="nav-text">java 容器实战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-容器实战"><span class="nav-number">2.</span> <span class="nav-text">spring 容器实战</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常规数据结构"><span class="nav-number">1.</span> <span class="nav-text">常规数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-O-Notation"><span class="nav-number">1.1.</span> <span class="nav-text">Big O Notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Structure-Operations-Complexity"><span class="nav-number">1.2.</span> <span class="nav-text">Data Structure Operations Complexity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法分析指标"><span class="nav-number">1.3.</span> <span class="nav-text">算法分析指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-容器实战"><span class="nav-number">2.</span> <span class="nav-text">java 容器实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-容器实战"><span class="nav-number">3.</span> <span class="nav-text">spring 容器实战</span></a></li></ol></div>
             
 
           </div>

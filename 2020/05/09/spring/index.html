@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="spring日常问题 sofa中 context:property-placeholder 不生效，spring 版本为 5.1.14   接触到的扩展点BeanPostProcessor  可以在 bean 正式初始化之前改变其值，该对象会被提前初始化。FactoryBean  创建bean时bean的生命周期  iocioc概述 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一">
+<meta name="description" content="spring日常问题 sofa中 context:property-placeholder 不生效，spring 版本为 5.1.14   接触到的扩展点BeanFactoryPostProcessor  可以在 bean 正式初始化之前改变其值，该对象会被提前初始化。FactoryBean  创建bean时（MethodLocatingFactoryBean）bean的生命周期(BeanPost">
 <meta name="keywords" content="spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="used spring">
 <meta property="og:url" content="http://poprabbit.github.io/2020/05/09/spring/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="spring日常问题 sofa中 context:property-placeholder 不生效，spring 版本为 5.1.14   接触到的扩展点BeanPostProcessor  可以在 bean 正式初始化之前改变其值，该对象会被提前初始化。FactoryBean  创建bean时bean的生命周期  iocioc概述 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一">
+<meta property="og:description" content="spring日常问题 sofa中 context:property-placeholder 不生效，spring 版本为 5.1.14   接触到的扩展点BeanFactoryPostProcessor  可以在 bean 正式初始化之前改变其值，该对象会被提前初始化。FactoryBean  创建bean时（MethodLocatingFactoryBean）bean的生命周期(BeanPost">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-04-03T03:35:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="used spring">
-<meta name="twitter:description" content="spring日常问题 sofa中 context:property-placeholder 不生效，spring 版本为 5.1.14   接触到的扩展点BeanPostProcessor  可以在 bean 正式初始化之前改变其值，该对象会被提前初始化。FactoryBean  创建bean时bean的生命周期  iocioc概述 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一">
+<meta name="twitter:description" content="spring日常问题 sofa中 context:property-placeholder 不生效，spring 版本为 5.1.14   接触到的扩展点BeanFactoryPostProcessor  可以在 bean 正式初始化之前改变其值，该对象会被提前初始化。FactoryBean  创建bean时（MethodLocatingFactoryBean）bean的生命周期(BeanPost">
 
 
 
@@ -324,7 +324,7 @@
       
         <h2 id="spring日常问题"><a href="#spring日常问题" class="headerlink" title="spring日常问题"></a>spring日常问题</h2><ol>
 <li>sofa中 context:property-placeholder 不生效，spring 版本为 5.1.14  </li>
-<li>接触到的扩展点<br>BeanPostProcessor  可以在 bean 正式初始化之前改变其值，该对象会被提前初始化。<br>FactoryBean  创建bean时<br>bean的生命周期</li>
+<li>接触到的扩展点<br>BeanFactoryPostProcessor  可以在 bean 正式初始化之前改变其值，该对象会被提前初始化。<br>FactoryBean  创建bean时（MethodLocatingFactoryBean）<br>bean的生命周期(BeanPostProcessor)</li>
 </ol>
 <h2 id="ioc"><a href="#ioc" class="headerlink" title="ioc"></a>ioc</h2><h3 id="ioc概述"><a href="#ioc概述" class="headerlink" title="ioc概述"></a>ioc概述</h3><ol>
 <li>IOC 总体来说有两处地方最重要，<strong>一个是创建 Bean 容器，一个是初始化 Bean</strong>    </li>
@@ -375,7 +375,7 @@
 </li>
 </ol>
 <h4 id="Schema-based-的配置方式"><a href="#Schema-based-的配置方式" class="headerlink" title="Schema-based 的配置方式"></a>Schema-based 的配置方式</h4><p>示例如下：  </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">expression</span>=<span class="string">"execution(* com.javadoop.springaoplearning.service.*.*(..))"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService2"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">expression</span>=<span class="string">"com.javadoop.SystemArchitecture.businessService()"</span>/&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"myAspect"</span> <span class="attr">ref</span>=<span class="string">"aBean"</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"logArgsAspect"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"internalPointcut"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">expression</span>=<span class="string">"com.javadoop.SystemArchitecture.businessService()"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businessService"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">expression</span>=<span class="string">"execution(* com.xyz.myapp.service.*.*(..))"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:advisor</span></span></span><br><span class="line"><span class="tag">        <span class="attr">pointcut-ref</span>=<span class="string">"businessService"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">advice-ref</span>=<span class="string">"tx-advice"</span>/&gt;</span></span><br><span class="line">		</span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"aopAdvice"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pointcutIn"</span> <span class="attr">expression</span>=<span class="string">"execution(* base.aop.AopDemo.send())"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"beforeSend"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pointcutIn"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"afterSend"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pointcutIn"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"tx-advice"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aopAdvice"</span> <span class="attr">class</span>=<span class="string">"base.aop.AopDemoAdvice"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 必须配置，因为被代理的对象必须在Spring容器中 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aopDemo"</span> <span class="attr">class</span>=<span class="string">"base.aop.AopDemo"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>aop 命名空间的解析类：AopNamespaceHandler。  </p>
 <hr>
@@ -384,7 +384,7 @@
 <li>如果被代理的目标类实现了一个或多个自定义的接口，那么就会使用 JDK 动态代理，如果没有实现任何接口，会使用 CGLIB 实现代理，如果设置了 proxy-target-class=”true”，那么都会使用 CGLIB。  </li>
 <li>InvocationHandler 只有一个方法，当生成的代理类对外提供服务的时候，都会导到这个方法中</li>
 </ul>
-<h3 id="aop-的实现"><a href="#aop-的实现" class="headerlink" title="aop 的实现"></a>aop 的实现</h3><p>DefaultAdvisorAutoProxyCreator，AnnotationAwareAspectJAutoProxyCreator<br>AbstractAutoProxyCreator#postProcessAfterInitialization<br>入口在 AbstractAutowireCapableBeanFactory#initializeBean#applyBeanPostProcessorsAfterInitialization  </p>
+<h3 id="aop-的实现"><a href="#aop-的实现" class="headerlink" title="aop 的实现"></a>aop 的实现</h3><p>DefaultAdvisorAutoProxyCreator,…,AspectJAwareAdvisorAutoProxyCreator,AnnotationAwareAspectJAutoProxyCreator<br>AbstractAutoProxyCreator#postProcessAfterInitialization<br>入口在 AbstractAutowireCapableBeanFactory#initializeBean#applyBeanPostProcessorsAfterInitialization  </p>
 <hr>
 <h2 id="spring-其他"><a href="#spring-其他" class="headerlink" title="spring 其他"></a>spring 其他</h2><h3 id="典型的设计模式"><a href="#典型的设计模式" class="headerlink" title="典型的设计模式"></a>典型的设计模式</h3><ol>
 <li>策略模式<ul>
@@ -396,6 +396,7 @@
 <li>观察者 事件设计</li>
 <li>代理模式  </li>
 <li>装饰器模式 EncodedResource  </li>
+<li>访问者模式 ReflectionUtils</li>
 </ol>
 <p>策略模式 与 模板方法 的区别<br>模板方法 侧重于继承结构，父类定义模板（或流程），子类重写指定方法；<br>策略模式 侧重于环境中的变化条件，根据不同的条件选择对应的策略。</p>
 <h3 id="使用到的容器"><a href="#使用到的容器" class="headerlink" title="使用到的容器"></a>使用到的容器</h3><p><a href="/2020/06/12/datastructure">spring 容器实战</a></p>
@@ -426,7 +427,7 @@
 <li>AnnotationConfigApplicationContext 基于 java 配置类中加载 spring 应用上下文</li>
 <li>ClassPathXmlApplicationContext 基于类路径下的 xml 文件中加载 spring 应用上下文</li>
 </ul>
-<h3 id="bean-的生命周期"><a href="#bean-的生命周期" class="headerlink" title="bean 的生命周期"></a>bean 的生命周期</h3><p>实例化、填充属性、调用 BeanNameAware 接口、调用 BeanFactoryAware 接口、调用 ApplicationContextAware 接口、调用 postProcessBeforeInstantiation()、调用 InitializingBean 接口、调用自定义初始化方法、调用 postProcessAfterInstantiation()、创建完成使用、销毁 bean 对象、、、</p>
+<h3 id="bean-的生命周期"><a href="#bean-的生命周期" class="headerlink" title="bean 的生命周期"></a>bean 的生命周期</h3><p>实例化、填充属性、调用 XXXAware 接口、调用 postProcessBeforeInitialization()、调用 InitializingBean 接口、调用自定义初始化方法、调用 postProcessAfterInitialization()、创建完成使用、销毁 bean 对象、、、</p>
 <h3 id="spring-从两个角度来实现自动化装配"><a href="#spring-从两个角度来实现自动化装配" class="headerlink" title="spring 从两个角度来实现自动化装配"></a>spring 从两个角度来实现自动化装配</h3><ul>
 <li>组件扫描（component scanning）:spring 会自动发现应用上下文中所创建的 bean。</li>
 <li>自动装配（autowiring）:spring 自动满足 bean 之间的依赖。</li>
@@ -563,7 +564,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
