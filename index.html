@@ -627,8 +627,9 @@ Hash 的不可修改性把区块头的各项特征值，按照顺序连接在一
         
           
           网络排查工具rpc 依赖底层的通信框架，可以指定端口发布服务（本地启动多个微服务时注意修改端口）。telnet 命令本身就是一个应用层协议，它的作用是在两台主机间，建立一个TCP连接。curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。ssh 登陆 linux 服务器的协议，在 cmd 中也“可以用”。a，b（如云内部服务器）两个网络相互不通1、可以配置负载均衡，将b的某个web服务发布出来，a可访问之；2、可以配置弹性公网ip，这样b的所有端口a都可访问；  
+命令curl -I 显示 HEAD请求标头curl -d’login=emma＆password=123’-X POSTcurl -d ‘{}’ -H ‘Content-Type: application/json’curl -H ‘Referer: https://google.com?q=example&#39;curl -v 显示通讯过程
 内网ecs与公网互通策略现象或目标：银联测试环境 可访问 超网服务器出去的公网ip：106.37.214.91EIP：10.200.133.94云内ecs：10.1.132.2:8080
-问题及排查思路现在出方向和入方向106.37.214.91 都和 EIP 10.200.133.94 关联了；实际入方向和出方向要分开关联不同的IP的，入方向关联SLB，出方向关联EIP。出去的时候防火墙是对EIP 做SNAT转换，进来的时候防火墙是对公网IP做DNAT 转成公网SLB VIP。要检查下防火墙的DNAT规则，或者SLB的健康检查是否正常。是哪个SLB呢？1、看下防火墙的DNAT规则转成那个IP，然后通过这个IP去找SLB实例；2、查下ascm ngnix挂在哪个
+问题及排查思路现在出方向和入方向106.37.214.91 都和 EIP 10.200.133.94 关联了；实际入方向和出方向要分开
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -919,23 +920,15 @@ JUL 的具体实现在JDK中；
       
         
           
-          正在读linux 文件，目录，磁盘 shell （重点） Linux 账号管理
-已读
-javascript
-java编程思想
-深入分析javaweb技术内幕
-spring源码深度解析
-java并发编程实战
-深入理解java虚拟机
-深入浅出mysql
-
+          正在读linux 文件，目录，磁盘， shell （重点）， Linux 账号管理0719：命令传达，使用者与群组文件权限。0725；vim 的额外功能
+凤凰架构0727：什么是凤凰架构，探索起步，网关路由；0730：架构安全性：认证，凭证；0802：负载均衡；0816：远程服务调用；
 打算读
 linux私房菜
 java核心技术卷ⅠⅡ
 单元测试框架
 springcloud微服务实战
 
-互联网资源
+互联网资源专精
 CS-notes
 算法面试-视频
 数据结构与算法-js实现
@@ -943,14 +936,24 @@ CS-notes
 Bash脚本教程
 凤凰架构-分布式云计算
 
-
-
+杂项（个人博客，java实战）
 开发者手册-ruanyf
 并发编程
 javadoop
+宇宙湾
+java &amp; docker开源书籍
 hutool-java开发常用工具
 guava-工具介绍
 java进阶知识扫盲
+
+文化，记录片已读（专业书籍，理论）
+javascript
+java编程思想
+深入分析javaweb技术内幕
+spring源码深度解析
+java并发编程实战
+深入理解java虚拟机
+深入浅出mysql
 
 
           
