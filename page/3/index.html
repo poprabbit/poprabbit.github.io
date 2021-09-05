@@ -243,6 +243,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/08/database/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/08/database/" itemprop="url">database</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-08T10:52:01+08:00">
+                2020-05-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-08T10:52:01+08:00">
+                2020-05-08
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          数据库系统原理事务概念：事务指的是满足 ACID 特性的一组操作，可以通过 Commit 提交一个事务，也可以使用 Rollback 进行回滚。  
+
+原子性（Atomicity）事务被视为不可分割的最小单元，事务的所有操作要么全部提交成功，要么全部失败回滚。  
+一致性（Consistency）在一致性状态下，所有事务对同一个数据的读取结果都是相同的。  
+隔离性（Isolation）一个事务所做的修改在最终提交以前，对其它事务是不可见的。
+持久性（Durability）一旦事务提交，则其所做的修改将会永远保存到数据库中。即使系统发生崩溃，事务执行的结果也不能丢失。
+
+事务的 ACID 特性概念简单，但不是很好理解，主要是因为这几个特性不是一种平级关系：  
+
+只有满足一致性，事务的执行结果才是正确的。  
+在无并发的情况下，事务串行执行，隔离性一定能够满足。此时只要能满足原子性，就一定能满足一致性。  
+在并发的情况下，多个事务并行执行，事务不仅要满足原子性，还需要满足隔离性，才能满足一致性。  
+事务满足持久化是为了能应对系统崩溃的情况。
+
+并发一致性问题
+丢失修改：丢失修改指一个事务的更新操作被另外一个事务的更新操作替换。
+读脏数据：读脏数据指在不同的事务下，当前事务可以读到另外事务未提交的数据。
+不可重复读：不可重复读指在一个事务内多次读取同一数据集合。
+幻影读：幻读本质
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/08/database/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/06/tomcat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -478,7 +634,7 @@ start 阶段，会执行 ContainerBase 的 startInternal 方法，它会寻找�
 装饰者模式Java I/O 使用了装饰者模式来实现。以 InputStream 为例，InputStream 是抽象组件；FileInputStream 是 InputStream 的子类，属于具体组件，提供了字节流的输入操作；FilterInputStream 属于抽象装饰者，装饰者用于装饰组件，为组件提供额外的功能。例如 BufferedInputStream 为 FileInputStream 提供缓存的功能。实例化一个具有缓存功能的字节流对象  
 12FileInputStream fileInputStream = new FileInputStream(filePath);BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
 
-编码与解码编码就是把字符转换为字节，而解码是把字节重新组合成字符。Java 的内存编码使用双字节编码 UTF-16be；一个中文或者一个英文都能使用一个 cha
+编码与解码java.nio.charset.StandardCharsets#UTF_8编码就是把字符转换为字节，而解码是把字节重新组合成字符。Java 的内存
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1435,7 +1591,7 @@ Node 的结构简介
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/20/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2019/04/20/hello-world/" itemprop="url">Hello Hexo</a></h1>
         
 
         <div class="post-meta">
@@ -1463,8 +1619,8 @@ Node 的结构简介
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-25T12:33:02+08:00">
-                2021-01-25
+              <time title="更新于" itemprop="dateModified" datetime="2021-08-25T12:33:02+08:00">
+                2021-08-25
               </time>
             
           </span>
@@ -1512,16 +1668,8 @@ Deploy to remote sites1$ hexo deploy
 
 rebuild1$ hexo clean
 
-其它面试技术点
-java基础（语法；集合；IO；多线程）；
-web及web常用框架；
-jvm底层知识（线程与内存与类文件）；
-数据库，各种中间件；
-分布式原理及分布式框架（java）；
-大数据；
 
-计划工程代码；中间件；（问题排查，原理理解对比）基础知识博客，杂谈博客；jvm、cyc2018（3、4天的工作量）spring 功能提纲；
-          ...
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/20/hello-world/#more" rel="contents">
@@ -1616,7 +1764,7 @@ jvm底层知识（线程与内存与类文件）；
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

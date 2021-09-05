@@ -361,6 +361,8 @@
 </ol>
 <h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><ul>
 <li>Class.forName(“”);  默认使用哪个 classloader 进行加载？？ 默认是调用该方法的类的类加载器，也可以指定类加载器及是否初始化  </li>
+<li>classpath 下存在两个全限定类名相同的类（不同的jar包），jvm 会加载哪一个？由什么决定？由程序自定义的 classloader 决定，一般是由上到下加载jar包，可以使用不同的解压工具打开验证。</li>
+<li>tomcat 使用 URLClassLoader，springboot 使用什么 classloader？</li>
 </ul>
 <hr>
 <h3 id="class-文件-by-luanlouis"><a href="#class-文件-by-luanlouis" class="headerlink" title="class 文件(by luanlouis)"></a>class 文件(by luanlouis)</h3><h4 id="基本组织结构"><a href="#基本组织结构" class="headerlink" title="基本组织结构"></a>基本组织结构</h4><ul>
@@ -521,7 +523,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
