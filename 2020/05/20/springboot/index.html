@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="springboot目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；   核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；   starter：启动器，包含很多的依赖项，帮助快速启动应用和运行所必须的依赖">
+<meta name="description" content="目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；   starter：启动器，包含很多的依赖项，帮助快速启动应用和运行所必须的依赖；命名规范：1)官方命名模">
 <meta name="keywords" content="spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="use springboot">
 <meta property="og:url" content="http://poprabbit.github.io/2020/05/20/springboot/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="springboot目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；   核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；   starter：启动器，包含很多的依赖项，帮助快速启动应用和运行所必须的依赖">
+<meta property="og:description" content="目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；   starter：启动器，包含很多的依赖项，帮助快速启动应用和运行所必须的依赖；命名规范：1)官方命名模">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-05-19T16:17:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="use springboot">
-<meta name="twitter:description" content="springboot目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；   核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；   starter：启动器，包含很多的依赖项，帮助快速启动应用和运行所必须的依赖">
+<meta name="twitter:description" content="目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；   starter：启动器，包含很多的依赖项，帮助快速启动应用和运行所必须的依赖；命名规范：1)官方命名模">
 
 
 
@@ -322,11 +322,10 @@
       
 
       
-        <p>springboot<br>目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；  </p>
-<p>核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；  </p>
+        <p>目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；<br>核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；  </p>
 <p>starter：启动器，包含很多的依赖项，帮助快速启动应用和运行所必须的依赖；<br>命名规范：1)官方命名模式 spring-boot-starter-*；2）第三方命名模式 thirdparty-spring-boot-starter；<br>实现其一：在 resources/META-INF/spring.factories 定义@Configuration 配置类  </p>
-<hr>
-<p>io.spring.initializr 中 springboot 的应用</p>
+<p>配置参数<br><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties" target="_blank" rel="noopener">application-properties 参数列表</a><br>当jar包中存在 @PropertySource,@ConfigurationProperties 时，表明该类属性遵循 配置参数覆盖原则，可在本应用中个性化配置。</p>
+<h2 id="PropertySource-指定的配置文件必须存在"><a href="#PropertySource-指定的配置文件必须存在" class="headerlink" title="@PropertySource 指定的配置文件必须存在"></a>@PropertySource 指定的配置文件必须存在</h2><p>io.spring.initializr 中 springboot 的应用</p>
 <p>自动装配<br>spring.factories 中<br>org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.spring.initializr.web.autoconfigure.InitializrAutoConfiguration<br>InitializrAutoConfiguration 中带有注解 @Configuration 等  </p>
 <p>@Import 与 ImportSelector 联合时的使用<br>context.register(CoreConfiguration.class);<br>@Configuration<br>@Import(ProjectGenerationImportSelector.class)<br>static class CoreConfiguration {}<br>ImportSelector  –&gt;  ProjectGenerationConfiguration.class<br>spring.factories<br>@ProjectGenerationConfiguration  注解的还是 Configuration 配置类，引入bean   </p>
 <p>@Import 还可以与 @Configuration 等联合使用  </p>
@@ -427,8 +426,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -481,6 +489,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PropertySource-指定的配置文件必须存在"><span class="nav-number">1.</span> <span class="nav-text">@PropertySource 指定的配置文件必须存在</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

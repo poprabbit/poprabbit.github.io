@@ -922,13 +922,11 @@ Acceptor： 比较 ProposalID，提交提案
       
         
           
-          springboot目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；  
-核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；  
+          目标：快速将 spring 和第三方框架整合，构建可独立运行的生产级 spring 程序；核心概念：约定优于配置（提供默认的配置）；自动装配（将第三框架的 bean 注入 ioc 容器，包含两个过程，引入依赖，定义@Configuration 配置类让 spring 注入指定的 bean）；  
 starter：启动器，包含很多的依赖项，帮助快速启动应用和运行所必须的依赖；命名规范：1)官方命名模式 spring-boot-starter-*；2）第三方命名模式 thirdparty-spring-boot-starter；实现其一：在 resources/META-INF/spring.factories 定义@Configuration 配置类  
-
-io.spring.initializr 中 springboot 的应用
-自动装配spring.factories 中org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.spring.initializr.web.autoconfigure.InitializrAutoConfigurationInitializrAutoConfiguration 中带有注解 @Configuration 等  
-@Import 与 Imp
+配置参数application-properties 参数列表当jar包中存在 @PropertySource,@ConfigurationProperties 时，表明该类属性遵循 配置参数覆盖原则，可在本应用中个性化配置。
+@PropertySource 指定的配置文件必须存在io.spring.initializr 中 springboot 的应用
+自动装配spring.factories 中org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.sp
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1214,7 +1212,8 @@ io.spring.initializr 中 springboot 的应用
           系统设计实践短链接服务系统开发短链接
 系统分库分表改造的注意事项分表改造注意事项
 分表位确定规则往报-自己的请求：截取 ipid ；来报-别人的请求：流水号的hashcode对100取余；
-系统设计基础知识应用模块化的最佳实践1234567891011121314&lt;modules&gt;  &lt;module&gt;app/core/service&lt;/module&gt;  &lt;module&gt;app/core/model&lt;/module&gt;  &lt;module&gt;app/biz/shared&lt;/module&gt;  &lt;module&gt;app/biz/service-impl&lt;/module&gt;  &lt;module&gt;app/common/util&lt;/module&gt;  &lt;module&gt;app/common/service/facade&lt;/module&gt;  &lt;module&gt;app/common/service/integration&lt;/module&gt;  &lt;module&gt;app/common/dal&lt;/module&gt;  &lt;module&gt;app/web&lt;/module&gt;  &lt;module&gt;app
+系统设计基础知识系统安全对外输出的 web程序 必须要做的安全检测：referer, cors, redirect, fileupload等，可以依赖一些开源的安全包，做个性化配置。
+应用模块化的最佳实践1234567891011121314&lt;modules&gt;  &lt;module&gt;app/core/service&lt;/module&gt;  &lt;module&gt;app/core/model&lt;/module&gt;  &lt;module&gt;app/biz/shared&lt;/module&gt;  &lt;module&gt;app/biz/service-impl&lt;/module&gt;  &lt;module&gt;app/common/util&lt;/module&gt;  &lt;module&gt;app/common/service/facade&lt;/module&gt;  &lt;module&gt;app/common/service/integration&lt;/module&gt;  &lt;module&gt;ap
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1352,44 +1351,11 @@ io.spring.initializr 中 springboot 的应用
       
         
           
-          Java 运算符
-算术运算符：除法 /， 取余 ％  
-关系运算符：==， &gt;=  
-位运算符：A = 0011 1100， B = 0000 1101  
-（A＆B）得到12，即0000 1100
-（A | B）得到61，即 0011 1101
-（A ^ B）得到49，即 0011 0001，异或
-（~A）得到-61，即1100 0011，取反
+          Java 开发p3c 开发手册&amp;idea plugin
+Java 语法方法重写以下示例不能称为 方法重写，虽然满足里氏替换，但是不符合子类的思想。  
+123456789101112class SuperClass &#123;    protected List&lt;Integer&gt; func(Animal animal) throws Throwable &#123;        return new ArrayList&lt;&gt;();    &#125;&#125;class SubClass extends SuperClass &#123;    @Override    public ArrayList&lt;Integer&gt; func(Object animal) throws Exception &#123;        return new ArrayList&lt;&gt;();    &#125;&#125;
 
-
-按位左移，符号位不动，低位补0操作
-
-
-
-
-
-按位右移，符号位不动，高位补0操作
-
-
-
-
-
-
-按位无符号右移，符号位动，高位补0操作
-
-
-
-
-
-
-逻辑运算符：&amp;&amp;， ！  
-赋值运算符：&gt;&gt;= 右移位赋值运算符， |=     按位或赋值操作符  
-条件运算符：（?:）
-
-Java 语法
-方法重写以下示例不能称为 方法重写，虽然满足里氏替换，但是不符合子类的思想。  
-
-123456789101112class SuperClass &#123;    protected List&lt;Integer&gt; func(Animal animal) throws Throwable &#123;        return new ArrayList&lt;&gt;();    &#125;&#125;class SubClass extends SuperClass &#123;    @Over
+泛型TlensuProjectGenerationController extends DefaultProjectGenerationControllerDefaultProjectGenerationController extends ProjectGenerationController这样写在 idea 中不报
           ...
           <!--noindex-->
           <div class="post-button text-center">
