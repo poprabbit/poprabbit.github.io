@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Lifecycle是一个状态机，对组件的由生到死状态的管理LifecycleBase 是使用了状态机+模板模式来实现的   Valve作为一个个基础的阀门，扮演着业务实际执行者的角色Pipeline 作为一个管道，我们可以简单认为是一个Valve的集合，内部会对这个集合进行遍历，调用每个元素的业务逻辑方法invoke()。只能 setBasic()  和  setContainer() Stand">
+<meta name="description" content="实践 springboot下开启tomcat debug(打印接受到的报文)：logging.level.org.apache=debug The HTTP specification does not allow for POST data to be of an unknown length. 文件上传(multipart uploads)时特别注意设置 content-length.  Li">
 <meta name="keywords" content="middleware">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tomcat">
 <meta property="og:url" content="http://poprabbit.github.io/2020/05/06/tomcat/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="Lifecycle是一个状态机，对组件的由生到死状态的管理LifecycleBase 是使用了状态机+模板模式来实现的   Valve作为一个个基础的阀门，扮演着业务实际执行者的角色Pipeline 作为一个管道，我们可以简单认为是一个Valve的集合，内部会对这个集合进行遍历，调用每个元素的业务逻辑方法invoke()。只能 setBasic()  和  setContainer() Stand">
+<meta property="og:description" content="实践 springboot下开启tomcat debug(打印接受到的报文)：logging.level.org.apache=debug The HTTP specification does not allow for POST data to be of an unknown length. 文件上传(multipart uploads)时特别注意设置 content-length.  Li">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-05-13T08:35:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tomcat">
-<meta name="twitter:description" content="Lifecycle是一个状态机，对组件的由生到死状态的管理LifecycleBase 是使用了状态机+模板模式来实现的   Valve作为一个个基础的阀门，扮演着业务实际执行者的角色Pipeline 作为一个管道，我们可以简单认为是一个Valve的集合，内部会对这个集合进行遍历，调用每个元素的业务逻辑方法invoke()。只能 setBasic()  和  setContainer() Stand">
+<meta name="twitter:description" content="实践 springboot下开启tomcat debug(打印接受到的报文)：logging.level.org.apache=debug The HTTP specification does not allow for POST data to be of an unknown length. 文件上传(multipart uploads)时特别注意设置 content-length.  Li">
 
 
 
@@ -322,7 +322,11 @@
       
 
       
-        <h3 id="Lifecycle"><a href="#Lifecycle" class="headerlink" title="Lifecycle"></a>Lifecycle</h3><p>是一个状态机，对组件的由生到死状态的管理<br>LifecycleBase 是使用了状态机+模板模式来实现的  </p>
+        <h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><ul>
+<li>springboot下开启tomcat debug(打印接受到的报文)：logging.level.org.apache=debug</li>
+<li>The HTTP specification does not allow for POST data to be of an unknown length. 文件上传(multipart uploads)时特别注意设置 content-length.</li>
+</ul>
+<h3 id="Lifecycle"><a href="#Lifecycle" class="headerlink" title="Lifecycle"></a>Lifecycle</h3><p>是一个状态机，对组件的由生到死状态的管理<br>LifecycleBase 是使用了状态机+模板模式来实现的  </p>
 <h3 id="Valve"><a href="#Valve" class="headerlink" title="Valve"></a>Valve</h3><p>作为一个个基础的阀门，扮演着业务实际执行者的角色<br>Pipeline 作为一个管道，我们可以简单认为是一个Valve的集合，内部会对这个集合进行遍历，调用每个元素的业务逻辑方法invoke()。只能 setBasic()  和  setContainer()</p>
 <h3 id="StandardEngine-的初始化"><a href="#StandardEngine-的初始化" class="headerlink" title="StandardEngine 的初始化"></a>StandardEngine 的初始化</h3><p>直接子容器是 StardandHost，但是对其 initInternal() 方法的分析，并没有发现对 StardandHost 进行初始化操作，这是因为 StandardEngine 不按照套路出牌，把初始化过程放在 start 阶段。<br>原因：Host、Context、Wrapper 这些容器和具体的 webapp 应用相关联了，初始化过程会更加耗时，因此在 start 阶段用多线程完成初始化以及start生命周期。<br>否则，像顶层的 Server、Service 等组件需要等待 Host、Context、Wrapper 完成初始化才能结束初始化流程，整个初始化过程是具有传递性的。</p>
 <p>start 阶段，会执行 ContainerBase 的 startInternal 方法，它会寻找子容器，并且把子容器包装成 StartChild 任务丢给线程池处理，来异步启动子容器，再得到 Futures，并且会遍历所有的 Future 调用 result.get() 进行阻塞，这个操作是将异步启动转同步，子容器启动完成才会继续运行。  </p>
@@ -339,7 +343,11 @@
 <li>WebApp 类加载器，负责加载具体的某个Web应用程序所使用到的类，而这些被加载的类在Tomcat和其他的Web应用程序都将不可见  </li>
 <li>Jsp 类加载器，每个jsp页面一个类加载器，不同的jsp页面有不同的类加载器，方便实现jsp页面的热插拔</li>
 </ul>
-<p>类加载实现逻辑的方法：<br>Bootstrap.main() –&gt; Bootstrap.init()<br>initClassLoaders() 指定初始化哪些 类加载器 –commonLoader、catalinaLoader、sharedLoader<br>createClassLoader(…) 解析类加载器的路径 repository<br>ClassLoaderFactory.createClassLoader(…) 创建类加载器，最终所有的类加载器都是URLClassLoader 对象<br>WebappLoader 类加载器 StandardContext.startInternal()  </p>
+<p>类加载实现逻辑的方法：<br>Bootstrap.main() –&gt; Bootstrap.init()<br>initClassLoaders() 指定初始化哪些 类加载器 –commonLoader、catalinaLoader、sharedLoader<br>createClassLoader(…) 解析类加载器的路径 repository<br>ClassLoaderFactory.createClassLoader(…) 创建类加载器，最终所有的类加载器都是 URLClassLoader 对象<br>WebappLoader 类加载器 StandardContext.startInternal()<br>问题及答案：</p>
+<ol>
+<li>URLClassLoader 由谁调用？（ConfigFileLoader 是谁加载的，没明显指定 classloader？） 2. 如何确定 某个class在哪个jar 里？</li>
+<li>如果一个类由类加载器A加载，那么这个类的依赖类也优先由类加载器A加载（jvm控制？） 2. URLClassPath 可能能解决；<br>ContextClassLoader 使用案例<br>JDBC: java.sql.DriverManager#getConnection(java.lang.String, java.util.Properties, java.lang.Class&lt;?&gt;)<br>SPI 实现类: java.util.ServiceLoader#load(java.lang.Class<s>)</s></li>
+</ol>
 <h3 id="tomcat-启动过程一"><a href="#tomcat-启动过程一" class="headerlink" title="tomcat 启动过程一"></a>tomcat 启动过程一</h3><ul>
 <li>Bootstrap.load() —&gt; Catalina.load()    </li>
 <li>InputSource、InputStream 对象创建，首先尝试加载conf/server.xml 两次；如果不存在conf/server.xml，则加载server-embed.xml(该xml在catalina.jar中)；  </li>
@@ -433,7 +441,7 @@
 <h4 id="NioEndpoint-SocketProcessor"><a href="#NioEndpoint-SocketProcessor" class="headerlink" title="NioEndpoint.SocketProcessor"></a>NioEndpoint.SocketProcessor</h4><p>state = getHandler().process(socketWrapper, SocketEvent.OPEN_READ);</p>
 <h4 id="AbstractProtocol-ConnectionHandler"><a href="#AbstractProtocol-ConnectionHandler" class="headerlink" title="AbstractProtocol.ConnectionHandler"></a>AbstractProtocol.ConnectionHandler</h4><p>未完，待续。。。</p>
 <hr>
-<p>tomcat 概览分析  by javadoop  </p>
+<p>tomcat 概览分析  by javadoop<br><strong>debug-tomcat工程：引入依赖 org.apache.tomcat:tomcat-catalina:8.5.29:provided 即可</strong></p>
 <ul>
 <li>初始化时 启动了 BlockPoller 线程(bind()方法)  </li>
 <li>启动时   启动了 AsyncTimeout、 工作线程池、 poller 线程组、acceptor 线程组  </li>
@@ -574,7 +582,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -620,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lifecycle"><span class="nav-number">1.</span> <span class="nav-text">Lifecycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Valve"><span class="nav-number">2.</span> <span class="nav-text">Valve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StandardEngine-的初始化"><span class="nav-number">3.</span> <span class="nav-text">StandardEngine 的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat-类加载"><span class="nav-number">4.</span> <span class="nav-text">tomcat 类加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat-启动过程一"><span class="nav-number">5.</span> <span class="nav-text">tomcat 启动过程一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat-启动过程二"><span class="nav-number">6.</span> <span class="nav-text">tomcat 启动过程二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求处理过程（一）"><span class="nav-number">7.</span> <span class="nav-text">HTTP请求处理过程（一）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connector-的结构图"><span class="nav-number">8.</span> <span class="nav-text">Connector 的结构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connector-的初始化及启动"><span class="nav-number">9.</span> <span class="nav-text">Connector 的初始化及启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connector-请求逻辑"><span class="nav-number">10.</span> <span class="nav-text">Connector 请求逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NioEndpoint-Acceptor"><span class="nav-number">10.1.</span> <span class="nav-text">NioEndpoint.Acceptor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NioEndpoint-Poller"><span class="nav-number">10.2.</span> <span class="nav-text">NioEndpoint.Poller</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NioEndpoint-SocketProcessor"><span class="nav-number">10.3.</span> <span class="nav-text">NioEndpoint.SocketProcessor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AbstractProtocol-ConnectionHandler"><span class="nav-number">10.4.</span> <span class="nav-text">AbstractProtocol.ConnectionHandler</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实践"><span class="nav-number">1.</span> <span class="nav-text">实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lifecycle"><span class="nav-number">2.</span> <span class="nav-text">Lifecycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Valve"><span class="nav-number">3.</span> <span class="nav-text">Valve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StandardEngine-的初始化"><span class="nav-number">4.</span> <span class="nav-text">StandardEngine 的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat-类加载"><span class="nav-number">5.</span> <span class="nav-text">tomcat 类加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat-启动过程一"><span class="nav-number">6.</span> <span class="nav-text">tomcat 启动过程一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat-启动过程二"><span class="nav-number">7.</span> <span class="nav-text">tomcat 启动过程二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求处理过程（一）"><span class="nav-number">8.</span> <span class="nav-text">HTTP请求处理过程（一）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connector-的结构图"><span class="nav-number">9.</span> <span class="nav-text">Connector 的结构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connector-的初始化及启动"><span class="nav-number">10.</span> <span class="nav-text">Connector 的初始化及启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connector-请求逻辑"><span class="nav-number">11.</span> <span class="nav-text">Connector 请求逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NioEndpoint-Acceptor"><span class="nav-number">11.1.</span> <span class="nav-text">NioEndpoint.Acceptor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NioEndpoint-Poller"><span class="nav-number">11.2.</span> <span class="nav-text">NioEndpoint.Poller</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NioEndpoint-SocketProcessor"><span class="nav-number">11.3.</span> <span class="nav-text">NioEndpoint.SocketProcessor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AbstractProtocol-ConnectionHandler"><span class="nav-number">11.4.</span> <span class="nav-text">AbstractProtocol.ConnectionHandler</span></a></li></ol></li></ol></div>
             
 
           </div>

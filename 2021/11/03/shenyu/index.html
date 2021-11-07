@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="git,">
+  <meta name="keywords" content="java_frame,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Github 配置SSH1234567ssh-keygen -t rsa -C &quot;xxx@126.com&quot;  ssh-agent -s  eval `ssh-agent -s`  ssh-add  clip &amp;lt; ~/.ssh/id_rsa.pub  ssh -T git@github.com">
-<meta name="keywords" content="git">
+<meta name="description" content="版本：org.apache.shenyu:shenyu:2.4.0 请求转发请求在插件里面的链式调用，转发到下游应用；   服务接入客户端服务的接入（注册中心选择，数据同步的选择）； 服务的注册http注册，zk注册，会不会变动？新增删除下线；http注册ContextRegisterListener                  容器刷新时更新？HttpClientRegisterRepos">
+<meta name="keywords" content="java_frame">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git-gen-ssh">
-<meta property="og:url" content="http://poprabbit.github.io/2019/09/21/git-gen-ssh/index.html">
+<meta property="og:title" content="ShenYu网关">
+<meta property="og:url" content="http://poprabbit.github.io/2021/11/03/shenyu/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="Github 配置SSH1234567ssh-keygen -t rsa -C &quot;xxx@126.com&quot;  ssh-agent -s  eval `ssh-agent -s`  ssh-add  clip &amp;lt; ~/.ssh/id_rsa.pub  ssh -T git@github.com">
+<meta property="og:description" content="版本：org.apache.shenyu:shenyu:2.4.0 请求转发请求在插件里面的链式调用，转发到下游应用；   服务接入客户端服务的接入（注册中心选择，数据同步的选择）； 服务的注册http注册，zk注册，会不会变动？新增删除下线；http注册ContextRegisterListener                  容器刷新时更新？HttpClientRegisterRepos">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-21T10:42:32.000Z">
+<meta property="og:updated_time" content="2021-11-03T14:33:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git-gen-ssh">
-<meta name="twitter:description" content="Github 配置SSH1234567ssh-keygen -t rsa -C &quot;xxx@126.com&quot;  ssh-agent -s  eval `ssh-agent -s`  ssh-add  clip &amp;lt; ~/.ssh/id_rsa.pub  ssh -T git@github.com">
+<meta name="twitter:title" content="ShenYu网关">
+<meta name="twitter:description" content="版本：org.apache.shenyu:shenyu:2.4.0 请求转发请求在插件里面的链式调用，转发到下游应用；   服务接入客户端服务的接入（注册中心选择，数据同步的选择）； 服务的注册http注册，zk注册，会不会变动？新增删除下线；http注册ContextRegisterListener                  容器刷新时更新？HttpClientRegisterRepos">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://poprabbit.github.io/2019/09/21/git-gen-ssh/">
+  <link rel="canonical" href="http://poprabbit.github.io/2021/11/03/shenyu/">
 
 
 
 
 
-  <title>git-gen-ssh | poprabbit</title>
+  <title>ShenYu网关 | poprabbit</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2019/09/21/git-gen-ssh/">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/11/03/shenyu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="popular rabbit">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git-gen-ssh</h1>
+          <h1 class="post-title" itemprop="name headline">ShenYu网关</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-21T18:42:32+08:00">
-                2019-09-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-03T22:33:57+08:00">
+                2021-11-03
               </time>
             
 
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-21T18:42:32+08:00">
-                2019-09-21
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-03T22:33:57+08:00">
+                2021-11-03
               </time>
             
           </span>
@@ -322,8 +322,14 @@
       
 
       
-        <h2 id="Github-配置SSH"><a href="#Github-配置SSH" class="headerlink" title="Github 配置SSH"></a>Github 配置SSH</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"xxx@126.com"</span>  </span><br><span class="line">ssh-agent -s  </span><br><span class="line"><span class="built_in">eval</span> `ssh-agent -s`  </span><br><span class="line">ssh-add  </span><br><span class="line">clip &lt; ~/.ssh/id_rsa.pub  </span><br><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-
+        <p>版本：org.apache.shenyu:shenyu:2.4.0</p>
+<h2 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h2><p>请求在插件里面的链式调用，转发到下游应用；  </p>
+<h2 id="服务接入"><a href="#服务接入" class="headerlink" title="服务接入"></a>服务接入</h2><p>客户端服务的接入（注册中心选择，数据同步的选择）；</p>
+<h3 id="服务的注册"><a href="#服务的注册" class="headerlink" title="服务的注册"></a>服务的注册</h3><p>http注册，zk注册，会不会变动？新增删除下线；<br>http注册<br>ContextRegisterListener                  容器刷新时更新？<br>HttpClientRegisterRepository             具体的注册动作<br>ShenyuClientRegisterEventPublisher        连接刷新到 disruptor 的过程<br>zk注册<br>ZookeeperClientRegisterRepository</p>
+<p>shenyu-examples-http<br>Controller<br>WebSocket        /echo<br>RouterFunction    webflux<br>PaymentTypeService    ??</p>
+<p><strong>结论：</strong>即 shenyu网关 不能动态感知代理的服务，服务下线，熔断时不能正常处理。</p>
+<h3 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h3><p>admin数据同步gateway ；</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="disruptor"><a href="#disruptor" class="headerlink" title="disruptor"></a>disruptor</h3><p>disruptor 在 client 中的作用，解决了什么问题？官网介绍解耦作用？</p>
 
       
     </div>
@@ -341,7 +347,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag"># git</a>
+            <a href="/tags/java-frame/" rel="tag"># java_frame</a>
           
         </div>
       
@@ -354,8 +360,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/20/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2021/09/05/front-end/" rel="next" title="front_end">
+                <i class="fa fa-chevron-left"></i> front_end
               </a>
             
           </div>
@@ -363,10 +369,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/20/multi-thread/" rel="prev" title="multi-thread">
-                multi-thread <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -447,7 +449,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -493,7 +495,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-配置SSH"><span class="nav-number">1.</span> <span class="nav-text">Github 配置SSH</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#请求转发"><span class="nav-number">1.</span> <span class="nav-text">请求转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务接入"><span class="nav-number">2.</span> <span class="nav-text">服务接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务的注册"><span class="nav-number">2.1.</span> <span class="nav-text">服务的注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据同步"><span class="nav-number">2.2.</span> <span class="nav-text">数据同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#disruptor"><span class="nav-number">3.1.</span> <span class="nav-text">disruptor</span></a></li></ol></li></ol></div>
             
 
           </div>

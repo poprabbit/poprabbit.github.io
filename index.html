@@ -243,6 +243,436 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/11/03/shenyu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/11/03/shenyu/" itemprop="url">ShenYu网关</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-03T22:33:57+08:00">
+                2021-11-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-03T22:33:57+08:00">
+                2021-11-03
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          版本：org.apache.shenyu:shenyu:2.4.0
+请求转发请求在插件里面的链式调用，转发到下游应用；  
+服务接入客户端服务的接入（注册中心选择，数据同步的选择）；
+服务的注册http注册，zk注册，会不会变动？新增删除下线；http注册ContextRegisterListener                  容器刷新时更新？HttpClientRegisterRepository             具体的注册动作ShenyuClientRegisterEventPublisher        连接刷新到 disruptor 的过程zk注册ZookeeperClientRegisterRepository
+shenyu-examples-httpControllerWebSocket        /echoRouterFunction    webfluxPaymentTypeService    ??
+结论：即 shenyu网关 不能动态感知代理的服务，服务下线，熔断时不能正常处理。
+数据同步admin数据同步gateway ；
+其他disruptordisruptor 在 client 中的作用，解决了什么问题？官网介绍解耦作用？
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/11/03/shenyu/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/19/系统设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/19/系统设计/" itemprop="url">系统设计</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-19T10:43:35+08:00">
+                2020-05-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-10-19T10:43:35+08:00">
+                2021-10-19
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          系统设计实践短链接服务系统开发短链接
+系统分库分表改造的注意事项分表改造注意事项
+分表位确定规则往报-自己的请求：截取 ipid ；来报-别人的请求：流水号的hashcode对100取余；
+系统设计基础知识系统安全对外输出的 web程序 必须要做的安全检测：referer, cors, redirect, fileupload等，可以依赖一些开源的安全包，做个性化配置。
+应用模块化的最佳实践1234567891011121314&lt;modules&gt;  &lt;module&gt;app/core/service&lt;/module&gt;  &lt;module&gt;app/core/model&lt;/module&gt;  &lt;module&gt;app/biz/shared&lt;/module&gt;  &lt;module&gt;app/biz/service-impl&lt;/module&gt;  &lt;module&gt;app/common/util&lt;/module&gt;  &lt;module&gt;app/common/service/facade&lt;/module&gt;  &lt;module&gt;app/common/service/integration&lt;/module&gt;  &lt;module&gt;ap
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/19/系统设计/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/18/开发基础知识点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/18/开发基础知识点/" itemprop="url">dev_base</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-18T16:07:26+08:00">
+                2020-05-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-10-18T16:07:26+08:00">
+                2021-10-18
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Java 开发p3c 开发手册&amp;idea plugin
+Java 语法方法重写以下示例不能称为 方法重写，虽然满足里氏替换，但是不符合子类的思想。  
+123456789101112class SuperClass &#123;    protected List&lt;Integer&gt; func(Animal animal) throws Throwable &#123;        return new ArrayList&lt;&gt;();    &#125;&#125;class SubClass extends SuperClass &#123;    @Override    public ArrayList&lt;Integer&gt; func(Object animal) throws Exception &#123;        return new ArrayList&lt;&gt;();    &#125;&#125;
+
+泛型TlensuProjectGenerationController extends DefaultProjectGenerationControllerDefaultProjectGenerationController extends ProjectGenerationController这样写在 idea 中不报
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/18/开发基础知识点/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/09/05/front-end/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -351,6 +781,158 @@ AJAX 请求不能发送。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/09/05/front-end/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2019/04/20/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/20/hello-world/" itemprop="url">Hello Hexo</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-20T10:33:02+08:00">
+                2019-04-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-08-25T12:33:02+08:00">
+                2021-08-25
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+眼界站点筑视：建筑赏析  
+Quick Starthexo 中文文档More info: 中文文档
+NexT hexo-themesMore info: 中文文档
+Create a new post1$ hexo new "My New Post"
+
+Run server1$ hexo server
+
+Generate static files1$ hexo generate
+
+Deploy to remote sites1$ hexo deploy
+
+rebuild1$ hexo clean
+
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/20/hello-world/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -701,6 +1283,157 @@ Hash 的不可修改性把区块头的各项特征值，按照顺序连接在一
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/09/spring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/09/spring/" itemprop="url">used spring</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-09T11:35:39+08:00">
+                2020-05-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-04-03T11:35:39+08:00">
+                2021-04-03
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          spring日常问题
+sofa中 context:property-placeholder 不生效，spring 版本为 5.1.14  
+
+BeanDefinition扫描器总结Spring bean注册笔记
+BeanPostProcessor 总结内部的BeanPostProcessor接口总结内部的BeanPostProcessor实现总结
+接触到的扩展点
+BeanFactoryPostProcessor 可以在 bean 正式初始化之前改变其值，该对象会被提前初始化；什么场景下？注意事项？  
+BeanPostProcessor bean 的生命周期中，可用于所有的 bean；如 @PostConstruct 注解。  
+FactoryBean  创建bean时（MethodLocatingFactoryBean）；什么场景下？注意事项？  
+
+iocioc概述
+IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean    
+ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 DefaultListableBeanFactory。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。  
+BeanDefinition  
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/09/spring/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/25/运维/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -982,780 +1715,11 @@ JUL 的具体实现在JDK中；
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/23/books/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/01/23/books/" itemprop="url">books</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-23T22:32:22+08:00">
-                2021-01-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-23T22:32:22+08:00">
-                2021-01-23
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          正在读linux 文件，目录，磁盘， shell （重点）， Linux 账号管理0719：命令传达，使用者与群组文件权限。0725；vim 的额外功能
-凤凰架构0727：什么是凤凰架构，探索起步，网关路由；0730：架构安全性：认证，凭证；0802：负载均衡；0816：远程服务调用；
-打算读
-linux私房菜
-java核心技术卷ⅠⅡ
-单元测试框架
-springcloud微服务实战
-
-互联网资源专精
-CS-notes
-算法面试-视频
-数据结构与算法-js实现
-鸟哥的linux
-Bash脚本教程
-凤凰架构-分布式云计算
-
-杂项（个人博客，java实战）
-开发者手册-ruanyf
-并发编程
-javadoop
-宇宙湾
-java &amp; docker开源书籍
-hutool-java开发常用工具
-guava-工具介绍
-java进阶知识扫盲
-
-文化，记录片已读（专业书籍，理论）
-javascript
-java编程思想
-深入分析javaweb技术内幕
-spring源码深度解析
-java并发编程实战
-深入理解java虚拟机
-深入浅出mysql
-
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/23/books/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/21/docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/01/21/docker/" itemprop="url">docker</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-21T18:42:32+08:00">
-                2021-01-21
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-21T18:42:32+08:00">
-                2021-01-21
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          DockerLinux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。  
-Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。Docker 将应用程序与该程序的依赖，打包在一个文件里面（image 文件）。运行这个文件，就会生成一个虚拟容器。  
-Dockerfile 是一个文本文件，用来配置 image。Docker 根据 该文件生成二进制的 image 文件。RUN命令在 image 文件的构建阶段执行，执行结果都会打包进入 image 文件；CMD命令则是在容器启动后执行。进程运行在 Docker 容器的虚拟环境里面，进程接触到的文件系统和网络接口都是虚拟的，与本机的文件系统和网络接口是隔离的，因此需要定义容器与物理机的端口映射（map）。  
-Docker Compose 可以管理多个 Docker 容器组成一个应用。你需要定义一个 YAML 格式的配置文件docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器。
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/21/docker/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/12/29/网络基础知识/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/29/网络基础知识/" itemprop="url">internet</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-29T09:31:36+08:00">
-                2020-12-29
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-29T09:31:36+08:00">
-                2020-12-29
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          名词
-
-域名、网址、ip地址、MAC地址、socket（主机+端口）
-互联网，子网络，网关
-以太网协议、广播、ARP协议、IP协议、UDP协议、TCP协议、路由协议、DHCP协议、DNS协议、HTTP协议
-上网设置：本机的IP地址、子网掩码、网关的IP地址、DNS的IP地址
-
-互联网的核心是一系列协议，总称为”互联网协议”（Internet Protocol Suite）。它们对电脑如何连接和组网，做出了详尽的规定。理解了这些协议，就理解了互联网的原理。
-
-根域名的知识
-ICANN 负责管理全世界域名系统的运作。它的一项主要工作，就是规定顶级域名（top level domain，简写为 TLD）（-.com、.net等）。
-ICANN 的政策是，每个顶级域名都找一个托管商，该域名的所有事项都由托管商负责。Verisign 是 ICANN 最大的托管商（.com、.net 、.name、.gov）。
-根域名： 理论上，所有域名查询都必须先查询根域名，因为只有根域名才能告诉你，某个顶级域名由哪台服务器管理。事实上也确实如此，ICANN 维护着一张列表，里面记载着顶级域名和对应的托管商。由于 根域名列表 很少变化，大多数《 DNS 服务商》都会提供它的缓存，所以根域名的查询事实上不是那么频繁。
-DNS 根区： 根域名列表 的正式名称是 DNS 根区（DNS root zone），ICA
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/12/29/网络基础知识/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/09/14/coding_words/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/14/coding_words/" itemprop="url">words</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T09:31:36+08:00">
-                2020-09-14
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-09-14T09:31:36+08:00">
-                2020-09-14
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          jdkspring
-registry
-resolver
-obtainFresh(BeanFactory)
-delegate
-mutable
-retrieve
-
-log
-omitted
-eligible
-
-idea
-facets
-artifacts
-
-sql
-DML（data manipulation language）
-DDL（data definition language）
-
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/14/coding_words/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/06/12/datastructure/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/12/datastructure/" itemprop="url">datastructure</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-12T10:13:09+08:00">
-                2020-06-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-06-12T10:13:09+08:00">
-                2020-06-12
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；  
-
-array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素；
-LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链接)组成。方法：prepend(value)；append(value)；delete(value)；find；reverse；
-doubly linkedlist：双向链表：每个节点包含两个字段，称为链接，它们是对节点序列中上一个节点和下一个节点的引用。 方法：与链表结构一样
-queue：队列基本操作有两种:向队列的后端位置添加实体，称为入队；从队列的前端位置移除实体，称为出队。FIFO方法：入队enqueue(value)；出队dequeue()；peek()访问结构中的当前元素（不删除）
-stack：栈基本操作有两种:push, 添加元素到栈的顶端；pop, 移除栈最顶端的元素。LIFO方法：push(value)；pop()；peek()
-HashTable：依赖LinkedList，哈希表(hashtable 或hashmap) 是一种实现 关联数组(associative ar
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/12/datastructure/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1805,7 +1769,7 @@ HashTable：依赖LinkedList，哈希表(hashtable 或hashmap) 是一种实现 �
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
