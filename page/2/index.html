@@ -243,6 +243,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/23/log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/23/log/" itemprop="url">log</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-23T22:33:57+08:00">
+                2021-01-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-23T22:33:57+08:00">
+                2021-01-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          日志框架的兼容性另一篇文档：https://my.oschina.net/pingpangkuangmo/blog/406618 。  
+日志facade:编程的时候，对外提供的jar中应该只能引用日志的facade，目前常见的日志facade包有：  
+
+log4j的日志api，log4j的api与log4j的实现在同一个包中；
+log4j2的日志api；
+JCL(Jakarta Common Log)(commons-logging)，这个也只是一个api；
+slf4j(Simple Log Facade for Java) api；
+
+日志实现系统。这些包建议可以只在运行阶段引入（runtime），要不当别人的系统使用的日志实现与你提供的jar使用的不是同一个日志实现的时候，会有问题，可能造成你jar中的日志打印不出来或者报缺少包。目前常见的日志实现包有：  
+
+log4j的日志实现；
+log4j2的日志实现；
+slf4j 的具体实现是logback；
+JUL 的具体实现在JDK中；
+
+日志接口桥接器(接口转换器)：所谓的桥接器就是一个假的日志实现工具, 目前最流行的日志facade是slf4j,  由于历史原因，一些三方包已经使用了其它的日志facade, 比如，早期Spring, Apache引用的都是commons-logging的facade，那为了兼容这些接口，则就
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/23/log/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/23/books/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1256,14 +1409,14 @@ SqlSession   作为MyBatis工作的主要顶层API，表示和数据库交互的
       
         
           
-          常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；  
-
+          常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是查找、增加、移除；    
+常见结构
 array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素；
 LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链接)组成。方法：prepend(value)；append(value)；delete(value)；find；reverse；
 doubly linkedlist：双向链表：每个节点包含两个字段，称为链接，它们是对节点序列中上一个节点和下一个节点的引用。 方法：与链表结构一样
 queue：队列基本操作有两种:向队列的后端位置添加实体，称为入队；从队列的前端位置移除实体，称为出队。FIFO方法：入队enqueue(value)；出队dequeue()；peek()访问结构中的当前元素（不删除）
 stack：栈基本操作有两种:push, 添加元素到栈的顶端；pop, 移除栈最顶端的元素。LIFO方法：push(value)；pop()；peek()
-HashTable：依赖LinkedList，哈希表(hashtable 或hashmap) 是一种实现 关联数组(associative ar
+HashTable：依赖LinkedList，哈希表(hashtable 或hashmap) 是一种实现 关联数组(associative
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1573,155 +1726,6 @@ explain：获取 MySQL 中 SQL 语句的执行计划，比如语句是否使用�
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/05/08/mysql/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/06/02/分布式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/02/分布式/" itemprop="url">分布式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-02T12:33:40+08:00">
-                2020-06-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-06-02T12:33:40+08:00">
-                2020-06-02
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          分布式锁分布式事务分布式锁和分布式事务区别：
-锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。
-而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。
-
-2PC两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调参与者的行为，并最终决定这些参与者是否要真正执行事务。
-本地消息表（最终一致性）本地消息表与业务数据表处于同一个数据库中，这样就能利用本地事务来保证在对这两个表的操作满足事务特性，并且使用了消息队列来保证最终一致性。（分布式事务操作的另一方执行成功，消息才是真正消费成功）  
-CAP 理论分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 在分布式系统中，分区容忍性必不可少，因为需要总是假设网络是不可靠的。因此，CAP 理论实际上是要在可用性和一致性之间做权衡。
-Paxos 协议本文摘录自 Paxos协议学习小结BasicPaxos 协议
-
-角色：Proposer（提出者） ，Acceptor（批准者） ，Learner（被告知者）；
-Proposer： 统计投票，发起请求；
-Acceptor： 比较 ProposalID，提交提案
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/02/分布式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

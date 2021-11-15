@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；    array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素； LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链">
+<meta name="description" content="常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是查找、增加、移除；     常见结构 array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素； LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话">
 <meta name="keywords" content="base">
 <meta property="og:type" content="article">
 <meta property="og:title" content="datastructure">
 <meta property="og:url" content="http://poprabbit.github.io/2020/06/12/datastructure/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；    array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素； LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链">
+<meta property="og:description" content="常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是查找、增加、移除；     常见结构 array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素； LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-06-12T02:13:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="datastructure">
-<meta name="twitter:description" content="常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；    array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素； LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链">
+<meta name="twitter:description" content="常规数据结构本文总结自 数据结构与算法-js实现数据结构：用来组织数据的结构，方法无非是查找、增加、移除；     常见结构 array：长度固定，使用 index 进行操作方法：push()；pop()-移除索引值最大的元素； LinkedList：增加删除很方便，连接查找不方便在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话">
 
 
 
@@ -322,18 +322,18 @@
       
 
       
-        <h2 id="常规数据结构"><a href="#常规数据结构" class="headerlink" title="常规数据结构"></a>常规数据结构</h2><p>本文总结自 <a href="https://github.com/trekhleb/javascript-algorithms" target="_blank" rel="noopener">数据结构与算法-js实现</a><br>数据结构：用来组织数据的结构，方法无非是连接、查找、增加、移除；  </p>
-<ol>
+        <h2 id="常规数据结构"><a href="#常规数据结构" class="headerlink" title="常规数据结构"></a>常规数据结构</h2><p>本文总结自 <a href="https://github.com/trekhleb/javascript-algorithms" target="_blank" rel="noopener">数据结构与算法-js实现</a><br>数据结构：用来组织数据的结构，方法无非是查找、增加、移除；    </p>
+<h3 id="常见结构"><a href="#常见结构" class="headerlink" title="常见结构"></a>常见结构</h3><ol>
 <li>array：长度固定，使用 index 进行操作<br>方法：push()；pop()-移除索引值最大的元素；</li>
 <li>LinkedList：增加删除很方便，连接查找不方便<br>在计算机科学中, 一个 链表 是数据元素的线性集合。在最简单的形式下，每个节点由数据和到序列中下一个节点的引用(换句话说，链接)组成。<br>方法：prepend(value)；append(value)；delete(value)；find；reverse；</li>
 <li>doubly linkedlist：双向链表：每个节点包含两个字段，称为链接，它们是对节点序列中上一个节点和下一个节点的引用。 方法：与链表结构一样</li>
 <li>queue：队列基本操作有两种:向队列的后端位置添加实体，称为入队；从队列的前端位置移除实体，称为出队。FIFO<br>方法：入队enqueue(value)；出队dequeue()；peek()访问结构中的当前元素（不删除）</li>
 <li>stack：栈基本操作有两种:push, 添加元素到栈的顶端；pop, 移除栈最顶端的元素。LIFO<br>方法：push(value)；pop()；peek()</li>
 <li>HashTable：依赖LinkedList，哈希表(hashtable 或hashmap) 是一种实现 关联数组(associative array) 的抽象数据；该结构可以将 键映射到值。 （mps：实现了数组没有的取值方式）<br>哈希表使用哈希函数/散列函数来计算一个键在数组或桶(buckets)或槽(slots)中对应的索引,可使用该索引找到所需的值。 理想情况下,散列函数将为每个键分配给一个唯一的桶(bucket)索引,但是大多数哈希表设计采用不完美的散列函数,这可能会导致”哈希冲突(<br>hash collisions)”,也就是散列函数为多个键(key)生成了相同的索引,这种碰撞必须 以某种方式进行处理（可以类比柳条，柳叶；）。<br>方法：hash(key)–散列函数；set(key, value)–保存是带有key，做防重复处理； delete(key)<br>；get(key)；has(key)；getKeys()；</li>
-<li>heap：使用数组存储数据，在计算机科学中, 一个 堆(heap) 是一种特殊的基于树的数据结构。分为两种堆，在一个最小堆(min heap) 中, 如果p是c的一个父级节点, 那么p的key(或value)<br>应小于或等于c的对应值。在一个最大堆(max heap) 中,p的key(或value)大于c的对应值；最大最小维护了所有支点间的递增递减关系。<br>方法：add()；remove()；find()；peek()；poll()-返回堆最顶端的元素（会调整整个结构）；swap(<br>indexOne, indexTwo)；heapifyUp(customStartIndex)-从尾巴开始整理树；heapifyDown(customStartIndex = 0)-从顶端开始整理树；index(),has(),element() -基于index操作。</li>
+<li>heap：（直接使用数组存储数据）在计算机科学中, 一个 堆(heap) 是一种特殊的基于树的数据结构。分为两种堆，在一个最小堆(min heap) 中, 如果p是c的一个父级节点, 那么p的key(或value)<br>应小于或等于c的对应值；在一个最大堆(max heap) 中,p的key(或value)大于c的对应值（都不关心同层级的左右节点间的大小关系）。最大最小维护了所有支点到根节点链路上的递增递减关系。<br>方法：add()；remove()；find()；peek()；poll()-返回堆最顶端的元素（会调整整个结构）；swap(<br>indexOne, indexTwo)；heapifyUp(customStartIndex)-从尾巴开始整理树；heapifyDown(customStartIndex = 0)-从顶端开始整理树；index(),has(),element() -基于index操作。</li>
 <li>priority queue：优先队列通常用堆来实现，每个元素都有与之关联的优先级。<br>二叉树：每个节点分左右子节点的树。二叉树常被用于实现二叉查找树和二叉堆。</li>
 <li>BinaryTreeNode：二叉树，分治思想，递归，双向链表。<ul>
-<li>BinarySearchTree：二叉查找树（BST），并且每个节点的值都大于等于其左子树中的所有节点的值而小于等于右子树的所有节点的值（sorted binary trees）。 BST有一个重要性质，就是它的中序遍历结果递增排序。remove()方法是关键。</li>
+<li>BinarySearchTree：二叉查找树（BST），并且每个节点的值都大于等于其左子树中的所有节点的值而小于等于右子树的所有节点的值（sorted binary trees）。 BST有一个重要性质，就是它的中序遍历结果递增排序。remove()方法是关键。（根据任意两个节点的高度（索引）可以判断大小关系？这里使用的链表结构）</li>
 <li>AvlTree：继承自 BST，self-balancing binary search tree。balance()方法与balanceFactor属性（最终看子节点层级）。</li>
 <li>RedBlackTree：继承自 BST，self-balancing binary search tree。一些约束，节点，根节点，叶子，子节点的颜色，节点的黑色深度。平衡的实现没去理解。</li>
 </ul>
@@ -659,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常规数据结构"><span class="nav-number">1.</span> <span class="nav-text">常规数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-O-Notation"><span class="nav-number">1.1.</span> <span class="nav-text">Big O Notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Structure-Operations-Complexity"><span class="nav-number">1.2.</span> <span class="nav-text">Data Structure Operations Complexity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法分析指标"><span class="nav-number">1.3.</span> <span class="nav-text">算法分析指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-容器实战"><span class="nav-number">2.</span> <span class="nav-text">java 容器实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-容器实战"><span class="nav-number">3.</span> <span class="nav-text">spring 容器实战</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常规数据结构"><span class="nav-number">1.</span> <span class="nav-text">常规数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见结构"><span class="nav-number">1.1.</span> <span class="nav-text">常见结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-O-Notation"><span class="nav-number">1.2.</span> <span class="nav-text">Big O Notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Structure-Operations-Complexity"><span class="nav-number">1.3.</span> <span class="nav-text">Data Structure Operations Complexity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法分析指标"><span class="nav-number">1.4.</span> <span class="nav-text">算法分析指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-容器实战"><span class="nav-number">2.</span> <span class="nav-text">java 容器实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-容器实战"><span class="nav-number">3.</span> <span class="nav-text">spring 容器实战</span></a></li></ol></div>
             
 
           </div>
