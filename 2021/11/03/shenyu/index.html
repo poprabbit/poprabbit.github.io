@@ -328,7 +328,7 @@
 <h3 id="服务的注册"><a href="#服务的注册" class="headerlink" title="服务的注册"></a>服务的注册</h3><p>http注册，zk注册，会不会变动？新增删除下线；<br>http注册<br>ContextRegisterListener                  容器刷新时更新？<br>HttpClientRegisterRepository             具体的注册动作<br>ShenyuClientRegisterEventPublisher        连接刷新到 disruptor 的过程<br>zk注册<br>ZookeeperClientRegisterRepository</p>
 <p>shenyu-examples-http<br>Controller<br>WebSocket        /echo<br>RouterFunction    webflux<br>PaymentTypeService    ??</p>
 <p><strong>结论：</strong>即 shenyu网关 不能动态感知代理的服务，服务下线，熔断时不能正常处理。</p>
-<h3 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h3><p>admin数据同步gateway ；</p>
+<h3 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h3><p>admin数据同步gateway ；<br>如下图所示，shenyu-admin 在用户发生配置变更之后，会通过 EventPublisher 发出配置变更通知，由 EventDispatcher 处理该变更通知，<br>然后根据配置的同步策略(http、weboscket、zookeeper、naocs、etcd、consul)，将配置发送给对应的事件处理器。<br>如果是 websocket 同步策略，则将变更后的数据主动推送给 shenyu-web，并且在网关层，会有对应的 WebsocketDataHandler 处理器来处理 shenyu-admin 的数据推送。<br>Apache ShenYu使用java-websocket 这个第三方库来进行websocket连接。 如果您想深入了解代码实现，请参考源码 WebsocketSyncDataService。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="disruptor"><a href="#disruptor" class="headerlink" title="disruptor"></a>disruptor</h3><p>disruptor 在 client 中的作用，解决了什么问题？官网介绍解耦作用？</p>
 
       
@@ -369,6 +369,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/11/06/nio/" rel="prev" title="nio_framework">
+                nio_framework <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -449,7 +453,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

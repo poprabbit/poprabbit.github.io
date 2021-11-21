@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="practice,">
+  <meta name="keywords" content="io,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="分布式锁分布式事务分布式锁和分布式事务区别： 锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。 而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。  2PC两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调">
-<meta name="keywords" content="practice">
+<meta name="description" content="Reactor模式彻底搞懂Reactor模型和Proactor模型 Java NIO 中三大组件 Buffer、Channel、Selector：Buffer和数组差不多，它有 position、limit、capacity 几个重要属性。put() 一下数据、flip() 切换到读模式、然后用 get() 获取数据、clear() 一下清空数据、重新回到 put() 写入数据。   Channe">
+<meta name="keywords" content="io">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式">
-<meta property="og:url" content="http://poprabbit.github.io/2020/06/02/分布式/index.html">
+<meta property="og:title" content="nio_framework">
+<meta property="og:url" content="http://poprabbit.github.io/2021/11/06/nio/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="分布式锁分布式事务分布式锁和分布式事务区别： 锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。 而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。  2PC两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调">
+<meta property="og:description" content="Reactor模式彻底搞懂Reactor模型和Proactor模型 Java NIO 中三大组件 Buffer、Channel、Selector：Buffer和数组差不多，它有 position、limit、capacity 几个重要属性。put() 一下数据、flip() 切换到读模式、然后用 get() 获取数据、clear() 一下清空数据、重新回到 put() 写入数据。   Channe">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-02T04:33:40.000Z">
+<meta property="og:updated_time" content="2021-11-20T03:31:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分布式">
-<meta name="twitter:description" content="分布式锁分布式事务分布式锁和分布式事务区别： 锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。 而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。  2PC两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调">
+<meta name="twitter:title" content="nio_framework">
+<meta name="twitter:description" content="Reactor模式彻底搞懂Reactor模型和Proactor模型 Java NIO 中三大组件 Buffer、Channel、Selector：Buffer和数组差不多，它有 position、limit、capacity 几个重要属性。put() 一下数据、flip() 切换到读模式、然后用 get() 获取数据、clear() 一下清空数据、重新回到 put() 写入数据。   Channe">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://poprabbit.github.io/2020/06/02/分布式/">
+  <link rel="canonical" href="http://poprabbit.github.io/2021/11/06/nio/">
 
 
 
 
 
-  <title>分布式 | poprabbit</title>
+  <title>nio_framework | poprabbit</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/06/02/分布式/">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/11/06/nio/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="popular rabbit">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">分布式</h1>
+          <h1 class="post-title" itemprop="name headline">nio_framework</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-02T12:33:40+08:00">
-                2020-06-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-06T21:31:50+08:00">
+                2021-11-06
               </time>
             
 
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-06-02T12:33:40+08:00">
-                2020-06-02
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-20T11:31:50+08:00">
+                2021-11-20
               </time>
             
           </span>
@@ -322,28 +322,27 @@
       
 
       
-        <h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><h3 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h3><h4 id="分布式锁和分布式事务区别："><a href="#分布式锁和分布式事务区别：" class="headerlink" title="分布式锁和分布式事务区别："></a>分布式锁和分布式事务区别：</h4><ul>
-<li>锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。</li>
-<li>而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。</li>
-</ul>
-<h4 id="2PC"><a href="#2PC" class="headerlink" title="2PC"></a>2PC</h4><p>两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调参与者的行为，并最终决定这些参与者是否要真正执行事务。</p>
-<h4 id="本地消息表（最终一致性）"><a href="#本地消息表（最终一致性）" class="headerlink" title="本地消息表（最终一致性）"></a>本地消息表（最终一致性）</h4><p>本地消息表与业务数据表处于同一个数据库中，这样就能利用本地事务来保证在对这两个表的操作满足事务特性，并且使用了消息队列来保证最终一致性。（分布式事务操作的另一方执行成功，消息才是真正消费成功）  </p>
-<h3 id="CAP-理论"><a href="#CAP-理论" class="headerlink" title="CAP 理论"></a>CAP 理论</h3><p>分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 在分布式系统中，分区容忍性必不可少，因为需要总是假设网络是不可靠的。因此，CAP 理论实际上是要在可用性和一致性之间做权衡。</p>
-<h3 id="Paxos-协议"><a href="#Paxos-协议" class="headerlink" title="Paxos 协议"></a>Paxos 协议</h3><p>本文摘录自 <a href="http://baozh.github.io/2016-03/paxos-learning/" target="_blank" rel="noopener">Paxos协议学习小结</a><br>BasicPaxos 协议</p>
+        <p><a href="http://www.jasongj.com/java/nio_reactor/" target="_blank" rel="noopener">Reactor模式</a><br><a href="https://cloud.tencent.com/developer/article/1488120" target="_blank" rel="noopener">彻底搞懂Reactor模型和Proactor模型</a></p>
+<h3 id="Java-NIO-中三大组件-Buffer、Channel、Selector："><a href="#Java-NIO-中三大组件-Buffer、Channel、Selector：" class="headerlink" title="Java NIO 中三大组件 Buffer、Channel、Selector："></a>Java NIO 中三大组件 Buffer、Channel、Selector：</h3><h4 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h4><p>和数组差不多，它有 position、limit、capacity 几个重要属性。put() 一下数据、flip() 切换到读模式、然后用 get() 获取数据、clear() 一下清空数据、重新回到 put() 写入数据。  </p>
+<h4 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h4><p>基本上只和 Buffer 打交道，最重要的接口就是 channel.read(buffer) 和 channel.write(buffer)。    </p>
+<p>ServerSocketChannel 不和 Buffer 打交道了，因为它并不实际处理数据，它一旦接收到请求后，实例化 SocketChannel，之后在这个连接通道上的数据传递它就不管了，因为它需要继续监听端口，等待下一个连接。</p>
+<h4 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h4><p><del>建立在非阻塞的基础之上</del>，大家经常听到的 多路复用 在 Java 世界中指的就是它。<br><del>非阻塞 IO 的核心</del>在于使用一个 Selector 来管理多个通道，可以是 SocketChannel，也可以是 ServerSocketChannel，将各个通道注册到 Selector 上，指定监听的事件。  </p>
+<p>SelectionKey 它包含了 Channel 和 Selector 信息，也包括了一个叫做 Interest Set 的信息，即我们设置的我们感兴趣的正在监听的事件集合。<br>select() 调用此方法，会将上次 select 之后的准备好的 channel 对应的 SelectionKey 复制到 selected set 中。如果没有任何通道准备好，这个方法会阻塞，直到至少有一个通道准备好。  </p>
+<h3 id="AsynchronousChannelGroup"><a href="#AsynchronousChannelGroup" class="headerlink" title="AsynchronousChannelGroup"></a>AsynchronousChannelGroup</h3><p>异步 IO 一定存在一个线程池，这个线程池负责接收任务、处理 IO 事件、回调等。这个线程池就在 group 内部，group 一旦关闭，那么相应的线程池就会关闭。  </p>
+<h3 id="netty"><a href="#netty" class="headerlink" title="netty"></a>netty</h3><p>使用 Netty 的时候，我们通常就只要写一些自定义的 handler 就可以了。<br>每个 Channel 内部都有一个 pipeline，pipeline 由多个 handler 组成，handler 之间的顺序是很重要的，因为 IO 事件将按照顺序顺次经过 pipeline 上的 handler，这样每个 handler 可以专注于做一点点小事，由多个 handler 组合来完成一些复杂的逻辑。<br>在 Netty 中，IO 事件被分为 Inbound 事件和 Outbound 事件。<br>对于 Inbound 操作，按照添加顺序执行每个 Inbound 类型的 handler；而对于 Outbound 操作，是反着来的，从后往前，顺次执行 Outbound 类型的 handler。<br>pipeline 中的辅助类 ChannelInitializer，我们看到，它本身是一个 handler（Inbound 类型），但是它的作用和普通 handler 有点不一样，它纯碎是用来辅助将其他的 handler 加入到 pipeline 中的。  </p>
+<p>在 Netty 中，NioEventLoopGroup 代表线程池，NioEventLoop 就是其中的线程。<br>线程池 NioEventLoopGroup 是池中的线程 NioEventLoop 的 parent，从上面的代码中的取名可以看出。<br>每个 NioEventLoop 都有自己的 Selector，上面的代码也反应了这一点，这和 Tomcat 中的 NIO 模型有点区别。<br>executor、selectStrategy 和 rejectedExecutionHandler 从 NioEventLoopGroup 中一路传到了 NioEventLoop 中。  </p>
+<p>简单追踪下充当客户端的 Bootstrap 中 NioSocketChannel 的创建过程<br>Bootstrap.connect() –&gt; doResolveAndConnect() –&gt; initAndRegister()  </p>
 <ul>
-<li>角色：Proposer（提出者） ，Acceptor（批准者） ，Learner（被告知者）；<ul>
-<li>Proposer： 统计投票，发起请求；</li>
-<li>Acceptor： 比较 ProposalID，提交提案；</li>
+<li>channel = channelFactory.newChannel()  //Channel 的实例化，实例化过程中，会执行 Channel 内部 Unsafe 和 Pipeline 的实例化  </li>
+<li>init(channel) 方法  //会往 pipeline 中添加 handler（pipeline 此时是 head+channelnitializer+tail）  </li>
+<li>config().group().register(channel)  //开启 NioEventLoop，将 register 操作，提交到 eventLoop   </li>
+<li>register0(promise) 非常关键的方法  –doRegister()  //进行 JDK 底层的操作：Channel 注册到 Selector 上  <ul>
+<li>pipeline.invokeHandlerAddedIfNeeded()  //将 ChannelInitializer 内部添加的 handlers 添加到 pipeline 中  </li>
+<li>pipeline.fireChannelRegistered()  //往 pipeline 中扔了一个 channelRegistered 事件</li>
 </ul>
 </li>
-<li>提案：提案ID为 ProposalID（全局唯一且递增的 ProposalID），提案内容为 value；</li>
-<li>请求：Prepare请求（不携带value），Accept请求；</li>
+<li>doResolveAndConnect0()  //这一步将连接到服务端</li>
 </ul>
-<p>先熟记算法过程，再反思核心思想为什么要这么设计；</p>
-<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>第一阶段 Prepare<br>第二阶段 Accept</p>
-<h4 id="算法的核心思想"><a href="#算法的核心思想" class="headerlink" title="算法的核心思想"></a>算法的核心思想</h4><p>协议的几个约束： 常见的疑问、及异常处理：</p>
-<h4 id="Paxos-协议推导过程"><a href="#Paxos-协议推导过程" class="headerlink" title="Paxos 协议推导过程"></a>Paxos 协议推导过程</h4><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDg2NjIyMA==&mid=203607654&idx=1&sn=bfe71374fbca7ec5adf31bd3500ab95a&key=8ea74966bf01cfb6684dc066454e04bb5194d780db67f87b55480b52800238c2dfae323218ee8645f0c094e607ea7e6f&ascene=1&uin=MjA1MDk3Njk1&devicetype=webwx&version=70000001&pass_ticket=2ivcW%2FcENyzkz%2FGjIaPDdMzzf%2Bberd36%2FR3FYecikmo%3D" target="_blank" rel="noopener">一步一步理解Paxos算法</a></p>
-<h4 id="其他文章"><a href="#其他文章" class="headerlink" title="其他文章"></a>其他文章</h4><p><a href="http://www.cyc2018.xyz/%E5%85%B6%E5%AE%83/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F.html#%E4%BA%94%E3%80%81paxos" target="_blank" rel="noopener">CS-Notes#Paxos</a></p>
 
       
     </div>
@@ -361,7 +360,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/practice/" rel="tag"># practice</a>
+            <a href="/tags/io/" rel="tag"># io</a>
           
         </div>
       
@@ -374,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/20/springcloud/" rel="next" title="used springcloud">
-                <i class="fa fa-chevron-left"></i> used springcloud
+              <a href="/2021/11/03/shenyu/" rel="next" title="ShenYu网关">
+                <i class="fa fa-chevron-left"></i> ShenYu网关
               </a>
             
           </div>
@@ -383,10 +382,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/05/mybatis/" rel="prev" title="mybatis">
-                mybatis <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -513,7 +508,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁"><span class="nav-number">1.</span> <span class="nav-text">分布式锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式事务"><span class="nav-number">2.</span> <span class="nav-text">分布式事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式锁和分布式事务区别："><span class="nav-number">2.1.</span> <span class="nav-text">分布式锁和分布式事务区别：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2PC"><span class="nav-number">2.2.</span> <span class="nav-text">2PC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地消息表（最终一致性）"><span class="nav-number">2.3.</span> <span class="nav-text">本地消息表（最终一致性）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAP-理论"><span class="nav-number">3.</span> <span class="nav-text">CAP 理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paxos-协议"><span class="nav-number">4.</span> <span class="nav-text">Paxos 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#过程"><span class="nav-number">4.1.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法的核心思想"><span class="nav-number">4.2.</span> <span class="nav-text">算法的核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Paxos-协议推导过程"><span class="nav-number">4.3.</span> <span class="nav-text">Paxos 协议推导过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他文章"><span class="nav-number">4.4.</span> <span class="nav-text">其他文章</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-NIO-中三大组件-Buffer、Channel、Selector："><span class="nav-number">1.</span> <span class="nav-text">Java NIO 中三大组件 Buffer、Channel、Selector：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Buffer"><span class="nav-number">1.1.</span> <span class="nav-text">Buffer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Channel"><span class="nav-number">1.2.</span> <span class="nav-text">Channel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selector"><span class="nav-number">1.3.</span> <span class="nav-text">Selector</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AsynchronousChannelGroup"><span class="nav-number">2.</span> <span class="nav-text">AsynchronousChannelGroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netty"><span class="nav-number">3.</span> <span class="nav-text">netty</span></a></li></ol></div>
             
 
           </div>
