@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="poprabbit">
 <meta property="og:description" content="运行时数据区域 程序计数器记录正在执行的虚拟机字节码指令的地址（如果正在执行的是本地方法则为空）。    Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息。从方法调用直至执行完成的过程，对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。可以通过 -Xss 这个虚拟机参数来指定每个线程的 Java 虚拟机栈内存大小，在 JDK 1.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-03T23:35:30.000Z">
+<meta property="og:updated_time" content="2021-11-23T23:35:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM 自动内存管理机制">
 <meta name="twitter:description" content="运行时数据区域 程序计数器记录正在执行的虚拟机字节码指令的地址（如果正在执行的是本地方法则为空）。    Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息。从方法调用直至执行完成的过程，对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。可以通过 -Xss 这个虚拟机参数来指定每个线程的 Java 虚拟机栈内存大小，在 JDK 1.">
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-04T07:35:30+08:00">
-                2020-05-04
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-24T07:35:30+08:00">
+                2021-11-24
               </time>
             
           </span>
@@ -375,7 +375,7 @@
 </li>
 <li><p>标记 - 整理<br>让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存。<br>优点: 不会产生内存碎片<br>不足: 需要移动大量对象，处理效率比较低。  </p>
 </li>
-<li><p>复制<br>将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。<br>主要不足是只使用了内存的一半。<br>现在的商业虚拟机都采用这种收集算法回收新生代，但是并不是划分为大小相等的两块，而是一块较大的 Eden 空间和两块较小的 Survivor 空间，每次使用 Eden 和其中一块 Survivor。在回收时，将 Eden 和 Survivor 中还存活着的对象全部复制到另一块 Survivor 上，最后清理 Eden 和使用过的那一块 Survivor。<br>HotSpot 虚拟机的 Eden 和 Survivor 大小比例默认为 8:1，保证了内存的利用率达到 90%。如果每次回收有多于 10% 的对象存活，那么一块 Survivor 就不够用了，此时需要依赖于老年代进行空间分配担保，也就是借用老年代的空间存储放不下的对象。  </p>
+<li><p>复制<br>将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。<br>主要不足是只使用了内存的一半。<br>现在的商业虚拟机都采用这种收集算法回收新生代，但是并不是划分为大小相等的两块，而是一块较大的 Eden 空间和两块较小的 Survivor 空间，每次使用 Eden 和其中一块 Survivor（？还是只使用 Eden）。在回收时，将 Eden 和 Survivor 中还存活着的对象全部复制到另一块 Survivor 上，最后清理 Eden 和使用过的那一块 Survivor。<br>HotSpot 虚拟机的 Eden 和 Survivor 大小比例默认为 8:1，保证了内存的利用率达到 90%。如果每次回收有多于 10% 的对象存活，那么一块 Survivor 就不够用了，此时需要依赖于老年代进行空间分配担保，也就是借用老年代的空间存储放不下的对象。  </p>
 </li>
 <li><p>分代收集<br>现在的商业虚拟机采用分代收集算法，它根据对象存活周期将内存划分为几块，不同块采用适当的收集算法。<br>一般将堆分为新生代和老年代。<br>新生代使用：复制算法<br>老年代使用：标记 - 清除 或者 标记 - 整理 算法  </p>
 </li>
@@ -421,6 +421,7 @@
 </ol>
 <h3 id="内存分配与回收策略"><a href="#内存分配与回收策略" class="headerlink" title="内存分配与回收策略"></a>内存分配与回收策略</h3><h4 id="Minor-GC-和-Full-GC"><a href="#Minor-GC-和-Full-GC" class="headerlink" title="Minor GC 和 Full GC"></a>Minor GC 和 Full GC</h4><ul>
 <li>Minor GC：回收新生代，因为新生代对象存活时间很短，因此 Minor GC 会频繁执行，执行的速度一般也会比较快。</li>
+<li>Major GC: 老年代的垃圾回收。</li>
 <li>Full GC：回收老年代和新生代，老年代对象其存活时间长，因此 Full GC 很少执行，执行速度会比 Minor GC 慢很多。</li>
 </ul>
 <h4 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h4><ol>
@@ -445,7 +446,14 @@
 <li>Concurrent Mode Failure</li>
 </ol>
 <hr>
-<h3 id="meituan-jvm"><a href="#meituan-jvm" class="headerlink" title="meituan-jvm"></a>meituan-jvm</h3><p><a href="https://tech.meituan.com/2017/12/29/jvm-optimize.html" target="_blank" rel="noopener">从实际案例聊聊Java应用的GC优化</a><br><a href="https://tech.meituan.com/2019/01/03/spring-boot-native-memory-leak.html" target="_blank" rel="noopener">Spring Boot引起的“堆外内存泄漏”排查及经验总结</a></p>
+<h3 id="meituan-从实际案例看GC优化"><a href="#meituan-从实际案例看GC优化" class="headerlink" title="meituan-从实际案例看GC优化"></a>meituan-从实际案例看GC优化</h3><p>原文链接：<a href="https://tech.meituan.com/2017/12/29/jvm-optimize.html" target="_blank" rel="noopener">从实际案例聊聊Java应用的GC优化</a></p>
+<h4 id="活跃数据"><a href="#活跃数据" class="headerlink" title="活跃数据"></a>活跃数据</h4><p><strong>活跃数据的大小</strong>是指，应用程序稳定运行时长期存活对象在堆中占用的空间大小，也就是Full GC后堆中老年代占用空间的大小。<br>活跃数据和各分区之间的比例关系如下图。这部分设置仅仅是堆大小的初始值，后面的优化中，可能会调整这些值，具体情况取决于应用程序的特性和需求。</p>
+<h4 id="确定系统需求"><a href="#确定系统需求" class="headerlink" title="确定系统需求"></a>确定系统需求</h4><p>一般应用程序主要关注高可用和低延迟两项指标，需要量化GC时间和频率对于响应时间和可用性的影响。<br>举例：假设单位时间T内发生一次持续25ms的GC，接口平均响应时间为50ms，且请求均匀到达。<br>那么有(50ms+25ms)/T比例的请求会受GC影响，其中GC前的50ms内到达的请求都会增加25ms，GC期间的25ms内到达的请求，会增加0-25ms不等，如果时间T内发生N次GC，<strong>受GC影响请求占比=(接口响应时间+GC时间)×N/T</strong> 。</p>
+<h4 id="案例一-Major-GC和Minor-GC频繁"><a href="#案例一-Major-GC和Minor-GC频繁" class="headerlink" title="案例一 Major GC和Minor GC频繁"></a>案例一 Major GC和Minor GC频繁</h4><p>首先Minor GC频繁通常是新生代太小导致的。扩容Eden区虽然可以减少Minor GC的次数，但会增加单次Minor GC时间么？<br>对于虚拟机来说，复制对象的成本要远高于扫描成本，所以，单次Minor GC时间更多取决于GC后存活对象的数量，而非Eden区的大小。<br>小结（需要结合GC日志分析服务中对象的生命周期分布）<br>如何选择各分区大小应该依赖应用程序中对象生命周期的分布情况：如果应用存在大量的短期对象，应该选择较大的年轻代；如果存在相对较多的持久对象，老年代应该适当增大。</p>
+<h4 id="案例二-请求高峰期发生GC，导致服务可用性下降"><a href="#案例二-请求高峰期发生GC，导致服务可用性下降" class="headerlink" title="案例二 请求高峰期发生GC，导致服务可用性下降"></a>案例二 请求高峰期发生GC，导致服务可用性下降</h4><p>GC日志显示，高峰期CMS在重标记（Remark）阶段耗时1.39s。<br>Remark 阶段是以新生代中对象为根来判断对象是否存活的。<strong>新生代GC和老年代的GC是各自分开独立进行的。</strong><br>在Minor GC发生前，新生代灰色对象不会被标记为不可达，CMS也无法辨认哪些对象存活，只能全堆扫描（新生代+老年代）。由此可见堆中对象的数目影响了Remark阶段耗时。<br>CMS 在 Remark 前增加了一个可中断的并发预清理（CMS-concurrent-abortable-preclean），该阶段主要工作仍然是并发标记对象是否存活，只是这个过程可被中断。<br>提供CMSScavengeBeforeRemark参数，用来保证Remark前强制进行一次Minor GC。  </p>
+<h4 id="案例三-发生Stop-The-World的GC"><a href="#案例三-发生Stop-The-World的GC" class="headerlink" title="案例三 发生Stop-The-World的GC"></a>案例三 发生Stop-The-World的GC</h4><p>小结<br>对于性能要求很高的服务，建议将MaxPermSize和MinPermSize设置成一致，Xms和Xmx也设置为相同，这样可以减少内存自动扩容和收缩带来的性能损失。  </p>
+<h3 id="9种常见的-CMS-GC-问题分析与解决"><a href="#9种常见的-CMS-GC-问题分析与解决" class="headerlink" title="9种常见的 CMS GC 问题分析与解决"></a>9种常见的 CMS GC 问题分析与解决</h3><p>原文链接：<a href="https://tech.meituan.com/2020/11/12/java-9-cms-gc.html" target="_blank" rel="noopener">9种常见的 CMS GC 问题分析与解决</a></p>
+<h3 id="meituan-sb-堆外内存泄漏排查"><a href="#meituan-sb-堆外内存泄漏排查" class="headerlink" title="meituan-sb 堆外内存泄漏排查"></a>meituan-sb 堆外内存泄漏排查</h3><p>原文链接：<a href="https://tech.meituan.com/2019/01/03/spring-boot-native-memory-leak.html" target="_blank" rel="noopener">Spring Boot引起的“堆外内存泄漏”排查及经验总结</a></p>
 
       
     </div>
@@ -615,7 +623,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.</span> <span class="nav-text">运行时数据区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断一个对象是否可被回收"><span class="nav-number">2.1.</span> <span class="nav-text">判断一个对象是否可被回收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.2.</span> <span class="nav-text">垃圾收集算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">2.3.</span> <span class="nav-text">垃圾收集器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分配与回收策略"><span class="nav-number">3.</span> <span class="nav-text">内存分配与回收策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Minor-GC-和-Full-GC"><span class="nav-number">3.1.</span> <span class="nav-text">Minor GC 和 Full GC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存分配策略"><span class="nav-number">3.2.</span> <span class="nav-text">内存分配策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Full-GC-的触发条件"><span class="nav-number">3.3.</span> <span class="nav-text">Full GC 的触发条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meituan-jvm"><span class="nav-number">4.</span> <span class="nav-text">meituan-jvm</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.</span> <span class="nav-text">运行时数据区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断一个对象是否可被回收"><span class="nav-number">2.1.</span> <span class="nav-text">判断一个对象是否可被回收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.2.</span> <span class="nav-text">垃圾收集算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">2.3.</span> <span class="nav-text">垃圾收集器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分配与回收策略"><span class="nav-number">3.</span> <span class="nav-text">内存分配与回收策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Minor-GC-和-Full-GC"><span class="nav-number">3.1.</span> <span class="nav-text">Minor GC 和 Full GC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存分配策略"><span class="nav-number">3.2.</span> <span class="nav-text">内存分配策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Full-GC-的触发条件"><span class="nav-number">3.3.</span> <span class="nav-text">Full GC 的触发条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meituan-从实际案例看GC优化"><span class="nav-number">4.</span> <span class="nav-text">meituan-从实际案例看GC优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#活跃数据"><span class="nav-number">4.1.</span> <span class="nav-text">活跃数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#确定系统需求"><span class="nav-number">4.2.</span> <span class="nav-text">确定系统需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例一-Major-GC和Minor-GC频繁"><span class="nav-number">4.3.</span> <span class="nav-text">案例一 Major GC和Minor GC频繁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例二-请求高峰期发生GC，导致服务可用性下降"><span class="nav-number">4.4.</span> <span class="nav-text">案例二 请求高峰期发生GC，导致服务可用性下降</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例三-发生Stop-The-World的GC"><span class="nav-number">4.5.</span> <span class="nav-text">案例三 发生Stop-The-World的GC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9种常见的-CMS-GC-问题分析与解决"><span class="nav-number">5.</span> <span class="nav-text">9种常见的 CMS GC 问题分析与解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meituan-sb-堆外内存泄漏排查"><span class="nav-number">6.</span> <span class="nav-text">meituan-sb 堆外内存泄漏排查</span></a></li></ol></div>
             
 
           </div>

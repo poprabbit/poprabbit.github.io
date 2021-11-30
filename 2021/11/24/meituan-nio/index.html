@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Netty堆外内存泄露排查盛宴磁盘I/O那些事Java NIO浅析">
+<meta name="description" content="Netty堆外内存泄露排查盛宴磁盘I/O那些事 NIO浅析原文链接：Java NIO浅析NIO（Non-blocking I/O），是一种同步非阻塞的I/O模型，也是I/O多路复用的基础。传统 BIO 为每个连接创建一个线程，但线程是很”贵”的资源，主要表现在：   线程的创建和销毁成本很高，在Linux这样的操作系统中，线程本质上就是一个进程。创建和销毁都是重量级的系统函数。  线程本身占用较大">
 <meta name="keywords" content="io">
 <meta property="og:type" content="article">
 <meta property="og:title" content="meituan_nio">
 <meta property="og:url" content="http://poprabbit.github.io/2021/11/24/meituan-nio/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="Netty堆外内存泄露排查盛宴磁盘I/O那些事Java NIO浅析">
+<meta property="og:description" content="Netty堆外内存泄露排查盛宴磁盘I/O那些事 NIO浅析原文链接：Java NIO浅析NIO（Non-blocking I/O），是一种同步非阻塞的I/O模型，也是I/O多路复用的基础。传统 BIO 为每个连接创建一个线程，但线程是很”贵”的资源，主要表现在：   线程的创建和销毁成本很高，在Linux这样的操作系统中，线程本质上就是一个进程。创建和销毁都是重量级的系统函数。  线程本身占用较大">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-11-24T14:57:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="meituan_nio">
-<meta name="twitter:description" content="Netty堆外内存泄露排查盛宴磁盘I/O那些事Java NIO浅析">
+<meta name="twitter:description" content="Netty堆外内存泄露排查盛宴磁盘I/O那些事 NIO浅析原文链接：Java NIO浅析NIO（Non-blocking I/O），是一种同步非阻塞的I/O模型，也是I/O多路复用的基础。传统 BIO 为每个连接创建一个线程，但线程是很”贵”的资源，主要表现在：   线程的创建和销毁成本很高，在Linux这样的操作系统中，线程本质上就是一个进程。创建和销毁都是重量级的系统函数。  线程本身占用较大">
 
 
 
@@ -322,7 +322,17 @@
       
 
       
-        <p><a href="https://tech.meituan.com/2018/10/18/netty-direct-memory-screening.html" target="_blank" rel="noopener">Netty堆外内存泄露排查盛宴</a><br><a href="https://tech.meituan.com/2017/05/19/about-desk-io.html" target="_blank" rel="noopener">磁盘I/O那些事</a><br><a href="https://tech.meituan.com/2016/11/04/nio.html" target="_blank" rel="noopener">Java NIO浅析</a></p>
+        <p><a href="https://tech.meituan.com/2018/10/18/netty-direct-memory-screening.html" target="_blank" rel="noopener">Netty堆外内存泄露排查盛宴</a><br><a href="https://tech.meituan.com/2017/05/19/about-desk-io.html" target="_blank" rel="noopener">磁盘I/O那些事</a></p>
+<h2 id="NIO浅析"><a href="#NIO浅析" class="headerlink" title="NIO浅析"></a>NIO浅析</h2><p>原文链接：<a href="https://tech.meituan.com/2016/11/04/nio.html" target="_blank" rel="noopener">Java NIO浅析</a><br>NIO（Non-blocking I/O），是一种同步非阻塞的I/O模型，也是I/O多路复用的基础。<br>传统 BIO 为每个连接创建一个线程，但线程是很”贵”的资源，主要表现在： </p>
+<ol>
+<li>线程的创建和销毁成本很高，在Linux这样的操作系统中，线程本质上就是一个进程。创建和销毁都是重量级的系统函数。 </li>
+<li>线程本身占用较大内存，像Java的线程栈，一般至少分配512K～1M的空间，如果系统中的线程数过千，恐怕整个JVM的内存都会被吃掉一半。 </li>
+<li>线程的切换成本是很高的。  </li>
+<li>容易造成锯齿状的系统负载。 </li>
+</ol>
+<p>BIO 适用场景：活动连接数小于单机1000 。</p>
+<p>存疑：<br>如果一个连接不能读写（socket.read()返回0或者socket.write()返回0），我们可以把这件事记下来（重新记录读写事件？），记录的方式通常是在 Selector 上注册标记位，然后切换到其它就绪的连接（channel）继续进行读写。<br>然后在合适的时机告诉事件选择器：我对这个事件感兴趣。对于写操作，就是写不出去的时候对写事件感兴趣；对于读操作，就是完成连接和系统没有办法承载新读入的数据的时；对于accept，一般是服务器刚启动的时候；而对于connect，一般是connect失败需要重连或者直接异步调用connect的时候。（Selector,channel 怎么工作）  </p>
+<p>Selector.wakeup()<br>主要作用：解除阻塞在Selector.select()/select(long)上的线程，立即返回。<br>为什么要唤醒？：注册了新的channel或者事件。channel关闭，取消注册。优先级更高的事件触发（如定时器事件），希望及时处理。</p>
 
       
     </div>
@@ -419,8 +429,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -473,6 +492,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NIO浅析"><span class="nav-number">1.</span> <span class="nav-text">NIO浅析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
