@@ -341,6 +341,17 @@
 <li>对method_A里面调用到的method_B 的mock 。</li>
 <li>对一些应用里面自己的class(abstract， final， static），interface，annotation，enum，native等的mock。</li>
 </ul>
+<h3 id="系统性能指标"><a href="#系统性能指标" class="headerlink" title="系统性能指标"></a>系统性能指标</h3><ul>
+<li>响应时间<br>指某个请求从发出到接收到响应消耗的时间。请求的平均响应时间、系统的平均响应时间。</li>
+<li>吞吐量<br>指系统在单位时间内可以处理的请求数量，通常使用每秒的请求数来衡量。在没有并发存在的系统中，请求被顺序执行，此时响应时间为吞吐量的倒数。</li>
+<li>并发用户数<br>指系统能同时处理的并发用户请求数量。</li>
+<li>PV（Page View）页面访问量<br>即页面浏览量或点击量，用户每次刷新即被计算一次。可以统计服务一天的访问日志得到。</li>
+<li>QPS(Queries Per Second)<br>意思是“每秒查询率”，是一台服务器每秒能够响应的查询次数。</li>
+<li>TPS(Transactions Per Second)<br>也就是事务数/秒。</li>
+</ul>
+<h3 id="Apache-JMeter"><a href="#Apache-JMeter" class="headerlink" title="Apache JMeter"></a>Apache JMeter</h3><p><a href="https://jmeter.apache.org/usermanual/index.html" target="_blank" rel="noopener">https://jmeter.apache.org/usermanual/index.html</a><br><a href="https://blog.csdn.net/yaorongke/article/details/82799609" target="_blank" rel="noopener">https://blog.csdn.net/yaorongke/article/details/82799609</a></p>
+<h4 id="Get-Started"><a href="#Get-Started" class="headerlink" title="Get Started"></a>Get Started</h4><p>Test plan, understand major concepts<br>Load Test, GUI mode, CLI mode<br>runs the JMeter Mirror Server in CLI mode, distributed testing<br>environment variables, JMeter classpath  </p>
+<h4 id="Elements-of-a-Test-Plan"><a href="#Elements-of-a-Test-Plan" class="headerlink" title="Elements of a Test Plan"></a>Elements of a Test Plan</h4><p>Test Plan, a Thread Group and one or more Samplers.<br>Test Plan<br>cause JMeter to record the data returned from the server<br>Thread Group<br>Controllers<br>two types of Controllers: Samplers and Logical Controllers<br>Listeners, Timers<br>Execution order<br>Using Variables to parameterise tests </p>
 
       
     </div>
@@ -464,7 +475,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -477,7 +488,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -510,7 +521,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单元测试（Unite-Test-UT）"><span class="nav-number">1.</span> <span class="nav-text">单元测试（Unite Test/UT）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成测试（Integration-Test-IT）"><span class="nav-number">2.</span> <span class="nav-text">集成测试（Integration Test/IT）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白盒黑盒测试"><span class="nav-number">3.</span> <span class="nav-text">白盒黑盒测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mock使用场景"><span class="nav-number">4.</span> <span class="nav-text">Mock使用场景</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单元测试（Unite-Test-UT）"><span class="nav-number">1.</span> <span class="nav-text">单元测试（Unite Test/UT）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成测试（Integration-Test-IT）"><span class="nav-number">2.</span> <span class="nav-text">集成测试（Integration Test/IT）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白盒黑盒测试"><span class="nav-number">3.</span> <span class="nav-text">白盒黑盒测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mock使用场景"><span class="nav-number">4.</span> <span class="nav-text">Mock使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统性能指标"><span class="nav-number">5.</span> <span class="nav-text">系统性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache-JMeter"><span class="nav-number">6.</span> <span class="nav-text">Apache JMeter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Get-Started"><span class="nav-number">6.1.</span> <span class="nav-text">Get Started</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Elements-of-a-Test-Plan"><span class="nav-number">6.2.</span> <span class="nav-text">Elements of a Test Plan</span></a></li></ol></li></ol></div>
             
 
           </div>

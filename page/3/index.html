@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/23/books/">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/05/23/blockchain/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="popular rabbit">
@@ -262,7 +262,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/01/23/books/" itemprop="url">books</a></h1>
+                <a class="post-title-link" href="/2021/05/23/blockchain/" itemprop="url">区块链</a></h1>
         
 
         <div class="post-meta">
@@ -274,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-23T22:32:22+08:00">
-                2021-01-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-23T22:32:22+08:00">
+                2021-05-23
               </time>
             
 
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-23T22:32:22+08:00">
-                2021-01-23
+              <time title="更新于" itemprop="dateModified" datetime="2021-05-23T22:32:22+08:00">
+                2021-05-23
               </time>
             
           </span>
@@ -326,56 +326,18 @@
       
         
           
-          正在读
-鸟哥的linuxlinux 文件，目录，磁盘， shell （重点）， Linux 账号管理0719：命令传达，使用者与群组文件权限。0725；vim 的额外功能
-
-凤凰架构0727：什么是凤凰架构，探索起步，网关路由；0730：架构安全性：认证，凭证；0802：负载均衡；0816：远程服务调用；
-
-源码分析 springboot loader分析，spring 扩展点
-
-
-互联网资源专精
-CS-notes
-算法面试-视频
-数据结构与算法-js实现
-鸟哥的linux
-Bash脚本教程
-凤凰架构-分布式云计算
-
-杂项（个人博客，java实战）
-开发者手册-ruanyf
-美团技术团队
-javadoop
-springboot &amp; sc
-宇宙湾
-java &amp; docker开源书籍
-hutool-java开发常用工具
-guava-工具介绍
-java进阶知识扫盲
-jcp_JSRs
-oracle_javase
-java资源下载网
-
-文化，记录片打算读
-linux私房菜
-java核心技术卷ⅠⅡ
-单元测试框架
-springcloud微服务实战
-
-已读（专业书籍，理论）
-javascript
-java编程思想
-深入分析javaweb技术内幕
-spring源码深度解析
-java并发编程实战
-深入理解java虚拟机
-深入浅出mysql
-
-
-          
+          区块链的本质一种特殊的分布式数据库。
+最大特点区块链的世界里面，没有中心节点，每个节点都是平等的，都保存着整个数据库。  
+区块区块链由一个个区块（block）组成。区块头（Head）：记录当前区块的特征值。区块体（Body）：实际数据。  
+Hash 的不可修改性把区块头的各项特征值，按照顺序连接在一起，组成一个很长的字符串，再对这个字符串计算哈希。如果有人修改了一个区块，该区块的哈希就变了。为了让后面的区块还能连到它（因为下一个区块包含上一个区块的哈希），该人必须依次修改后面所有的区块，否则被改掉的区块就脱离区块链了。  
+采矿由于必须保证节点之间的同步，所以新区块的添加速度不能太快。他的设计是，平均每10分钟，全网才能生成一个新区块。这种产出速度不是通过命令达成的，而是故意设置了海量的计算。  
+难度系数区块链协议规定，使用一个常量除以难度系数，可以得到目标值（target）。哈希的有效性跟目标值密切相关，只有小于目标值的哈希才是有效的，否则哈希无效，必须重算。Nonce 是一个随机值，矿工的作用其实就是猜出 Nonce 的值。  
+难度系数的动态调节为了将产出速率恒定在十分钟，中本聪还设计了难度系数的动态调节机制。他规定，难度系数每两周（2016个区块）调整一次。  
+区块链的分叉现在的规则是，新节点总是采用最长的那条区块链。如果区块链有分叉，将看哪个分支在分叉点后面，先达
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/01/23/books/#more" rel="contents">
+            <a class="btn" href="/2021/05/23/blockchain/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -426,7 +388,7 @@ java并发编程实战
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/21/docker/">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/25/运维/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="popular rabbit">
@@ -445,7 +407,7 @@ java并发编程实战
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/01/21/docker/" itemprop="url">docker</a></h1>
+                <a class="post-title-link" href="/2021/01/25/运维/" itemprop="url">DevOps</a></h1>
         
 
         <div class="post-meta">
@@ -457,8 +419,8 @@ java并发编程实战
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-21T18:42:32+08:00">
-                2021-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-25T10:43:35+08:00">
+                2021-01-25
               </time>
             
 
@@ -473,8 +435,8 @@ java并发编程实战
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-21T18:42:32+08:00">
-                2021-01-21
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-25T10:43:35+08:00">
+                2021-01-25
               </time>
             
           </span>
@@ -509,15 +471,167 @@ java并发编程实战
       
         
           
-          DockerLinux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。  
-Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。Docker 将应用程序与该程序的依赖，打包在一个文件里面（image 文件）。运行这个文件，就会生成一个虚拟容器。  
-Dockerfile 是一个文本文件，用来配置 image。Docker 根据 该文件生成二进制的 image 文件。RUN命令在 image 文件的构建阶段执行，执行结果都会打包进入 image 文件；CMD命令则是在容器启动后执行。进程运行在 Docker 容器的虚拟环境里面，进程接触到的文件系统和网络接口都是虚拟的，与本机的文件系统和网络接口是隔离的，因此需要定义容器与物理机的端口映射（map）。  
-Docker Compose 可以管理多个 Docker 容器组成一个应用。你需要定义一个 YAML 格式的配置文件docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器。
-
-          
+          网络排查工具rpc 依赖底层的通信框架，可以指定端口发布服务（本地启动多个微服务时注意修改端口）。telnet 命令本身就是一个应用层协议，它的作用是在两台主机间，建立一个TCP连接。curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。ssh 登陆 linux 服务器的协议，在 cmd 中也“可以用”。a，b（如云内部服务器）两个网络相互不通1、可以配置负载均衡，将b的某个web服务发布出来，a可访问之；2、可以配置弹性公网ip，这样b的所有端口a都可访问；  
+命令curl -I 显示 HEAD请求标头curl -d’login=emma＆password=123’-X POSTcurl -d ‘{}’ -H ‘Content-Type: application/json’curl -H ‘Referer: https://google.com?q=example&#39;curl -v 显示通讯过程
+内网ecs与公网互通策略现象或目标：银联测试环境 可访问 超网服务器出去的公网ip：106.37.214.91EIP：10.200.133.94云内ecs：10.1.132.2:8080
+问题及排查思路现在出方向和入方向106.37.214.91 都和 EIP 10.200.133.94 关联了；实际入方向和出方向要分开
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/01/21/docker/#more" rel="contents">
+            <a class="btn" href="/2021/01/25/运维/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2021/01/23/log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/23/log/" itemprop="url">log</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-23T22:33:57+08:00">
+                2021-01-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-23T22:33:57+08:00">
+                2021-01-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          日志框架的兼容性另一篇文档：https://my.oschina.net/pingpangkuangmo/blog/406618 。  
+日志facade:编程的时候，对外提供的jar中应该只能引用日志的facade，目前常见的日志facade包有：  
+
+log4j的日志api，log4j的api与log4j的实现在同一个包中；
+log4j2的日志api；
+JCL(Jakarta Common Log)(commons-logging)，这个也只是一个api；
+slf4j(Simple Log Facade for Java) api；
+
+日志实现系统。这些包建议可以只在运行阶段引入（runtime），要不当别人的系统使用的日志实现与你提供的jar使用的不是同一个日志实现的时候，会有问题，可能造成你jar中的日志打印不出来或者报缺少包。目前常见的日志实现包有：  
+
+log4j的日志实现；
+log4j2的日志实现；
+slf4j 的具体实现是logback；
+JUL 的具体实现在JDK中；
+
+日志接口桥接器(接口转换器)：所谓的桥接器就是一个假的日志实现工具, 目前最流行的日志facade是slf4j,  由于历史原因，一些三方包已经使用了其它的日志facade, 比如，早期Spring, Apache引用的都是commons-logging的facade，那为了兼容这些接口，则就
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/23/log/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -960,7 +1074,7 @@ sql
 DML（data manipulation language）
 DDL（data definition language）
 
-
+jmeterredis
           
           <!--noindex-->
           <div class="post-button text-center">
@@ -1599,151 +1713,6 @@ Acceptor： 比较 ProposalID，提交提案
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/19/redis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="popular rabbit">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/poprabbit.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="poprabbit">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/19/redis/" itemprop="url">redis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-19T11:22:04+08:00">
-                2020-05-19
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-19T11:22:04+08:00">
-                2020-05-19
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概述Redis 是速度非常快的非关系型（NoSQL）内存键值数据库，可以存储键和五种不同类型的值之间的映射。键的类型只能为字符串，值支持五种数据类型：字符串、列表、集合、散列表、有序集合。  
-使用场景计数器可以对 String 进行自增自减运算，从而实现计数器功能。  
-缓存将热点数据放到内存中，设置内存的最大使用量以及淘汰策略来保证缓存的命中率。  
-会话缓存可以使用 Redis 来统一存储多台应用服务器的会话信息。
-分布式锁实现可以使用 Redis 自带的 SETNX 命令实现分布式锁，除此之外，还可以使用官方提供的 RedLock 分布式锁实现。  
-键的过期时间Redis 可以为每个键设置过期时间，当键过期时，会自动删除该键。  
-数据淘汰策略（失效策略）可以设置内存最大使用量，当内存使用量超出时，会施行数据淘汰策略。Redis 具体有 6 种淘汰策略：从已设置过期时间的数据集中：volatile-lru,volatile-ttl,volatile-random从所有数据集中：allkeys-lru,allkeys-random,noeviction提高缓存命中率的做法：可以将内存最大使用量设置为热点数据占用的内存量，然后启用 allkeys-lru 淘汰策略，将最近最少使用的数据淘汰。
-持久化RDB 持久化（for backups）将某个时间点的所有数据都存放到硬盘上。
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/19/redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1798,7 +1767,7 @@ Acceptor： 比较 ProposalID，提交提案
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1811,7 +1780,7 @@ Acceptor： 比较 ProposalID，提交提案
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

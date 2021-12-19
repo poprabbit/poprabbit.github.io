@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="base,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java 开发p3c 开发手册&amp;amp;idea plugin Java 语法方法重写以下示例不能称为 方法重写，虽然满足里氏替换，但是不符合子类的思想。   123456789101112class SuperClass &amp;#123;    protected List&amp;lt;Integer&amp;gt; func(Animal animal) throws Throwable &amp;#123;">
+<meta name="keywords" content="base">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dev_base">
+<meta property="og:url" content="http://poprabbit.github.io/2020/05/18/开发基础知识/index.html">
+<meta property="og:site_name" content="poprabbit">
+<meta property="og:description" content="Java 开发p3c 开发手册&amp;amp;idea plugin Java 语法方法重写以下示例不能称为 方法重写，虽然满足里氏替换，但是不符合子类的思想。   123456789101112class SuperClass &amp;#123;    protected List&amp;lt;Integer&amp;gt; func(Animal animal) throws Throwable &amp;#123;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-10-18T08:07:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dev_base">
+<meta name="twitter:description" content="Java 开发p3c 开发手册&amp;amp;idea plugin Java 语法方法重写以下示例不能称为 方法重写，虽然满足里氏替换，但是不符合子类的思想。   123456789101112class SuperClass &amp;#123;    protected List&amp;lt;Integer&amp;gt; func(Animal animal) throws Throwable &amp;#123;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://poprabbit.github.io/2020/05/18/开发基础知识/">
+
+
+
+
+
+  <title>dev_base | poprabbit</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">poprabbit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学习如何把牛逼落地</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://poprabbit.github.io/2020/05/18/开发基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="popular rabbit">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/poprabbit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="poprabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">dev_base</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-18T16:07:26+08:00">
+                2020-05-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-10-18T16:07:26+08:00">
+                2021-10-18
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Java-开发"><a href="#Java-开发" class="headerlink" title="Java 开发"></a>Java 开发</h2><p><a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">p3c 开发手册&amp;idea plugin</a></p>
+<h2 id="Java-语法"><a href="#Java-语法" class="headerlink" title="Java 语法"></a>Java 语法</h2><h3 id="方法重写"><a href="#方法重写" class="headerlink" title="方法重写"></a>方法重写</h3><p>以下示例不能称为 方法重写，虽然满足里氏替换，但是不符合子类的思想。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> List&lt;Integer&gt; <span class="title">func</span><span class="params">(Animal animal)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">func</span><span class="params">(Object animal)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>TlensuProjectGenerationController<tlensuprojectrequest> extends DefaultProjectGenerationController<br>DefaultProjectGenerationController extends ProjectGenerationController<projectrequest><br>这样写在 idea 中不报错，但编译的时候会报错。<br>泛型方法定义的关键：返回值前的 <t> 标识</t></projectrequest></tlensuprojectrequest></p>
+<h3 id="lambda-表达式"><a href="#lambda-表达式" class="headerlink" title="lambda 表达式"></a>lambda 表达式</h3><p><a href="http://ifeve.com/lambda/" target="_blank" rel="noopener">lambda 使用体验</a>  </p>
+<ul>
+<li>定义<blockquote>
+<p>一个不用被绑定到一个标识符上，并且可能被调用的函数定义。（一段带有输入参数的可执行语句块）  </p>
+</blockquote>
+</li>
+<li>注意<blockquote>
+<p>外部变量必须用 final修饰；this指向 声明它的外部对象。</p>
+</blockquote>
+</li>
+<li>method reference<blockquote>
+<p>objectName::instanceMethod;ClassName::staticMethod. 把lambda的参数直接当成 instanceMethod|staticMethod 的参数来调用；<br>ClassName::instanceMethod. 把lambda表达式的第一个参数当成 instanceMethod 的目标对象，其他剩余参数当成该方法的参数。</p>
+</blockquote>
+</li>
+<li>construct reference<blockquote>
+<p>ClassName::new，把lambda表达式的参数直接当成 ClassName构造器的参数来调用。  </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="常用工具类"><a href="#常用工具类" class="headerlink" title="常用工具类"></a>常用工具类</h2><h3 id="java-util"><a href="#java-util" class="headerlink" title="java.util.*"></a>java.util.*</h3><ul>
+<li>Arrays,Collections,Comparators,</li>
+<li>Objects</li>
+<li>Optional</li>
+<li>Spliterators</li>
+</ul>
+<h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><ul>
+<li>Consumer: void accept(T t);</li>
+<li>Function: R apply(T t);</li>
+<li>Predicate: boolean test(T t);</li>
+<li>Supplier: T get();</li>
+</ul>
+<h3 id="stream"><a href="#stream" class="headerlink" title="stream"></a>stream</h3><p><a href="http://ifeve.com/stream/" target="_blank" rel="noopener">Stream 使用体验</a>  </p>
+<ul>
+<li>定义<blockquote>
+<p>Stream是元素的集合，可以支持顺序和并行的对原Stream进行汇聚的操作；   </p>
+</blockquote>
+</li>
+<li>使用Stream的基本步骤<blockquote>
+<ol>
+<li>创建Stream；  </li>
+<li>转换Stream，每次转换原有Stream对象不改变，返回一个新的Stream对象（<strong>可以有多次转换</strong>）；  </li>
+<li>对Stream进行聚合（Reduce）操作，获取想要的结果；  </li>
+</ol>
+</blockquote>
+</li>
+<li>创建Stream<blockquote>
+<ol>
+<li>通过Stream接口的静态工厂方法：of方法；generator方法，iterate方法（生成一个无限长度的Stream，配合limit方法来用）；  </li>
+<li>通过Collection接口的默认方法；</li>
+</ol>
+</blockquote>
+</li>
+<li>转换Stream：filter, map, peek(提供一个消费函数), limit(对Stream进行截断操作)  </li>
+<li>Reduce Stream<blockquote>
+<ol>
+<li>可变汇聚：把输入的元素们累积到一个可变的容器中，比如Collection。.collect(Collectors.toList())  </li>
+<li>其他汇聚：通过把前一次的汇聚结果当成下一次的入参，反复如此。比如reduce，count，anyMatch，findFirst；</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h3><ul>
+<li>ClassUtils,ReflectionUtils,TypeUtils</li>
+<li>CollectionUtils</li>
+<li>NumberUtils,ObjectUtils,StringUtils</li>
+<li>FileCopyUtils,FileSystemUtils,ResourceUtils,SocketUtils,StreamUtils</li>
+<li>SystemPropertyUtils</li>
+</ul>
+<h3 id="字符串、日期时间处理"><a href="#字符串、日期时间处理" class="headerlink" title="字符串、日期时间处理"></a>字符串、日期时间处理</h3><h3 id="数学、Money处理"><a href="#数学、Money处理" class="headerlink" title="数学、Money处理"></a>数学、Money处理</h3><h2 id="Java-运算符"><a href="#Java-运算符" class="headerlink" title="Java 运算符"></a>Java 运算符</h2><ul>
+<li>算术运算符：除法 /， 取余 ％  </li>
+<li>关系运算符：==， &gt;=  </li>
+<li>位运算符：A = 0011 1100(60)， B = 0000 1101(13)  <ul>
+<li>（A＆B）得到12，即 0000 1100</li>
+<li>（A | B）得到61，即 0011 1101</li>
+<li>（A ^ B）得到49，即 0011 0001，异或</li>
+<li>（~A）得到-61，即1100 0011，取反</li>
+<li><blockquote>
+<blockquote>
+<p>按位左移，符号位不动，低位补0操作</p>
+</blockquote>
+</blockquote>
+</li>
+<li><blockquote>
+<blockquote>
+<p>按位右移，符号位不动，高位补0操作</p>
+</blockquote>
+</blockquote>
+</li>
+<li><blockquote>
+<blockquote>
+<blockquote>
+<p>按位无符号右移，符号位动，高位补0操作</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>逻辑运算符：&amp;&amp;， ！  </li>
+<li>赋值运算符：&gt;&gt;= 右移位赋值运算符， |=     按位或赋值操作符  </li>
+<li>条件运算符：（?:）</li>
+</ul>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
+<li>“ &amp; &lt; (&quot;&amp;&lt;) 等等属于 xml 的特殊字符，需要转义 org.apache.commons.lang3.StringEscapeUtils.unescapeXml(“”)；  </li>
+<li>浮点数在计算机中的表示规则（国际标准IEEE 754），分成 S,E,M 三部分，V = (-1)^S * M × 2^E；  </li>
+<li>sso://  点单登录协议，需要安装单点登录器。</li>
+<li>如何识别文本文件的编码方式？<ul>
+<li>文件的最前面分别加入一个表示编码方式的字符（FFFE：Unicode、FEFF：Unicode big endian、EFBBBF：UTF-8、默认：ANSI）。</li>
+<li>编辑工具打开时右下角有编码格式显示。  </li>
+</ul>
+</li>
+<li>重复对给定的种子值(seed)调用用户指定函数。</li>
+</ul>
+<h3 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h3><ul>
+<li><p>不可逆加密算法<br>不可逆加密算法的特征是加密过程中不需要使用密钥，输入明文后由系统直接经过加密算法处理成密文，这种加密后的数据是无法被解密的。</p>
+</li>
+<li><p>不可逆加密：SHA(Secure Hash Algorithm)系列，MD5；</p>
+</li>
+<li><p>对称加密算法：AES、3DES；</p>
+</li>
+<li><p>非对称加密算法：RSA；</p>
+</li>
+</ul>
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/base/" rel="tag"># base</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/09/spring/" rel="next" title="used spring">
+                <i class="fa fa-chevron-left"></i> used spring
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/19/系统设计/" rel="prev" title="系统设计">
+                系统设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/poprabbit.jpg" alt="popular rabbit">
+            
+              <p class="site-author-name" itemprop="name">popular rabbit</p>
+              <p class="site-description motion-element" itemprop="description">java</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-开发"><span class="nav-number">1.</span> <span class="nav-text">Java 开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-语法"><span class="nav-number">2.</span> <span class="nav-text">Java 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法重写"><span class="nav-number">2.1.</span> <span class="nav-text">方法重写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">2.2.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lambda-表达式"><span class="nav-number">2.3.</span> <span class="nav-text">lambda 表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用工具类"><span class="nav-number">3.</span> <span class="nav-text">常用工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#java-util"><span class="nav-number">3.1.</span> <span class="nav-text">java.util.*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#function"><span class="nav-number">3.2.</span> <span class="nav-text">function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stream"><span class="nav-number">3.3.</span> <span class="nav-text">stream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring"><span class="nav-number">3.4.</span> <span class="nav-text">spring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串、日期时间处理"><span class="nav-number">3.5.</span> <span class="nav-text">字符串、日期时间处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学、Money处理"><span class="nav-number">3.6.</span> <span class="nav-text">数学、Money处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-运算符"><span class="nav-number">4.</span> <span class="nav-text">Java 运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">5.</span> <span class="nav-text">其它</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#密码学"><span class="nav-number">5.1.</span> <span class="nav-text">密码学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符编码"><span class="nav-number">5.2.</span> <span class="nav-text">字符编码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popular rabbit</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

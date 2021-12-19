@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="DockerLinux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。   Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。Docker 将应用程序与该程序的依赖，打包在一个文件里面（image 文件）。运行这个文件，就会生成一个虚拟容器。   Dockerfile 是一个文本文件，用">
+<meta name="description" content="Docker基础教程菜鸟教程-docker教程 常用命令123456789101112131415161718192021222324252627282930313233docker command --helpdocker imagesdocker pull ubuntu:13.10docker rmi hello-world#从容器中更新镜像#1、在容器内使用 apt-get update 命">
 <meta name="keywords" content="dev_tools">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker">
 <meta property="og:url" content="http://poprabbit.github.io/2021/01/21/docker/index.html">
 <meta property="og:site_name" content="poprabbit">
-<meta property="og:description" content="DockerLinux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。   Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。Docker 将应用程序与该程序的依赖，打包在一个文件里面（image 文件）。运行这个文件，就会生成一个虚拟容器。   Dockerfile 是一个文本文件，用">
+<meta property="og:description" content="Docker基础教程菜鸟教程-docker教程 常用命令123456789101112131415161718192021222324252627282930313233docker command --helpdocker imagesdocker pull ubuntu:13.10docker rmi hello-world#从容器中更新镜像#1、在容器内使用 apt-get update 命">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-21T10:42:32.000Z">
+<meta property="og:updated_time" content="2021-12-19T10:42:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker">
-<meta name="twitter:description" content="DockerLinux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。   Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。Docker 将应用程序与该程序的依赖，打包在一个文件里面（image 文件）。运行这个文件，就会生成一个虚拟容器。   Dockerfile 是一个文本文件，用">
+<meta name="twitter:description" content="Docker基础教程菜鸟教程-docker教程 常用命令123456789101112131415161718192021222324252627282930313233docker command --helpdocker imagesdocker pull ubuntu:13.10docker rmi hello-world#从容器中更新镜像#1、在容器内使用 apt-get update 命">
 
 
 
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-21T18:42:32+08:00">
-                2021-01-21
+              <time title="更新于" itemprop="dateModified" datetime="2021-12-19T18:42:32+08:00">
+                2021-12-19
               </time>
             
           </span>
@@ -322,7 +322,11 @@
       
 
       
-        <h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p>Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。<br>对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。  </p>
+        <h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><h3 id="基础教程"><a href="#基础教程" class="headerlink" title="基础教程"></a>基础教程</h3><p><a href="https://www.runoob.com/docker/docker-tutorial.html" target="_blank" rel="noopener">菜鸟教程-docker教程</a></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">command</span> --<span class="built_in">help</span></span><br><span class="line">docker images</span><br><span class="line">docker pull ubuntu:13.10</span><br><span class="line">docker rmi hello-world</span><br><span class="line"><span class="comment">#从容器中更新镜像</span></span><br><span class="line"><span class="comment">#1、在容器内使用 apt-get update 命令进行更新。</span></span><br><span class="line"><span class="comment">#2、通过命令 docker commit 来提交容器副本。</span></span><br><span class="line">docker commit -m=<span class="string">"has update"</span> -a=<span class="string">"runoob"</span> e218edb10161 runoob/ubuntu:v2</span><br><span class="line">docker build -t runoob/centos:6.7 .</span><br><span class="line">docker run -it ubuntu:15.10 /bin/bash</span><br><span class="line">docker ps (-a)</span><br><span class="line">docker logs</span><br><span class="line">docker start|stop</span><br><span class="line">docker <span class="built_in">exec</span> 1e560fca3906 /bin/bash</span><br><span class="line">docker rm -f 1e560fca3906  (-f 强制删除？)</span><br><span class="line"><span class="comment">#新建互联网络</span></span><br><span class="line">docker network create -d bridge <span class="built_in">test</span>-net</span><br><span class="line"></span><br><span class="line">docker container ls --all</span><br><span class="line"><span class="comment">#从正在运行的容器里面，将文件拷贝到本机。</span></span><br><span class="line">docker container cp [containID] 本机路径:[/path/to/file]</span><br><span class="line">-t: 在新容器内指定一个伪终端或终端。</span><br><span class="line">-i: 允许你对容器内的标准输入 (STDIN) 进行交互。</span><br><span class="line">-d: 指定容器在后台运行。</span><br><span class="line">-p: 是容器内部端口绑定到指定的主机端口。</span><br><span class="line">--name <span class="built_in">test</span>：给容器命名。</span><br><span class="line">--rm：容器终止运行后，自动删除容器文件。</span><br><span class="line">--env MYSQL_ROOT_PASSWORD=123456：向容器进程传入一个环境变量MYSQL_ROOT_PASSWORD，该变量会被用作 MySQL 的根密码。</span><br><span class="line">--volume <span class="string">"<span class="variable">$PWD</span>/"</span>:/var/html：将当前目录（<span class="variable">$PWD</span>-根据当前操作系统变化）映射到容器的/var/html。</span><br><span class="line">--link db:mysql: 容器要连到 db 容器，冒号表示该容器的别名是mysql。</span><br><span class="line"></span><br><span class="line"><span class="comment">#redis</span></span><br><span class="line">docker run --name redis-copy --volume E:\docker\redis:/data redis:5.0 redis-server --save 60 1 --loglevel warning</span><br></pre></td></tr></table></figure>
+
+<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><p>安装（部署）软件最大的麻烦事之一，就是环境配置。虚拟机（virtual machine）就是带环境安装的一种解决方案。</p>
+<p>Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。<br>对于容器里面的进程来说，它接触到的各种资源都是虚拟的，从而实现与底层系统的隔离。  </p>
 <p>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。<br>Docker 将应用程序与该程序的依赖，打包在一个文件里面（image 文件）。运行这个文件，就会生成一个虚拟容器。  </p>
 <p>Dockerfile 是一个文本文件，用来配置 image。Docker 根据 该文件生成二进制的 image 文件。<br>RUN命令在 image 文件的构建阶段执行，执行结果都会打包进入 image 文件；CMD命令则是在容器启动后执行。<br>进程运行在 Docker 容器的虚拟环境里面，进程接触到的文件系统和网络接口都是虚拟的，与本机的文件系统和网络接口是隔离的，因此需要定义容器与物理机的端口映射（map）。  </p>
 <p>Docker Compose 可以管理多个 Docker 容器组成一个应用。你需要定义一个 YAML 格式的配置文件docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器。</p>
@@ -449,7 +453,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -462,7 +466,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -495,7 +499,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker"><span class="nav-number">1.</span> <span class="nav-text">Docker</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker"><span class="nav-number">1.</span> <span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础教程"><span class="nav-number">1.1.</span> <span class="nav-text">基础教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础概念"><span class="nav-number">1.3.</span> <span class="nav-text">基础概念</span></a></li></ol></li></ol></div>
             
 
           </div>
